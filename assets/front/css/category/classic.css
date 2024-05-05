@@ -1,0 +1,356 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #878787;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-primary-color: #bd2222;
+    /* theme primary color ok*/
+}
+
+:root {
+    --theme-secondary-color: #1f1f1f;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #f5f5f5;
+    /* theme light gray color ok*/
+}
+
+:root {
+    --theme-gray-color: #e7e7e8;
+    /* theme gray color */
+}
+
+:root {
+    --theme-dark-color: #2a3645;
+    /* theme dark color */
+}
+
+:root {
+    --theme-footer-color: #1e2124;
+    /* theme dark color */
+}
+
+:root {
+    --theme-extra-color: #f43838;
+    /* theme extra color */
+}
+
+:root {
+    --theme-extra2-color: #ffd200;
+    /* theme extra color */
+}
+
+:root {
+    --theme-primary-opacity-color: rgba(247, 188, 62, .8);
+    /* theme secondary color */
+}
+
+:root {
+    --theme-secondary-opacity-color: rgba(17, 57, 130, .8);
+    /* theme secondary color */
+}
+
+:root {
+    --theme-dark-opacity-color: rgba(27, 27, 30, .8);
+    /* theme dark opacity color */
+}
+
+:root {
+    --theme-white-opacity-color: rgba(255, 255, 255, 0.5);
+    /* theme light color */
+}
+
+:root {
+    --text-light-color: #a5a5a5;
+    /* text light color */
+}
+
+:root {
+    --text-gray-color: #c3c3c3;
+    /* theme text gray color */
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'Jost', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-hiperlink-font: 'Jost', sans-serif;
+    /* Font use for normal text and general text */
+}
+
+:root {
+    --theme-highlight-font: 'Jost', sans-serif;
+    /* Font used in title or special area ok*/
+}
+
+:root {
+    --theme-extra-font: 'Jost', sans-serif;
+    /* Font use for Extra1 text ok*/
+}
+
+
+/*==================================
+Extra CSS
+==================================*/
+
+h1,
+.h1 {
+    font-size: 48px;
+    font-weight: 500
+}
+
+h2,
+.h2 {
+    font-size: 36px;
+    font-weight: 600
+}
+
+h3,
+.h3 {
+    font-size: 21px;
+    font-weight: 400
+}
+
+h4,
+.h4 {
+    font-size: 18px;
+    font-weight: 600
+}
+
+h5,
+.h5 {
+    font-size: 16px;
+    font-weight: 400
+}
+
+h6,
+.h6 {
+    font-size: 15px;
+    font-weight: 600
+}
+
+.btn {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.navbar-slide-push .navbar-nav .nav-item .nav-link,
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-size: 13px;
+    text-transform: uppercase;
+	font-weight: 500;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+[class*="product-search-"] .form-inline.search-pill-shape {
+    background-color: var(--theme-white-color);
+    border: 0;
+}
+
+.header-sticky [class*="product-search-"] .form-inline.search-pill-shape {
+    border: 1px solid var(--theme-secondary-color)
+}
+
+[class*="product-search-"] .form-inline button {
+    background-color: #bd2222;
+}
+
+.ecommerce-header .wishlist-view a.top-quantity span,
+.ecommerce-header .refresh-view a.top-quantity span,
+.ecommerce-header .cart-view a.top-quantity span {
+    color: var(--theme-white-color);
+    background-color: var(--theme-secondary-color);
+}
+
+.social-on-slider-left::before,
+.social-on-slider-left::after {
+    background-color: var(--theme-secondary-color);
+}
+
+.product-wrapper .product-info .product-title,
+.product-wrapper .product-info .product-title a {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--theme-secondary-color) !important
+}
+
+.product-wrapper .product-info .product-price .price ins {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--theme-secondary-color);
+}
+
+.tagline {
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-size: 18px !important;
+    font-weight: 400 !important
+}
+
+.thumb-blog-simple .post-content {
+    width: 70%;
+    position: relative;
+    margin-top: -50px;
+    background-color: var(--theme-light-color);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px;
+}
+
+.thumb-latest-blog {
+    position: relative
+}
+
+.thumb-latest-blog .post-content {
+    width: 350px;
+    text-align: left;
+    position: absolute;
+    top: 100%;
+    background: var(--theme-white-color);
+    padding: 30px;
+    right: 0;
+    transform: translateY(-100%);
+}
+
+.thumb-latest-blog .post-content .btn-link-left-line {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.subscribe-form .form-control {
+    background-color: var(--theme-white-color);
+    border: 1px solid var(--theme-white-color);
+}
+
+.footer-widget .widget-title {
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.footer-widget li a {
+    font-weight: 400;
+    font-size: 15;
+}
+
+.product-wrapper .on-sale {
+    background-color: var(--theme-primary-color);
+    color: var(--theme-white-color)
+}
+
+.simple-service i {
+    width: 70px;
+    height: 70px;
+    background-color: var(--theme-white-color);
+    border-radius: 50rem;
+    position: relative;
+    margin-right: 10px;
+}
+
+.simple-service i::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.time-box li span:last-child {
+    color: var(--theme-secondary-color)
+}
+.header-cart-1 .cart-icon, 
+.header-cart-6 .cart-icon,
+.search-view > a,
+.wishlist-view > a,
+.refresh-view > a,
+.cart-view > a,
+.sign-in > a {
+    padding: 4px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: var(--theme-white-color);
+}
+
+@media screen and (max-width: 1199px) {
+    .search-view > a,
+	.wishlist-view > a,
+	.refresh-view > a,
+	.cart-view > a,
+	.sign-in > a {
+		line-height: 35px;
+		width: 35px;
+		height: 35px;
+	}
+}
+
+@media screen and (max-width: 1399px){
+	.touch-screen-view.visible {
+		visibility: visible;
+		opacity: 1;
+	}
+	.touch-screen-view {
+		position: fixed;
+		width: 100%;
+		height: 130px;
+		background: var(--theme-light-color);
+		top: 0;
+		left: 0;
+		z-index: 110;
+		visibility: hidden;
+		opacity: 0;
+		-moz-transition: all 300ms ease-in-out 0s;
+		-webkit-transition: all 300ms ease-in-out 0s;
+		-o-transition: all 300ms ease-in-out 0s;
+		-ms-transition: all 300ms ease-in-out 0s;
+		transition: all 300ms ease-in-out 0s;
+	}
+	.touch-screen-view .form-inline {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 575px) {
+    .thumb-latest-blog .post-content {
+        width: 100%;
+        position: inherit;
+        top: 0;
+        transform: translateY(0);
+    }
+    .product-wrapper {
+        display: block
+    }
+}
