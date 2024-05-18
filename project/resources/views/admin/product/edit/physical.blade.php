@@ -532,6 +532,41 @@
                                             </div>
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="left-area">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <ul class="list">
+                                                    <li>
+                                                        <input class="checkclick1" name="product_shelf_expiry_check"
+                                                               type="checkbox" id="check1112"
+                                                               value="1" {{$data->product_shelf_expiry != null ? "checked":""}}>
+                                                        <label
+                                                            for="check1112">{{ __('Allow Product Shelf expiry') }}</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="{{ $data->product_shelf_expiry != null ? "":"showbox" }}">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="left-area">
+                                                        <h4 class="heading">{{ __('Product Shelf expiry') }}* </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <input type="text" class="input-field" min="1"
+                                                           placeholder="{{ __('Date/months/year') }}"
+                                                           name="product_shelf_expiry"
+                                                           value="{{  $data->product_shelf_expiry == null ? '' : $data->product_shelf_expiry  }}">
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="row">
                                             <div class="col-lg-12">

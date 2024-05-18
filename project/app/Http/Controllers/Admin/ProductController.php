@@ -270,6 +270,10 @@ class ProductController extends AdminBaseController
             if ($request->shipping_time_check == "") {
                 $input['ship'] = null;
             }
+            // add expiry
+            if ($request->product_shelf_expiry_check == "") {
+                $input['product_shelf_expiry'] = null;
+            }
 
             // Check Size
             if (empty($request->stock_check)) {
@@ -462,8 +466,6 @@ class ProductController extends AdminBaseController
         $childcategoryId = $prod->childcategory_id ?? '0';
         $productId = $prod->id;
         $prod->sku = $categoryId . $subcategoryId . $childcategoryId . $productId;
-
-        $prod->update();
         // Set Thumbnail
         $img = Image::make(public_path() . '/assets/images/products/' . $prod->photo)->resize(285, 285);
         $thumbnail = time() . Str::random(8) . '.jpg';
@@ -705,7 +707,7 @@ class ProductController extends AdminBaseController
         // Check Physical
         if ($data->type == "Physical") {
             //--- Validation Section
-            $rules = ['sku' => 'min:8|unique:products,sku,' . $id];
+            $rules = [];
 
             $validator = Validator::make($request->all(), $rules);
 
@@ -727,6 +729,9 @@ class ProductController extends AdminBaseController
             // Check Minimum Qty
             if ($request->minimum_qty_check == "") {
                 $input['minimum_qty'] = null;
+            }
+            if ($request->product_shelf_expiry_check == "") {
+                $input['product_shelf_expiry'] = null;
             }
 
             // Check Shipping Time
