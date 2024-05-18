@@ -10,10 +10,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-md-5">
                             <li class="nav-item dropdown {{ request()->path() == '/' ? 'active':''}}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.index') }}">{{ __('Home') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.index') }}">{{ __('Shop') }}</a>
                             </li>
                             <li class="nav-item dropdown mega-dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('Product') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('New') }}</a>
                                 <ul class="dropdown-menu mega-dropdown-menu">
                                     <li class="mega-container">
                                         <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-1">
@@ -39,22 +39,14 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle" href="#">{{ __('Pages') }}</a>
-                                <ul class="dropdown-menu">
-                                    @foreach(DB::table('pages')->where('language_id',$langg->id)->where('header','=',1)->get() as $data)
-                                    <li><a class="dropdown-item" href="{{ route('front.vendor',$data->slug) }}">{{ $data->title }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
+                            
                             <li class="nav-item dropdown {{ request()->path()=='blog' ? 'active' : '' }}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.blog') }}">{{ __('Sale') }}</a>
                             </li>
                             <li class="nav-item dropdown {{ request()->path()=='faq' ? 'active' : '' }}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.faq') }}">{{ __('FAQ') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.faq') }}">{{ __('Brands') }}</a>
                             </li>
 
-                            <li class="nav-item {{ request()->path()=='contact' ? 'active' : '' }}"><a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -144,7 +136,7 @@
 
                     <div class="header-cart-1">
                         <a href="{{ route('front.cart') }}" class="cart has-cart-data" title="View Cart">
-                            <div class="cart-icon"><i class="flaticon-shopping-cart flat-mini"></i> <span class="header-cart-count" id="cart-count">{{ Session::has('cart') ? count(Session::get('cart')->items) : '0' }}</span></div>
+                            <div class="cart-icon"><i class="flaticon-shopping-cart flat-mini"></i> <span class="header-cart-count text-danger" id="cart-count">{{ Session::has('cart') ? count(Session::get('cart')->items) : '0' }}</span></div>
                             <div class="cart-wrap">
                                 <div class="cart-text">Cart</div>
                                 <span class="header-cart-count">{{ Session::has('cart') ? count(Session::get('cart')->items) : '0' }}</span>
