@@ -241,7 +241,8 @@ class ProductController extends AdminBaseController
         // Check Physical
         if ($request->type == "Physical") {
             //--- Validation Section
-            $rules = ['sku' => 'min:8|unique:products'];
+            $rules = [];
+
 
             $validator = Validator::make($request->all(), $rules);
 
@@ -455,7 +456,14 @@ class ProductController extends AdminBaseController
         } else {
             $prod->slug = Str::slug($data->name, '-') . '-' . strtolower($data->sku);
         }
+        // Initialize the SKU components with the product ID
+        $categoryId = $prod->category_id ?? '0';
+        $subcategoryId = $prod->subcategory_id ?? '0';
+        $childcategoryId = $prod->childcategory_id ?? '0';
+        $productId = $prod->id;
+        $prod->sku = $categoryId . $subcategoryId . $childcategoryId . $productId;
 
+        $prod->update();
         // Set Thumbnail
         $img = Image::make(public_path() . '/assets/images/products/' . $prod->photo)->resize(285, 285);
         $thumbnail = time() . Str::random(8) . '.jpg';
