@@ -25,7 +25,8 @@ jobs:
           FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
         run: |
           lftp -u "${FTP_USERNAME},${FTP_PASSWORD}" $FTP_HOST -e "
+          set ssl:verify-certificate no;
           mirror -R ./ $FTP_TARGET_DIR;
           bye
           "
-        shell: bash
+        shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
