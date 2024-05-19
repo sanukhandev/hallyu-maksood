@@ -1,0 +1,30 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main # Change this to your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy to cPanel via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
+        run: |
+          lftp -c "
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST;
+          mirror -R ./ $FTP_TARGET_DIR;
+          bye
+          "
