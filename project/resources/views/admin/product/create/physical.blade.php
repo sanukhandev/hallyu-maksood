@@ -142,7 +142,7 @@
 																	<ul class="list">
 																		<li>
 																			<input class="checkclick1" name="product_condition_check" type="checkbox" id="product_condition_check" value="1">
-																			<label for="product_condition_check">{{ __('Allow Product Condition') }}</label>
+																			<label for="product_condition_check">{{ __('Allow Product Conditionss') }}</label>
 																		</li>
 																	</ul>
 																</div>
@@ -230,6 +230,37 @@
 																</div>
 
 															</div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="left-area">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <ul class="list">
+                                                                        <li>
+                                                                            <input class="checkclick1" name="product_shelf_expiry_check" type="checkbox" id="check1112" value="1">
+                                                                            <label for="check1112">{{ __('Allow Product Shelf expiry') }}</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="showbox">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="left-area">
+                                                                            <h4 class="heading">{{ __('Product Shelf expiry') }}* </h4>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <input type="text" class="input-field" min="1"
+                                                                               placeholder="{{ __('Date/months/year') }}" name="product_shelf_expiry">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
 
 
 															<div class="row">
