@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: uat
 
     steps:
       - name: Checkout repository
@@ -23,8 +24,8 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
         run: |
-          lftp -c "
-          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST;
+          lftp -u "${FTP_USERNAME},${FTP_PASSWORD}" $FTP_HOST -e "
           mirror -R ./ $FTP_TARGET_DIR;
           bye
           "
+        shell: bash
