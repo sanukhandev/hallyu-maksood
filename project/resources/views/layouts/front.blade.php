@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="GeniusCart-New - Multivendor Ecommerce system">
-    <meta name="author" content="GeniusOcean">
+    <meta name="description" content="Online Shopping  For korean Skincare, Makeup, Bath, Nails, Hair And More">
+    <meta name="author" content="hallyu style">
 
     @if(isset($page->meta_tag) && isset($page->meta_description))
 
