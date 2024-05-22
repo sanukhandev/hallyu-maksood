@@ -1,14 +1,14 @@
-<div class="top-header font-400 d-none d-lg-block py-1  text-general">
+<div class="top-header font-400 d-none d-lg-block py-1 ">
     <div class="container">
        <div class="row align-items-center">
           <div class="col-lg-4 sm-mx-none">
-             <div class="d-flex align-items-center text-general">
-                <i class="flaticon-phone-call flat-mini me-2 text-general"></i>
+             <div class="d-flex align-items-center ">
+                <i class="flaticon-phone-call flat-mini me-2 "></i>
                 <span class="text-dark"> {{ $ps->phone }}</span>
              </div>
           </div>
           <div class="col-lg-8 ">
-             <ul class="top-links text-general ms-auto  d-flex justify-content-end">
+             <ul class=" ms-auto  d-flex justify-content-end">
                
                 <li class="my-account-dropdown">
                    <div class="currency-selector nice-select">
