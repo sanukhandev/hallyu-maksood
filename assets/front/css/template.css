@@ -969,6 +969,7 @@ a.text-dark:focus {
   left: 0;
   width: 100%;
   z-index: 999;
+  background: #f6e5f4;
 }
 
 .nav-on-top {
