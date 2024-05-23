@@ -1202,7 +1202,7 @@
                                             <div class="col-lg-12">
                                                 <div class="left-area">
                                                     <h4 class="heading">
-                                                        {{ __('Product Current Price') }}*
+                                                        {{ __('Product Sales Price') }}*
                                                     </h4>
                                                     <p class="sub-heading">
                                                         ({{ __('In') }} {{$sign->name}})
@@ -1219,8 +1219,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="left-area">
-                                                    <h4 class="heading">{{ __('Product Discount Price') }}*</h4>
-                                                    <p class="sub-heading">{{ __('(Optional)') }}</p>
+                                                    <h4 class="heading">{{ __('Product List Price') }}</h4>
+                                                    <s>
+
+                                                        <p class="sub-heading">{{ __('(Optional)') }}</p>
+                                                    </s>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
