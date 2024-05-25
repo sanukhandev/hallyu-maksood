@@ -1117,6 +1117,55 @@ Route::group(['middleware' => 'maintenance'], function () {
             Route::get('/warning/verify/{id}', 'Vendor\VendorController@warningVerify')->name('vendor-warning');
             Route::post('/verify', 'Vendor\VendorController@verifysubmit')->name('vendor-verify-submit');
 
+
+            Route::get('/category/datatables', 'Vendor\CategoryController@datatables')->name('vendor-cat-datatables'); //JSON REQUEST
+            Route::get('/category', 'Vendor\CategoryController@index')->name('vendor-cat-index');
+            Route::get('/category/create', 'Vendor\CategoryController@create')->name('vendor-cat-create');
+            Route::post('/category/create', 'Vendor\CategoryController@store')->name('vendor-cat-store');
+            Route::get('/category/edit/{id}', 'Vendor\CategoryController@edit')->name('vendor-cat-edit');
+            Route::post('/category/edit/{id}', 'Vendor\CategoryController@update')->name('vendor-cat-update');
+            Route::delete('/category/delete/{id}', 'Vendor\CategoryController@destroy')->name('vendor-cat-delete');
+            Route::get('/category/status/{id1}/{id2}', 'Vendor\CategoryController@status')->name('vendor-cat-status');
+
+            //------------ ADMIN ATTRIBUTE SECTION ------------
+
+            Route::get('/attribute/datatables', 'Vendor\AttributeController@datatables')->name('vendor-attr-datatables'); //JSON REQUEST
+            Route::get('/attribute', 'Vendor\AttributeController@index')->name('vendor-attr-index');
+            Route::get('/attribute/{catid}/attrCreateForCategory', 'Vendor\AttributeController@attrCreateForCategory')->name('vendor-attr-createForCategory');
+            Route::get('/attribute/{subcatid}/attrCreateForSubcategory', 'Vendor\AttributeController@attrCreateForSubcategory')->name('vendor-attr-createForSubcategory');
+            Route::get('/attribute/{childcatid}/attrCreateForChildcategory', 'Vendor\AttributeController@attrCreateForChildcategory')->name('vendor-attr-createForChildcategory');
+            Route::post('/attribute/store', 'Vendor\AttributeController@store')->name('vendor-attr-store');
+            Route::get('/attribute/{id}/manage', 'Vendor\AttributeController@manage')->name('vendor-attr-manage');
+            Route::get('/attribute/{attrid}/edit', 'Vendor\AttributeController@edit')->name('vendor-attr-edit');
+            Route::post('/attribute/edit/{id}', 'Vendor\AttributeController@update')->name('vendor-attr-update');
+            Route::get('/attribute/{id}/options', 'Vendor\AttributeController@options')->name('vendor-attr-options');
+            Route::get('/attribute/delete/{id}', 'Vendor\AttributeController@destroy')->name('vendor-attr-delete');
+
+            // SUBCATEGORY SECTION ------------
+
+            Route::get('/subcategory/datatables', 'Vendor\SubCategoryController@datatables')->name('vendor-subcat-datatables'); //JSON REQUEST
+            Route::get('/subcategory', 'Vendor\SubCategoryController@index')->name('vendor-subcat-index');
+            Route::get('/subcategory/create', 'Vendor\SubCategoryController@create')->name('vendor-subcat-create');
+            Route::post('/subcategory/create', 'Vendor\SubCategoryController@store')->name('vendor-subcat-store');
+            Route::get('/subcategory/edit/{id}', 'Vendor\SubCategoryController@edit')->name('vendor-subcat-edit');
+            Route::post('/subcategory/edit/{id}', 'Vendor\SubCategoryController@update')->name('vendor-subcat-update');
+            Route::delete('/subcategory/delete/{id}', 'Vendor\SubCategoryController@destroy')->name('vendor-subcat-delete');
+            Route::get('/subcategory/status/{id1}/{id2}', 'Vendor\SubCategoryController@status')->name('vendor-subcat-status');
+            Route::get('/load/subcategories/{id}/', 'Vendor\SubCategoryController@load')->name('vendor-subcat-load'); //JSON REQUEST
+
+            // SUBCATEGORY SECTION ENDS------------
+
+            // CHILDCATEGORY SECTION ------------
+
+            Route::get('/childcategory/datatables', 'Vendor\ChildCategoryController@datatables')->name('vendor-childcat-datatables'); //JSON REQUEST
+            Route::get('/childcategory', 'Vendor\ChildCategoryController@index')->name('vendor-childcat-index');
+            Route::get('/childcategory/create', 'Vendor\ChildCategoryController@create')->name('vendor-childcat-create');
+            Route::post('/childcategory/create', 'Vendor\ChildCategoryController@store')->name('vendor-childcat-store');
+            Route::get('/childcategory/edit/{id}', 'Vendor\ChildCategoryController@edit')->name('vendor-childcat-edit');
+            Route::post('/childcategory/edit/{id}', 'Vendor\ChildCategoryController@update')->name('vendor-childcat-update');
+            Route::delete('/childcategory/delete/{id}', 'Vendor\ChildCategoryController@destroy')->name('vendor-childcat-delete');
+            Route::get('/childcategory/status/{id1}/{id2}', 'Vendor\ChildCategoryController@status')->name('vendor-childcat-status');
+            Route::get('/load/childcategories/{id}/', 'Vendor\ChildCategoryController@load')->name('vendor-childcat-load');
         });
 
     });

@@ -142,7 +142,25 @@
 								</ul>
 							</li>
 
-							<li>
+                            <li>
+                                <a href="#menu5" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fas fa-sitemap"></i>{{ __('Manage Categories') }}
+                                </a>
+                                <ul class="collapse list-unstyled" id="menu5" data-parent="#accordion">
+                                    <li>
+                                        <a href="{{ route('vendor-cat-index') }}"><span>{{ __('Main Category') }}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('vendor-subcat-index') }}"><span>{{ __('Sub Category') }}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('vendor-childcat-index') }}"><span>{{ __('Child Category') }}</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li>
 								<a href="#menu2" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
 									<i class="icofont-cart"></i>{{ __('Products') }}
 								</a>
