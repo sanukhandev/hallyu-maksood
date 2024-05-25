@@ -796,8 +796,7 @@ textarea.input-field {
 .row-cards-one .mycard {
   border-radius: 3px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.30) !important;
-  padding: 25px 40px 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -809,6 +808,7 @@ textarea.input-field {
   -webkit-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
+  padding: 10px 20px;
 }
 
 .row-cards-one .mycard:hover {
@@ -821,123 +821,122 @@ textarea.input-field {
 }
 
 .row-cards-one .mycard .left .title {
-  font-size: 22px;
+  font-size: large;
   color: #fff;
   line-height: 32px;
   margin-bottom: 2px;
 }
 
 .row-cards-one .mycard .left .number {
-  font-size: 42px;
+  font-size: xx-large;
   line-height: 52px;
   font-weight: 600;
   display: block;
   color: #fff;
-  margin-bottom: 20px;
 }
 
 .row-cards-one .mycard .left .link {
-  width: 80px;
-  height: 30px;
-  background: #fff;
-  border-radius: 50px;
-  line-height: 30px;
-  font-size: 14px;
-  display: block;
-  text-align: center;
-  -webkit-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
+width: 80px;
+height: 30px;
+background: #fff;
+border-radius: 50px;
+line-height: 30px;
+font-size: 14px;
+display: block;
+text-align: center;
+-webkit-transition: all 0.3s ease-in;
+-o-transition: all 0.3s ease-in;
+transition: all 0.3s ease-in;
 }
 
 .row-cards-one .mycard .left .link:hover {
-  background: #000;
-  color: #fff;
+background: #000;
+color: #fff;
 }
 
 .row-cards-one .mycard .right .icon {
-  font-size: 80px;
-  color: #fff;
-  position: inherit;
-  z-index: 9;
+  font-size: xxx-large !important;
+  color: #d5d5d582;
+position: inherit;
+z-index: 9;
 }
 
 .row-cards-one .mycard::after {
-  position: absolute;
-  content: " ";
-  width: 268px;
-  height: 500px;
-  top: -100px;
-  right: -50px;
-  -webkit-transform: rotate(28deg);
-  -ms-transform: rotate(28deg);
-  transform: rotate(28deg);
+position: absolute;
+content: " ";
+width: 268px;
+height: 500px;
+top: -100px;
+right: -50px;
+-webkit-transform: rotate(28deg);
+-ms-transform: rotate(28deg);
+transform: rotate(28deg);
 }
 
 .row-cards-one .mycard.bg1 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#f85108), to(#f4ad3c));
-  background-image: -webkit-linear-gradient(left, #f85108, #f4ad3c);
-  background-image: -o-linear-gradient(left, #f85108, #f4ad3c);
-  background-image: linear-gradient(to right, #f85108, #f4ad3c);
+background-image: -webkit-gradient(linear, left top, right top, from(#f85108), to(#f4ad3c));
+background-image: -webkit-linear-gradient(left, #f85108, #f4ad3c);
+background-image: -o-linear-gradient(left, #f85108, #f4ad3c);
+background-image: linear-gradient(to right, #f85108, #f4ad3c);
 }
 
 .row-cards-one .mycard.bg1::after {
-  background: #f85108;
+background: #f85108;
 }
 
 .row-cards-one .mycard.bg2 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#047edf), to(#0bb9fa));
-  background-image: -webkit-linear-gradient(left, #047edf, #0bb9fa);
-  background-image: -o-linear-gradient(left, #047edf, #0bb9fa);
-  background-image: linear-gradient(to right, #047edf, #0bb9fa);
+background-image: -webkit-gradient(linear, left top, right top, from(#047edf), to(#0bb9fa));
+background-image: -webkit-linear-gradient(left, #047edf, #0bb9fa);
+background-image: -o-linear-gradient(left, #047edf, #0bb9fa);
+background-image: linear-gradient(to right, #047edf, #0bb9fa);
 }
 
 .row-cards-one .mycard.bg2::after {
-  background: #047edf;
+background: #047edf;
 }
 
 .row-cards-one .mycard.bg3 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#0fa49b), to(#03dbce));
-  background-image: -webkit-linear-gradient(left, #0fa49b, #03dbce);
-  background-image: -o-linear-gradient(left, #0fa49b, #03dbce);
-  background-image: linear-gradient(to right, #0fa49b, #03dbce);
+background-image: -webkit-gradient(linear, left top, right top, from(#0fa49b), to(#03dbce));
+background-image: -webkit-linear-gradient(left, #0fa49b, #03dbce);
+background-image: -o-linear-gradient(left, #0fa49b, #03dbce);
+background-image: linear-gradient(to right, #0fa49b, #03dbce);
 }
 
 .row-cards-one .mycard.bg3::after {
-  background: #0fa49b;
+background: #0fa49b;
 }
 
 .row-cards-one .mycard.bg4 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#5a49e9), to(#7a6cf0));
-  background-image: -webkit-linear-gradient(left, #5a49e9, #7a6cf0);
-  background-image: -o-linear-gradient(left, #5a49e9, #7a6cf0);
-  background-image: linear-gradient(to right, #5a49e9, #7a6cf0);
+background-image: -webkit-gradient(linear, left top, right top, from(#5a49e9), to(#7a6cf0));
+background-image: -webkit-linear-gradient(left, #5a49e9, #7a6cf0);
+background-image: -o-linear-gradient(left, #5a49e9, #7a6cf0);
+background-image: linear-gradient(to right, #5a49e9, #7a6cf0);
 }
 
 .row-cards-one .mycard.bg4::after {
-  background: #352d7b;
+background: #352d7b;
 }
 
 .row-cards-one .mycard.bg5 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#cf0633), to(#f96079));
-  background-image: -webkit-linear-gradient(left, #cf0633, #f96079);
-  background-image: -o-linear-gradient(left, #cf0633, #f96079);
-  background-image: linear-gradient(to right, #cf0633, #f96079);
+background-image: -webkit-gradient(linear, left top, right top, from(#cf0633), to(#f96079));
+background-image: -webkit-linear-gradient(left, #cf0633, #f96079);
+background-image: -o-linear-gradient(left, #cf0633, #f96079);
+background-image: linear-gradient(to right, #cf0633, #f96079);
 }
 
 .row-cards-one .mycard.bg5::after {
-  background: #cf0633;
+background: #cf0633;
 }
 
 .row-cards-one .mycard.bg6 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#129021), to(#1ed41e));
-  background-image: -webkit-linear-gradient(left, #129021, #1ed41e);
-  background-image: -o-linear-gradient(left, #129021, #1ed41e);
-  background-image: linear-gradient(to right, #129021, #1ed41e);
+background-image: -webkit-gradient(linear, left top, right top, from(#129021), to(#1ed41e));
+background-image: -webkit-linear-gradient(left, #129021, #1ed41e);
+background-image: -o-linear-gradient(left, #129021, #1ed41e);
+background-image: linear-gradient(to right, #129021, #1ed41e);
 }
 
 .row-cards-one .mycard.bg6::after {
-  background: #129021;
+background: #129021;
 }
 
 /*----------------------------------
