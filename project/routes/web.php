@@ -942,6 +942,7 @@ Route::group(['middleware' => 'maintenance'], function () {
 // ************************************ VENDOR SECTION **********************************************
 
     Route::prefix('vendor')->group(function () {
+        Route::get('/login', 'User\LoginController@showVendorLoginForm')->name('vendor.login');
 
         Route::group(['middleware' => 'vendor'], function () {
 
@@ -1129,7 +1130,6 @@ Route::group(['middleware' => 'maintenance'], function () {
 
         // USER AUTH SECION
         Route::get('/login', 'User\LoginController@showLoginForm')->name('user.login');
-        Route::get('/vendor-login', 'User\LoginController@showVendorLoginForm')->name('vendor.login');
 
         Route::get('/register', 'User\RegisterController@showRegisterForm')->name('user.register');
         Route::get('/vendor-register', 'User\RegisterController@showVendorRegisterForm')->name('vendor.register');
