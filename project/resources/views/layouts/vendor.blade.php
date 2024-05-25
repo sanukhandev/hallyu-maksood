@@ -148,7 +148,7 @@
 								</a>
 								<ul class="collapse list-unstyled" id="menu2" data-parent="#accordion">
 									<li>
-										<a href="{{ route('vendor-prod-types') }}"><span>{{ __('Add New Product') }}</span></a>
+										<a href="{{ route('vendor-prod-create','physical') }}"><span>{{ __('Add New Product') }}</span></a>
 									</li>
 									<li>
 										<a href="{{ route('vendor-prod-index') }}"><span>{{ __('All Products') }}</span></a>
@@ -174,7 +174,7 @@
 								</ul>
 							</li>
 							@endif
-							
+
 
 
 							<li>
@@ -208,7 +208,7 @@
                                     <li>
                                     	<a href="{{ route('vendor-sociallink-index') }}"><span>{{ __('Social Links') }}</span></a>
                                     </li>
-									
+
 								</ul>
 							</li>
 							<li>
