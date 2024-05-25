@@ -2554,9 +2554,6 @@ div#landscape img{
 
 
 
-
-
-
-
-
-
+.badge {
+  font-size: 100% !important;
+}

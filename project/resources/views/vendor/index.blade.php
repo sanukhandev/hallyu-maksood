@@ -102,57 +102,8 @@
 
 
                         <div class="row row-cards-one">
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                    <div class="card">
-                                            <h5 class="card-header">{{ __('Recent Product(s)') }}</h5>
-                                            <div class="card-body">
 
-                                                <div class="table-responsiv dashboard-home-table">
-                                                    <table id="pproducts" class="table table-hover dt-responsive" cellspacing="0" width="100%">
-                                                            <thead>
-                                                                    <tr>
-                                                                        <th>{{ __('Featured Image') }}</th>
-                                                                        <th>{{ __('Name') }}</th>
-                                                                        <th>{{ __('Category') }}</th>
-                                                                        <th>{{ __('Type') }}</th>
-                                                                        <th>{{ __('Price') }}</th>
-                                                                        <th></th>
-
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @foreach($pproducts as $data)
-                                                                    <tr>
-                                                                    <td><img src="{{filter_var($data->photo, FILTER_VALIDATE_URL) ?$data->photo:asset('assets/images/products/'.$data->photo)}}"></td>
-                                                                    <td>{{  mb_strlen(strip_tags($data->name),'UTF-8') > 50 ? mb_substr(strip_tags($data->name),0,50,'UTF-8').'...' : strip_tags($data->name) }}</td>
-                                                                    <td>{{ $data->category->name }}
-                                                                        @if(isset($data->subcategory))
-                                                                        <br>
-                                                                        {{ $data->subcategory->name }}
-                                                                        @endif
-                                                                        @if(isset($data->childcategory))
-                                                                        <br>
-                                                                        {{ $data->childcategory->name }}
-                                                                        @endif
-                                                                    </td>
-                                                                        <td>{{ $data->type }}</td>
-                                                                        <td> {{ $data->showPrice() }} </td>
-                                                                        <td>
-                                                                            <div class="action-list"><a href="{{ route('admin-prod-edit',$data->id) }}"><i
-                                                                                        class="fas fa-eye"></i> {{ __('Details') }}</a>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    @endforeach
-                                                                </tbody>
-                                                    </table>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="col-md-12 col-lg-12 col-xl-12">
                                 <div class="card">
                                     <h5 class="card-header">{{ __('Recent Order(s)') }}</h5>
                                     <div class="card-body">
@@ -164,11 +115,27 @@
 
                                                         <th>{{ __('Order Number') }}</th>
                                                         <th>{{ __('Order Date') }}</th>
+                                                        <th>{{__('Order Status')}}</th>
+                                                        <th>{{ __('Action') }}</th>
                                                     </tr>
                                                     @foreach($rorders as $data)
                                                     <tr>
+
                                                         <td>{{ $data->order_number }}</td>
                                                         <td>{{ date('Y-m-d',strtotime($data->created_at)) }}</td>
+                                                        <td>
+                                                            <div>
+                                                                @if($data->status == 'completed')
+                                                                    <span class="badge badge-success">{{ __('Completed') }}</span>
+                                                                @elseif($data->status == 'processing')
+                                                                    <span class="badge badge-info">{{ __('Processing') }}</span>
+                                                                @elseif($data->status == 'pending')
+                                                                    <span class="badge badge-warning">{{ __('Pending') }}</span>
+                                                                @elseif($data->status == 'declined')
+                                                                    <span class="badge badge-danger">{{ __('Declined') }}</span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
                                                         <td>
                                                             <div class="action-list"><a href="{{ route('admin-order-show',$data->id) }}"><i
                                                                         class="fas fa-eye"></i> {{ __('Details') }}</a>
@@ -182,6 +149,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="row row-cards-one">

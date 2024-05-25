@@ -27,12 +27,12 @@ class VendorController extends VendorBaseController
 
             $data['sales'] .=  "'".VendorOrder::where('user_id','=',$this->user->id)->where('status','=','completed')->whereDate('created_at', '=', date("Y-m-d", strtotime('-'. $i .' days')))->count()."',";
         }
-        $data['pproducts'] = Product::where('user_id','=',$this->user->id)->latest('id')->take(6)->get();
+//        $data['pproducts'] = Product::where('user_id','=',$this->user->id)->latest('id')->take(10)->get();
         $data['rorders'] = VendorOrder::where('user_id','=',$this->user->id)->latest('id')->take(10)->get();
-        $data['user'] = $this->user;  
-        $data['pending'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','pending')->get(); 
-        $data['processing'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','processing')->get(); 
-        $data['completed'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','completed')->get(); 
+        $data['user'] = $this->user;
+        $data['pending'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','pending')->get();
+        $data['processing'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','processing')->get();
+        $data['completed'] = VendorOrder::where('user_id','=',$this->user->id)->where('status','=','completed')->get();
         return view('vendor.index',$data);
     }
 
@@ -44,37 +44,37 @@ class VendorController extends VendorBaseController
                 ];
 
         $validator = Validator::make($request->all(), $rules);
-        
+
         if ($validator->fails()) {
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
         //--- Validation Section Ends
 
-        $input = $request->all();  
-        $data = $this->user;    
+        $input = $request->all();
+        $data = $this->user;
 
-        if ($file = $request->file('shop_image')) 
-         {  
-            $extensions = ['jpeg','jpg','png','svg'];       
+        if ($file = $request->file('shop_image'))
+         {
+            $extensions = ['jpeg','jpg','png','svg'];
             if(!in_array($file->getClientOriginalExtension(),$extensions)){
                 return response()->json(array('errors' => ['Image format not supported']));
-            }   
+            }
             $name = \PriceHelper::ImageCreateName($file);
-            $file->move('assets/images/vendorbanner',$name);           
+            $file->move('assets/images/vendorbanner',$name);
             $input['shop_image'] = $name;
         }
 
         $data->update($input);
         $msg = __('Successfully updated your profile');
-        return response()->json($msg); 
+        return response()->json($msg);
     }
 
     // Spcial Settings All post requests will be done in this method
     public function socialupdate(Request $request)
     {
         //--- Logic Section
-        $input = $request->all(); 
-        $data = $this->user;   
+        $input = $request->all();
+        $data = $this->user;
         if ($request->f_check == ""){
             $input['f_check'] = 0;
         }
@@ -91,17 +91,17 @@ class VendorController extends VendorBaseController
         }
         $data->update($input);
         //--- Logic Section Ends
-        //--- Redirect Section        
+        //--- Redirect Section
         $msg = __('Data Updated Successfully.');
-        return response()->json($msg);      
-        //--- Redirect Section Ends                
+        return response()->json($msg);
+        //--- Redirect Section Ends
 
     }
 
     //*** GET Request
     public function profile()
     {
-        $data = $this->user;  
+        $data = $this->user;
         return view('vendor.profile',compact('data'));
     }
 
@@ -112,21 +112,21 @@ class VendorController extends VendorBaseController
         if($gs->vendor_ship_info == 0) {
             return redirect()->back();
         }
-        $data = $this->user;  
+        $data = $this->user;
         return view('vendor.ship',compact('data'));
     }
 
     //*** GET Request
     public function banner()
     {
-        $data = $this->user;  
+        $data = $this->user;
         return view('vendor.banner',compact('data'));
     }
 
     //*** GET Request
     public function social()
     {
-        $data = $this->user;  
+        $data = $this->user;
         return view('vendor.social',compact('data'));
     }
 
@@ -147,7 +147,7 @@ class VendorController extends VendorBaseController
     //*** GET Request
     public function verify()
     {
-        $data = $this->user;  
+        $data = $this->user;
         if($data->checkStatus())
         {
             return redirect()->back();
@@ -159,7 +159,7 @@ class VendorController extends VendorBaseController
     public function warningVerify($id)
     {
         $verify = Verification::findOrFail($id);
-        $data = $this->user;  
+        $data = $this->user;
         return view('vendor.verify',compact('data','verify'));
     }
 
@@ -176,7 +176,7 @@ class VendorController extends VendorBaseController
                    ];
 
         $validator = Validator::make($request->all(), $rules,$customs);
-        
+
         if ($validator->fails()) {
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
@@ -201,7 +201,7 @@ class VendorController extends VendorBaseController
                     $i++;
                     }
                 }
-        $input['status'] = 'Pending';        
+        $input['status'] = 'Pending';
         $input['user_id'] = $this->user->id;
         if($request->verify_id != '0')
         {
@@ -214,10 +214,10 @@ class VendorController extends VendorBaseController
             $data->fill($input)->save();
         }
 
-        //--- Redirect Section        
+        //--- Redirect Section
         $msg = '<div class="text-center"><i class="fas fa-check-circle fa-4x"></i><br><h3>'.__("Your Documents Submitted Successfully.").'</h3></div>';
-        return response()->json($msg);      
-        //--- Redirect Section Ends     
+        return response()->json($msg);
+        //--- Redirect Section Ends
     }
 
 }
