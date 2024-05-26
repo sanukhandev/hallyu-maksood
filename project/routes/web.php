@@ -1622,5 +1622,3 @@ Route::group(['middleware' => 'maintenance'], function () {
 // ************************************ FRONT SECTION ENDS**********************************************
 
 });
-Route::post('the/genius/ocean/2441139', 'Front\FrontendController@subscription');
-Route::get('finalize', 'Front\FrontendController@finalize');

