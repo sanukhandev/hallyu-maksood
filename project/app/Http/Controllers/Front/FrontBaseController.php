@@ -12,8 +12,8 @@ use App\{
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB ;
 use Illuminate\Support\Facades\Session;
-use InvalidArgumentException;
-use Markury\MarkuryPost;
+
+
 
 class FrontBaseController extends Controller
 {
@@ -24,7 +24,6 @@ class FrontBaseController extends Controller
 
     public function __construct()
     {
-        $this->auth_guests();
 
         // Set Global GeneralSettings
         $this->gs = cache()->remember('generalsettings', now()->addDay(), function () {
@@ -203,22 +202,6 @@ class FrontBaseController extends Controller
 
     // -------------------------------- INSTALL SECTION ----------------------------------------
 
-    function auth_guests(){
-        $chk = MarkuryPost::marcuryBase();
-        $chkData = MarkuryPost::marcurryBase();
-        $actual_path = str_replace('project','',base_path());
-        if ($chk != MarkuryPost::maarcuryBase()) {
-            if ($chkData < MarkuryPost::marrcuryBase()) {
-                if (is_dir($actual_path . '/install')) {
-                    header("Location: " . url('/install'));
-                    die();
-                } else {
-                    echo MarkuryPost::marcuryBasee();
-                    die();
-                }
-            }
-        }
-    }
 
     public function deleteDir($dirPath) {
         if (! is_dir($dirPath)) {
