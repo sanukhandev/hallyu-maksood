@@ -1,7 +1,7 @@
 <div class="full-row pb-0">
   <div class="container">
       <div class="row single-product-wrapper">
-          <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+          <div class="col-12 col-lg-6 mb-6 mb-lg-0">
               <div class="product-images overflow-hidden">
                   <div class="images-inner">
                       <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out 0s;">
@@ -27,7 +27,7 @@
               </div>
           </div>
 
-          <div class="col-12 col-lg-5 col-md-8">
+          <div class="col-12 col-lg-6 col-md-6">
               <div class="summary entry-summary">
                   <div class="summary-inner">
                       <div class="entry-breadcrumbs w-100">
@@ -379,138 +379,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-3 col-md-4">
-             <div class="pro-details-sidebar-item mb-4">
-                <span>{{ __('Sold By') }}</span>
-                <h5>@if( $productt->user_id  != 0)
 
-                  @if(isset($productt->user))
-                    {{ $productt->user->shop_name }}
-                  @endif
-                  @if($productt->user->checkStatus())
-                  <br>
-                  <a class="verify-link" href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="{{ __('Verified') }}">
-                    <i class="fas fa-check-circle"></i>
-                  </a>
-                  @endif
-                @else
-                {{ App\Models\Admin::find(1)->shop_name }}
-                @endif</h5>
-                @if( $productt->user_id  != 0)
-                <h3>{{ App\Models\Product::where('user_id','=',$productt->user_id)->get()->count() }}</h3>
-                @else
-                <h3>{{ App\Models\Product::where('user_id','=',0)->get()->count() }}</h3>
-                @endif
-                <h6>{{ __('Total Items') }}</h6>
-
-                @if( $productt->user_id  != 0)
-              <li class="{{ $gs->is_contact_seller == 0 ? 'contact_seller' : '' }} cnt-sell">
-                <a href="{{ route('front.vendor',str_replace(' ', '-', $productt->user->shop_name)) }}" class="view-stor btn--base">
-                  <i class="icofont-ui-travel"></i>
-                  {{ __('Visit Store') }}
-                </a>
-            </li>
-            @endif
-
-            {{-- Visit Store Ends--}}
-
-            @if($gs->is_contact_seller == 1)
-
-              {{-- Contact Seller --}}
-
-              @if(Auth::check())
-
-                @if($productt->user_id != 0)
-
-
-                  <a class="view-stor btn--base" href="javascript:;" data-bs-toggle="modal" data-bs-target="#vendorform">
-                    <i class="icofont-ui-chat"></i>
-                    {{ __('Contact Seller') }}
-                  </a>
-
-
-                @else
-
-
-                  <a class="view-stor btn--base" href="javascript:;" data-bs-toggle="modal" data-bs-target="#sendMessage">
-                    <i class="icofont-ui-chat"></i>
-                    {{ __('Contact Seller') }}
-                  </a>
-
-
-                @endif
-
-              @else
-
-
-              <a class="view-stor btn--base" href="{{ route('user.login') }}" >
-                  <i class="icofont-ui-chat"></i>
-                  {{ __('Contact Seller') }}
-                </a>
-
-
-              @endif
-
-              {{-- Contact Seller Ends --}}
-
-            @endif
-
-<br>
-            @if($productt->user_id != 0)
-              @if(Auth::check())
-                  @if(Auth::user()->favorites()->where('vendor_id','=',$productt->user_id)->get()->count() > 0)
-
-                  <a class="fvrt btn--base" href="javascript:;">
-                      <i class="icofont-check"></i>
-                      {{ __('Favorite') }}
-                  </a>
-                  @else
-                  <a class="view-stor favorite-prod btn--base" href="javascript:;" data-href="{{ route('user-favorite',[Auth::user()->id,$productt->user_id]) }}">
-                      <i class="icofont-plus"></i>
-                      {{ __('Add To Favorite Seller') }}
-                  </a>
-                  @endif
-
-              @else
-
-              <a class="view-stor btn--base" href="{{ route('user.login') }}" >
-                <i class="icofont-plus"></i>
-                {{ __('Add To Favorite Seller') }}
-              </a>
-
-              @endif
-            @endif
-
-            {{-- Favorite Seller Ends--}}
-             </div>
-             @if(!empty($productt->whole_sell_qty))
-             <div class="pro-summary mb-4">
-                <div class="price-summary">
-                   <div class="price-summary-content">
-                      <h5 class="text-center">{{ __('Wholesell') }}</h5>
-                      <ul class="price-summary-list">
-                            <li class="regular-price"> <h6>{{ __('Quantity') }}</h6>
-                               <span>
-                                  <span class="woocommerce-Price-amount amount"><h6>{{ __('Discount') }}</h6>
-                               </span>
-                               </span>
-                            </li>
-                            @foreach($productt->whole_sell_qty as $key => $data1)
-                            <li class="selling-price"> <label>{{ $productt->whole_sell_qty[$key] }}+</label> <span><span class="woocommerce-Price-amount amount">{{ $productt->whole_sell_discount[$key] }}% {{ __('Off') }}
-                               </span>
-                               </span>
-                            </li>
-                            @endforeach
-                      </ul>
-                   </div>
-                </div>
-             </div>
-             @endif
-
-
-
-          </div>
       </div>
   </div>
 </div>

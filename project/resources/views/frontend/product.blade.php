@@ -26,7 +26,7 @@
 <div class="full-row">
    <div class="container">
       <div class="row justify-content-between">
-         <div class="col-lg-8">
+         <div class="col-lg-12">
             <div class="section-head border-bottom">
                <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
                   <ul class="nav nav-pills wc-tabs" id="pills-tab-one" role="tablist">
@@ -78,7 +78,7 @@
 
                     <div class="section-head border-bottom d-flex justify-content-between align-items-center">
                         <div class="d-flex section-head-side-title">
-                            <h5 class="font-700 text-dark mb-0">{{ __("Seller's Product") }}</h5>
+                            <h5 class="font-700 text-dark mb-0">{{ __("x's Product") }}</h5>
                         </div>
                     </div>
 
