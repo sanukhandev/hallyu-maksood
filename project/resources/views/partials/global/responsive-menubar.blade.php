@@ -10,10 +10,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-md-5">
                             <li class="nav-item dropdown {{ request()->path() == '/' ? 'active':''}}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.index') }}">{{ __('Shop') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.index') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item dropdown mega-dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('New') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('Shop') }}</a>
                                 <ul class="dropdown-menu mega-dropdown-menu">
                                     <li class="mega-container">
                                         <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-1">
@@ -41,7 +41,7 @@
                             </li>
                             
                             <li class="nav-item dropdown {{ request()->path()=='blog' ? 'active' : '' }}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.blog') }}">{{ __('Sale') }}</a>
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.blog') }}">{{ __('Deals') }}</a>
                             </li>
                             <li class="nav-item dropdown {{ request()->path()=='faq' ? 'active' : '' }}">
                                 <a class="nav-link dropdown-toggle" href="{{ route('front.faq') }}">{{ __('Brands') }}</a>
