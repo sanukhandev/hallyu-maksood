@@ -178,7 +178,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
 
-                <h2 class="main-title mb-4 text-center text-secondary">{{ $gs->partner_title }}</h2>
+                <h2 class="main-title mb-4 text-center text-secondary">{{ __('Our Brands')}}</h2>
                 <span class="mb-30 sub-title text-general font-medium ordenery-font font-400 text-center">{{ $gs->partner_text }}</span>
             </div>
         </div>
@@ -231,7 +231,7 @@
 @endif
  <!--==================== Our Blog Section Start ====================-->
 @if($ps->blog==1)
-    <div class="full-row pt-0">
+    <!-- <div class="full-row pt-0">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
@@ -264,7 +264,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--==================== Our Blog Section End ====================-->
 @endif
 @if($ps->third_left_banner==1)
@@ -361,7 +361,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="footer-widget widget-nav mb-5">
                         <h3 class="widget-title mb-4">{{ __('Recent Post') }}</h3>
                         <ul>
@@ -387,7 +387,7 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </footer>

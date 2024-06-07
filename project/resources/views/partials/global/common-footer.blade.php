@@ -96,7 +96,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col">
+            <!-- <div class="col">
                 <div class="footer-widget widget-nav my-5">
                     <h6 class="widget-title mb-sm-4">{{ __('Recent Post') }}</h6>
                     <ul>
@@ -121,7 +121,7 @@
                         @endforeach
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </footer>
