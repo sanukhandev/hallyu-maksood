@@ -40,11 +40,11 @@
                                 </ul>
                             </li>
                             
-                            <li class="nav-item dropdown {{ request()->path()=='blog' ? 'active' : '' }}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.blog') }}">{{ __('Deals') }}</a>
+                            <li class="nav-item dropdown {{ request()->path()=='category' ? 'active' : '' }}">
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('Deals') }}</a>
                             </li>
-                            <li class="nav-item dropdown {{ request()->path()=='faq' ? 'active' : '' }}">
-                                <a class="nav-link dropdown-toggle" href="{{ route('front.faq') }}">{{ __('Brands') }}</a>
+                            <li class="nav-item dropdown {{ request()->path()=='category' ? 'active' : '' }}">
+                                <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('Brands') }}</a>
                             </li>
 
                         </ul>
