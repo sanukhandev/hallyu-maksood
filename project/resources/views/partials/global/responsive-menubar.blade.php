@@ -8,6 +8,38 @@
                     <i class="flaticon-menu-2 flat-small text-primary"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-md-5">
+        <!-- Fetch categories dynamically -->
+        @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->take(4)->get() as $category)
+        <li class="nav-item dropdown">
+            <!-- Category name as the nav link -->
+            <a class="nav-link dropdown-toggle" href="{{ route('front.category', $category->slug) }}" id="navbarDropdown{{ $category->id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ $category->name }}
+            </a>
+            <!-- Dropdown menu for each category -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ $category->id }}">
+                <li>
+                    <span class="d-inline-block px-3 font-600 text-uppercase text-secondary pb-2">{{ $category->name }}</span>
+                    <ul class="list-unstyled">
+                        @if($category->subs->count() > 0)
+                        @foreach (App\Models\Subcategory::where('category_id', $category->id)->get() as $subcategory)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('front.category', [$category->slug, $subcategory->slug]) }}{{ !empty(request()->input('search')) ? '?search=' . request()->input('search') : '' }}">
+                                {{ $subcategory->name }}
+                            </a>
+                        </li>
+                        @endforeach
+                        @endif
+                    </ul>
+                    
+                </li>
+            </ul>
+        </li>
+        @endforeach
+    </ul>
+</div>
+
+                    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-md-5">
                             <li class="nav-item dropdown {{ request()->path() == '/' ? 'active':''}}">
                                 <a class="nav-link dropdown-toggle" href="{{ route('front.index') }}">{{ __('Home') }}</a>
@@ -48,7 +80,7 @@
                             </li>
 
                         </ul>
-                    </div>
+                    </div> -->
                 </nav>
             </div>
             <div class="col-xl-5 col-md-3">
