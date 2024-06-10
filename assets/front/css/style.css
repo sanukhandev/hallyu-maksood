@@ -9407,7 +9407,7 @@ li.addtocart a:hover {
   line-height: 28px;
   margin: 0px;
   z-index: auto;
-  border-radius: 5px;
+  border-radius: 24px;
   opacity: 1;
   background: #a439ee;
   text-transform: uppercase;
@@ -9522,8 +9522,8 @@ li.addtocart a:hover {
 .prevBtn {
   position: absolute;
   top: 50%;
-  width: 60px;
-  height: 60px;
+  width: 20px;
+  height: 20px;
   border-right: 2px solid #fff;
   border-top: 2px solid #fff;
   z-index: 9;
@@ -9541,8 +9541,8 @@ li.addtocart a:hover {
 @media screen and (max-width: 991px) {
   .nextBtn,
   .prevBtn {
-    width: 40px;
-    height: 40px;
+    width: 15px;
+    height: 15px;
   }
   .nextBtn {
     right: 10px;

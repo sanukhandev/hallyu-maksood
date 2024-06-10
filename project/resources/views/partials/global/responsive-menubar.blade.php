@@ -160,11 +160,11 @@
                     @endif
                     </div>
 
-                    <div class="header-cart-1">
+                    <!-- <div class="header-cart-1">
                         <a href="{{ route('product.compare') }}" class="cart " title="Compare">
                             <div class="cart-icon"><i class="flaticon-shuffle flat-mini mx-auto text-dark"></i> <span class="header-cart-count " id="compare-count">{{ Session::has('compare') ? count(Session::get('compare')->items) : '0' }}</span></div>
                         </a>
-                    </div>
+                    </div> -->
 
                     <div class="header-cart-1">
                         <a href="{{ route('front.cart') }}" class="cart has-cart-data" title="View Cart">
