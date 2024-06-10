@@ -19,7 +19,7 @@
             <!-- Dropdown menu for each category -->
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ $category->id }}">
                 <li>
-                    <span class="d-inline-block px-3 font-600 text-uppercase text-secondary pb-2">{{ $category->name }}</span>
+                    <!-- <span class="d-inline-block px-3 font-600 text-uppercase text-secondary pb-2">{{ $category->name }}</span> -->
                     <ul class="list-unstyled">
                         @if($category->subs->count() > 0)
                         @foreach (App\Models\Subcategory::where('category_id', $category->id)->get() as $subcategory)
