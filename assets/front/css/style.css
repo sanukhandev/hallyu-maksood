@@ -8824,7 +8824,7 @@ p.text-left {
   border-bottom: 2px solid rgb(7, 7, 7);
   border-right: 2px solid rgb(17, 17, 17);
   content: "";
-  display: block;
+  display: none;
   height: 8px;
   margin-top: -4px;
   pointer-events: none;
