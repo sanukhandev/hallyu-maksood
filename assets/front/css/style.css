@@ -28,7 +28,7 @@
 }
 
 .woocommerce-ordering select {
-  background:  auto; 
+  background: auto;
 }
 .pb-8 {
   padding-bottom: 80px !important;
@@ -9407,7 +9407,7 @@ li.addtocart a:hover {
   line-height: 28px;
   margin: 0px;
   z-index: auto;
-  border-radius: 24px;
+  border-radius: 24px !important;
   opacity: 1;
   background: #a439ee;
   text-transform: uppercase;

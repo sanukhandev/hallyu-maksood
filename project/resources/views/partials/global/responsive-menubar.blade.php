@@ -341,11 +341,11 @@
                             </a>
                         @endif
 					</div>
-					<div class="refresh-view header-cart-1 mx-2">
+					<!-- <div class="refresh-view header-cart-1 mx-2">
 						<a href="{{ route('product.compare') }}" class="cart " title="View Wishlist">
 							<div class="cart-icon"><i class="flaticon-shuffle flat-mini mx-auto text-dark"></i> <span class="header-cart-count " id="compare-count1">{{ Session::has('compare') ? count(Session::get('compare')->items) : '0' }}</span></div>
 						</a>
-					</div>
+					</div> -->
 					<div class="header-cart-1">
 						<a href="{{ route('front.cart') }}" class="cart has-cart-data" title="View Cart">
 							<div class="cart-icon"><i class="flaticon-shopping-cart flat-mini"></i> <span class="header-cart-count" id="cart-count1">{{ Session::has('cart') ? count(Session::get('cart')->items) : '0' }}</span></div>
