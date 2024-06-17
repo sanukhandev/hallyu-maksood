@@ -950,6 +950,16 @@ Route::group(['middleware' => 'maintenance'], function () {
 
             Route::get('/dashboard', 'Vendor\VendorController@index')->name('vendor.dashboard');
 
+
+            //------------ Brands SECTION ------------
+
+            Route::get('/brands/datatables', 'Vendor\BrandsController@datatables')->name('vendor-brand-datatables');
+            Route::get('/brands', 'Vendor\BrandsController@index')->name('vendor-brand-index');
+            Route::get('/brands/create', 'Vendor\BrandsController@create')->name('vendor-brand-create');
+            Route::post('/brands/store', 'Vendor\BrandsController@store')->name('vendor-brand-store');
+            Route::get('/brands/edit/{id}', 'Vendor\BrandsController@edit')->name('vendor-brand-edit');
+            Route::post('/brands/patch/{id}', 'Vendor\BrandsController@update')->name('vendor-brand-update');
+            Route::delete('/brands/delete/{id}', 'Vendor\BrandsController@destroy')->name('vendor-brand-delete');
             //------------ ORDER SECTION ------------
 
             Route::get('/orders/datatables', 'Vendor\OrderController@datatables')->name('vendor-order-datatables');

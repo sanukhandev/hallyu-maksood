@@ -521,4 +521,9 @@ class Product extends Model
 
     }
 
+    public function brand_id()
+    {
+        return $this->belongsTo('App\Models\Brands')->withDefault();
+    }
+
 }
