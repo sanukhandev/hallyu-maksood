@@ -105,7 +105,7 @@
                                             </div>
                                             </div>
                                             <div class="product-info">
-                                                <h3 class="product-title"><a href="{{ route('front.product', $prod['slug']) }}">{{ App\Models\Product::whereId($prod['id'])->first()->showName() }}</a></h3>
+                                                <h3 class="product-title"><a href="{{ route('front.product', $prod['slug']) }}">{{ App\Models\Product::whereId($prod['id'])->first()->showName() }} </a></h3>
                                                 <div class="product-price">
                                                     <div class="price">
                                                         <ins>{{ App\Models\Product::whereId($prod['id'])->first()->showPrice() }}</ins>

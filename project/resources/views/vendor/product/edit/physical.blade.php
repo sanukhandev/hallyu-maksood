@@ -79,6 +79,20 @@
 													<input type="text" class="input-field" placeholder="{{ __('Enter Product Sku') }}" name="sku" required="" value="{{ $data->sku }}">
 												</div>
 											</div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="left-area">
+                                                        <h4 class="heading">{{ __('Select Brand') }}*</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <select name="brand_id" required="">
+                                                        @foreach(DB::table('brands')->get() as $bdata)
+                                                            <option value="{{ $bdata->brand_id }}" {{ $bdata->brand_id == $data->brand_id ? 'selected' : '' }}>{{ $bdata->brand_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
 
 											<div class="row">
 												<div class="col-lg-12">
@@ -319,8 +333,8 @@
 																									$checked = 1;
 																								@endphp
 																							@endif
-																						@endif																										
-																						
+																						@endif
+
 																						>
 
 																						<label class="custom-control-label" for="{{ $childAttribute->input_name }}{{$option->id}}">{{ $option->name }}</label>
@@ -508,7 +522,7 @@
 
 											<div class="{{ !empty($data->color_all) ? "":"showbox" }}">
 												<div class="row">
-													@if(!empty($data->color_all)) 
+													@if(!empty($data->color_all))
 													<div  class="col-lg-12">
 															<div class="left-area">
 																<h4 class="heading">
@@ -619,7 +633,7 @@
 																	<div class="tsize-area">
 																		<span class="remove tsize-remove"><i class="fas fa-times"></i></span>
 																		<input  type="text" name="size_all[]" class="input-field tsize" placeholder="{{ __('Enter Product Size') }}"  >
-																		
+
 																	 </div>
 																</div>
 															<a href="javascript:;" id="tsize-btn" class="add-more mt-4 mb-3"><i class="fas fa-plus"></i>{{ __('Add More Size') }} </a>
@@ -751,7 +765,7 @@
 															<div class="product-size-details" id="size-section">
 															  @if(!empty($data->size))
 																@foreach($data->size as $key => $data1)
-																
+
 																<div class="size-area">
 																	<span class="remove size-remove"><i class="fas fa-times"></i></span>
 																	<div  class="row">
@@ -945,7 +959,7 @@
 											</div>
 										  </div>
 
-										
+
 								</div>
 							</div>
 						</div>
@@ -1121,7 +1135,7 @@
 					</div>
 				</div>
 			</div>
-		</form>			
+		</form>
 	</div>
 
 		<div class="modal fade" id="setgallery" tabindex="-1" role="dialog" aria-labelledby="setgallery" aria-hidden="true">

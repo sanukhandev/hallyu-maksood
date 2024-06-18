@@ -174,6 +174,9 @@
 									<li>
 										<a href="{{ route('admin-vendor-catalog-index') }}"><span>{{ __('Product Catalogs') }}</span></a>
 									</li>
+                                    <li>
+                                        <a href="{{ route('vendor-brand-index') }}"><span>{{ __('Brands Manager') }}</span></a>
+                                    </li>
 								</ul>
 							</li>
 

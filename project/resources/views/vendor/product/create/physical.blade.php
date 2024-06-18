@@ -81,6 +81,22 @@
 													<input type="text" class="input-field" placeholder="{{ __('Enter Product Sku') }}" name="sku" required="" value="{{ Str::random(3).substr(time(), 6,8).Str::random(3) }}">
 												</div>
 											</div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="left-area">
+                                                        <h4 class="heading">{{ __('Brands') }}*</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <select id="cat" name="brand_id" required="">
+                                                        <option value="">{{ __('Select Brand') }}</option>
+                                                        @foreach($brands as $brand)
+                                                            <option  value="{{ $brand->brand_id }}">{{$brand->brand_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
 
 
 											<div class="row">
@@ -213,7 +229,7 @@
 												</div>
 											</div>
 
-				
+
 											<div class="showbox">
 												<div class="row">
 													<div class="col-lg-12">
@@ -226,7 +242,7 @@
 															placeholder="{{ __('Minimum Order Qty') }}" name="minimum_qty">
 													</div>
 												</div>
-				
+
 											</div>
 
 
@@ -339,7 +355,7 @@
 																	<div class="tsize-area">
 																		<span class="remove tsize-remove"><i class="fas fa-times"></i></span>
 																		<input  type="text" class="input-field tsize" placeholder="{{ __('Enter Product Size') }}"  >
-																		
+
 																	 </div>
 																</div>
 															<a href="javascript:;" id="tsize-btn" class="add-more mt-4 mb-3"><i class="fas fa-plus"></i>{{ __('Add More Size') }} </a>
@@ -593,7 +609,7 @@
 										  </div>
 
 										<input type="hidden" name="type" value="Physical">
-											
+
 									</div>
 								</div>
 							</div>
