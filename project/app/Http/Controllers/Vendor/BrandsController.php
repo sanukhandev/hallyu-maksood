@@ -33,9 +33,16 @@ class BrandsController extends VendorBaseController
             ->toJson(); //--- Returning Json Data To Client Side
     }
 
+    public function status($id1, $id2)
+    {
+        $data = Brands::findOrFail($id1);
+        $data->brand_is_active = $id2;
+        $data->update();
+    }
+
     public function index()
     {
-        return view('vendor.brand.index');
+        return view('vendor.brands.index');
     }
 
     public function create()

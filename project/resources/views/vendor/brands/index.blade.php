@@ -1,21 +1,21 @@
 @extends('layouts.vendor')
 
 @section('content')
-					<input type="hidden" id="headerdata" value="{{ __("PRODUCT") }}">
+					<input type="hidden" id="headerdata" value="{{ __("Brands Manager") }}">
 					<div class="content-area">
 						<div class="mr-breadcrumb">
 							<div class="row">
 								<div class="col-lg-12">
-										<h4 class="heading">{{ __("Products") }}</h4>
+										<h4 class="heading">{{ __("Brands") }}</h4>
 										<ul class="links">
 											<li>
 												<a href="{{ route('vendor.dashboard') }}">{{ __("Dashboard") }} </a>
 											</li>
 											<li>
-												<a href="javascript:;">{{ __("Products") }} </a>
+												<a href="javascript:;">{{ __("Product") }} </a>
 											</li>
 											<li>
-												<a href="{{ route('vendor-prod-index') }}">{{ __("All Products") }}</a>
+												<a href="{{ route('vendor-brand-index') }}">{{ __("All Brands") }}</a>
 											</li>
 										</ul>
 								</div>
@@ -24,7 +24,7 @@
 						<div class="product-area">
 							<div class="row">
 								<div class="col-lg-12">
-									<div class="mr-table allproduct">
+									<div class="mr-table allbrands">
 
                         @include('alerts.vendor.form-success')
 
@@ -32,11 +32,13 @@
 												<table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
 													<thead>
 														<tr>
-																<th>{{ __("Name") }}</th>
-																<th>{{ __("Type") }}</th>
-																<th>{{ __("Price") }}</th>
-																<th>{{ __("Status") }}</th>
-																<th>{{ __("Options") }}</th>
+
+                                                            <th>{{ __("Name") }}</th>
+                                                            <th>{{ __("Logo") }}</th>
+                                                            <th>{{ __("Website") }}</th>
+                                                            <th>{{ __("Country") }}</th>
+                                                            <th>{{ __("Status") }}</th>
+                                                            <th>{{ __("Action") }}</th>
 														</tr>
 													</thead>
 												</table>
@@ -171,11 +173,12 @@
 			   ordering: false,
                processing: true,
                serverSide: true,
-               ajax: '{{ route('vendor-prod-datatables') }}',
+               ajax: '{{ route('vendor-brand-datatables') }}',
                columns: [
-                        { data: 'name', name: 'name' },
-                        { data: 'type', name: 'type' },
-                        { data: 'price', name: 'price' },
+                        { data: 'brand_name', name: 'name' },
+                        { data: 'brand_logo', name: 'logo' },
+                        { data: 'brand_website', name: 'website' },
+                        { data: 'brand_country', name: 'country' },
                         { data: 'status', searchable: false, orderable: false},
             			{ data: 'action', searchable: false, orderable: false }
 
@@ -191,7 +194,7 @@
       	$(function() {
         $(".btn-area").append('<div class="col-sm-4 table-contents">'+
         	'<a class="add-btn" href="{{route('vendor-prod-types')}}">'+
-          '<i class="fas fa-plus"></i> <span class="remove-mobile">{{ __("Add New Product") }}<span>'+
+          '<i class="fas fa-plus"></i> <span class="remove-mobile">{{ __("Add New Brand") }}<span>'+
           '</a>'+
           '</div>');
       });

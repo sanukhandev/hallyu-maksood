@@ -960,6 +960,7 @@ Route::group(['middleware' => 'maintenance'], function () {
             Route::get('/brands/edit/{id}', 'Vendor\BrandsController@edit')->name('vendor-brand-edit');
             Route::post('/brands/patch/{id}', 'Vendor\BrandsController@update')->name('vendor-brand-update');
             Route::delete('/brands/delete/{id}', 'Vendor\BrandsController@destroy')->name('vendor-brand-delete');
+            Route::get('/brands/status/{id1}/{id2}', 'Vendor\BrandsController@status')->name('vendor-brand-status');
             //------------ ORDER SECTION ------------
 
             Route::get('/orders/datatables', 'Vendor\OrderController@datatables')->name('vendor-order-datatables');
