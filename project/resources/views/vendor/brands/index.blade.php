@@ -34,7 +34,7 @@
 														<tr>
 
                                                             <th>{{ __("Name") }}</th>
-                                                            <th>{{ __("Logo") }}</th>
+{{--                                                            <th>{{ __("Logo") }}</th>--}}
                                                             <th>{{ __("Website") }}</th>
                                                             <th>{{ __("Country") }}</th>
                                                             <th>{{ __("Status") }}</th>
@@ -176,7 +176,7 @@
                ajax: '{{ route('vendor-brand-datatables') }}',
                columns: [
                         { data: 'brand_name', name: 'name' },
-                        { data: 'brand_logo', name: 'logo' },
+                        // { data: 'brand_logo', name: 'logo' },
                         { data: 'brand_website', name: 'website' },
                         { data: 'brand_country', name: 'country' },
                         { data: 'status', searchable: false, orderable: false},
@@ -193,7 +193,7 @@
 
       	$(function() {
         $(".btn-area").append('<div class="col-sm-4 table-contents">'+
-        	'<a class="add-btn" href="{{route('vendor-prod-types')}}">'+
+        	'<a class="add-btn" href="{{route('vendor-brand-create')}}">'+
           '<i class="fas fa-plus"></i> <span class="remove-mobile">{{ __("Add New Brand") }}<span>'+
           '</a>'+
           '</div>');

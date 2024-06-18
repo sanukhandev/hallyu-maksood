@@ -9,7 +9,11 @@ use Illuminate\{
     Support\Str,
     Http\Request
 };
-use Session;
+
+
+use DB;
+use Auth;
+use Image;
 use Validator;
 use Datatables;
 class BrandsController extends VendorBaseController
@@ -25,6 +29,9 @@ class BrandsController extends VendorBaseController
                 $s = $data->brand_is_active == 1 ? 'selected' : '';
                 $ns = $data->brand_is_active == 0 ? 'selected' : '';
                 return '<div class="action-list"><select class="process select droplinks ' . $class . '"><option data-val="1" value="' . route('vendor-brand-status', ['id1' => $data->brand_id, 'id2' => 1]) . '" ' . $s . '>' . __("Activated") . '</option><option data-val="0" value="' . route('vendor-brand-status', ['id1' => $data->brand_id, 'id2' => 0]) . '" ' . $ns . '>' . __("Deactivated") . '</option>/select></div>';
+            })
+            ->addColumn('logo', function (Brands $data) {
+                return '<div class="manage-list-image"><img src="' . asset($data->brand_logo) . '"></div>';
             })
             ->addColumn('action', function (Brands $data) {
                 return '<div class="action-list"><a data-href="' . route('vendor-brand-edit', $data->brand_id) . '" class="edit" data-toggle="modal" data-target="#modal1"> <i class="fas fa-edit"></i>' . __('Edit') . '</a><a href="javascript:;" data-href="' . route('vendor-brand-delete', $data->brand_id) . '" data-toggle="modal" data-target="#confirm-delete" class="delete"><i class="fas fa-trash-alt"></i></a></div>';
@@ -47,7 +54,7 @@ class BrandsController extends VendorBaseController
 
     public function create()
     {
-        return view('vendor.brand.create');
+        return view('vendor.brands.create');
     }
 
     //*** POST Request
@@ -55,7 +62,7 @@ class BrandsController extends VendorBaseController
     {
         //--- Validation Section
         $rules = [
-            'brand_logo' => 'mimes:jpeg,jpg,png,svg',
+            'brand_logo' => 'required',
             'brand_name' => 'required',
             'brand_description' => 'required',
             'brand_country' => 'required',
@@ -75,6 +82,24 @@ class BrandsController extends VendorBaseController
         $input = $request->all();
         $input['brand_logo'] = $this->uploadImage($request);
         $data->fill($input)->save();
+        return response()->json('New Data Added Successfully.');
+    }
+
+    public function uploadImage($request)
+    {
+
+        $image = $request->brand_logo;
+        list($type, $image) = explode(';', $image);
+        list(, $image)      = explode(',', $image);
+        $image = base64_decode($image);
+        $image_name = time().Str::random(8).'.png';
+        // create brands directory if not exists
+        if (!file_exists('assets/images/brands')) {
+            mkdir('assets/images/brands', 0777, true);
+        }
+        $path = 'assets/images/brands/'.$image_name;
+        file_put_contents($path, $image);
+        return $path;
     }
 
 

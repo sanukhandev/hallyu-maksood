@@ -54,6 +54,9 @@
                           </nav>
                       </div>
                       <h1 class="product_title entry-title">{{ $productt->name }}</h1>
+                      @if($productt->brand)
+                          <h5>{{ $productt->brand->brand_name }}</h5>
+                      @endif
 
                       <div class="pro-details">
                          <div class="pro-info">

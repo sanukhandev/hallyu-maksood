@@ -52,8 +52,10 @@ class ProductDetailsController extends FrontBaseController
             }
         }
 
+        // include brands
+//        $productt = Product::where('slug','=',$slug)->firstOrFail();
 
-        $productt = Product::where('slug','=',$slug)->firstOrFail();
+        $productt = Product::with('brand')->where('slug', '=', $slug)->firstOrFail();
 
         if($productt->status == 0){
             return response()->view('errors.404')->setStatusCode(404);
@@ -79,6 +81,14 @@ class ProductDetailsController extends FrontBaseController
             $vendors = Product::where('status','=',1)->where('user_id','=',0)->where('language_id',$this->language->id)
             ->take($gs->seller_product_count)->get();
         }
+
+//        if ($productt->brand_id != null) {
+//            $brand_products = Product::where('brand_id', $productt->brand_id)->where('status', 1)->where('language_id', $this->language->id)->get();
+//        } else {
+//            $brand_products = null;
+//        }
+
+
         return view('frontend.product',compact('productt','curr','vendors','affilate_user',));
 
     }
