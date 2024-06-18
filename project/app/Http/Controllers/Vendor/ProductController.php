@@ -802,7 +802,7 @@ class ProductController extends VendorBaseController
                     $rules = ['sku' => 'min:8|unique:products,sku,'.$id];
 
                     $validator = Validator::make($request->all(), $rules);
-
+                    $input['brand_id'] = $request->brand_id;
                     if ($validator->fails()) {
                         return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
                     }
