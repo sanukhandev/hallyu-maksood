@@ -12,3 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// store-front apis mobile
+use App\Http\Controllers\Api\FrontEndController;
+Route::prefix('store-front')->group(function (){
+    Route::get('index',[FrontEndController::class,'index']);
+
+});
