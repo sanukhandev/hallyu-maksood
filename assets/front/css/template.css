@@ -83,7 +83,7 @@ a.hover-text-primary:hover,
 .list-text-hover-primary li a:hover,
 .media-icon-white a:hover,
 .text-primary {
-  color: #c9030f;
+  color: var(--theme-secondary-color) !important;
 }
 
 .nav-secondary-hover .navbar-nav .nav-link:hover,

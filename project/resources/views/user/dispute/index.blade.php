@@ -6,7 +6,7 @@
 @include('partials.global.common-header')
 
  <!-- breadcrumb -->
- <div class="full-row bg-light overlay-dark py-5" style="background-image: url({{ $gs->breadcrumb_banner ? asset('assets/images/'.$gs->breadcrumb_banner):asset('assets/images/noimage.png') }}); background-position: center center; background-size: cover;">
+ <!-- <div class="full-row bg-light overlay-dark py-5" style="background-image: url({{ $gs->breadcrumb_banner ? asset('assets/images/'.$gs->breadcrumb_banner):asset('assets/images/noimage.png') }}); background-position: center center; background-size: cover;">
     <div class="container">
         <div class="row text-center text-white">
             <div class="col-12">
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- breadcrumb -->
 
 

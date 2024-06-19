@@ -1706,7 +1706,7 @@ input.text-dark::placeholder {
 }
 [class*="product-search-"] .form-inline.search-pill-shape {
   background-color: var(--theme-light-color);
-  border: 0;
+  border: 1px solid var(--theme-secondary-color);
 }
 [class*="product-search-"] .search-line-shape.form-inline {
   border: 0;
