@@ -155,7 +155,7 @@ h5,
 
 [class*="product-search-"] .form-inline.search-pill-shape {
   background-color: var(--theme-light-color);
-  border: 0;
+  border: 1px solid var(--theme-secondary-color);
 }
 
 .ecommerce-header .wishlist-view a.top-quantity span,

@@ -302,7 +302,7 @@
                         <div class="widget-ecommerce-contact">
                             @if($ps->phone != null)
                             <span class="font-medium font-500 text-dark">{{ __('Got Questions ? Call us 24/7!') }}</span>
-                            <div class="text-dark h4 font-400 ">{{ $ps->phone }}</div>
+                            <div class="text-dark font-medium font-400 ">{{ $ps->phone }}</div>
                             @endif
                             @if($ps->street != null)
                             <span class="h6 text-secondary mt-2">{{ __('Address :') }}</span>
@@ -339,11 +339,11 @@
                                 <a href="{{ route('front.index') }}">{{ __('Home') }}</a>
                             </li>
                             @endif
-                            @if($ps->blog == 1)
+                            <!-- @if($ps->blog == 1)
                             <li>
                                 <a href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
                             </li>
-                                @endif
+                                @endif -->
                                 @if($ps->faq == 1)
                             <li>
                                 <a href="{{ route('front.faq') }}">{{ __('Faq') }}</a>
