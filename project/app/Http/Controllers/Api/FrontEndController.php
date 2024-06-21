@@ -18,7 +18,7 @@ class FrontEndController extends Controller
     {
         $data['sliders'] = DB::table('sliders')->where('language_id', 1)->get();
         $data['arrivals'] = ArrivalSection::where('status', 1)->get();
-        $data['products'] = Product::take(10)->get();
+        $data['products'] = Product::with(['ratings','brand','category'])->take(10)->get();
         $data['featured'] = Product::where('featured', 1)->get();
         $data['best'] = Product::where('best', 1)->get();
         $data['top'] = Product::where('top', 1)->get();
