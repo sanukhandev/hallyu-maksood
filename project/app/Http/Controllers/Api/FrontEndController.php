@@ -16,34 +16,18 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        // Eager load the necessary relationships and limit the number of queries
-        $products = Product::with(['ratings'])
-            ->get()
-            ->groupBy(function($item) {
-                return [
-                    'featured' => $item->featured,
-                    'best' => $item->best,
-                    'top' => $item->top,
-                    'hot' => $item->hot,
-                    'latest' => $item->latest,
-                    'big' => $item->big,
-                    'trending' => $item->trending,
-                    'sale' => $item->sale
-                ];
-            });
-
         $data['sliders'] = DB::table('sliders')->where('language_id', 1)->get();
         $data['arrivals'] = ArrivalSection::where('status', 1)->get();
-        $data['products'] = $products->take(10);
-        $data['featured'] = $products->get(1)->get('featured');
-        $data['best'] = $products->get(1)->get('best');
-        $data['top'] = $products->get(1)->get('top');
-        $data['hot'] = $products->get(1)->get('hot');
-        $data['latest'] = $products->get(1)->get('latest');
-        $data['big'] = $products->get(1)->get('big');
-        $data['trending'] = $products->get(1)->get('trending');
-        $data['sale'] = $products->get(1)->get('sale');
-        $data['ratings'] = $products->pluck('ratings')->flatten();
+        $data['products'] = Product::take(10)->get();
+        $data['featured'] = Product::where('featured', 1)->get();
+        $data['best'] = Product::where('best', 1)->get();
+        $data['top'] = Product::where('top', 1)->get();
+        $data['hot'] = Product::where('hot', 1)->get();
+        $data['latest'] = Product::where('latest', 1)->get();
+        $data['big'] = Product::where('big', 1)->get();
+        $data['trending'] = Product::where('trending', 1)->get();
+        $data['sale'] = Product::where('sale', 1)->get();
+        $data['ratings'] = Rating::all();
 
         return response()->json([
             'status' => 200,
