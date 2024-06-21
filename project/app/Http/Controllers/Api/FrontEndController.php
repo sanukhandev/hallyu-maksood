@@ -7,8 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\ArrivalSection;
-use App\Models\Product;
-use App\Models\Rating;
+use App\Models\{
+    Product,
+    Category,
+    Rating
+};
+
 use DB;
 
 
@@ -18,7 +22,7 @@ class FrontEndController extends Controller
     {
         $data['sliders'] = DB::table('sliders')->where('language_id', 1)->get();
         $data['arrivals'] = ArrivalSection::where('status', 1)->get();
-        $data['categories'] = DB::table('categories')->with('subs')->where('status', 1)->get();
+        $data['categories'] = Category::where('status', 1)->with('subs')->get();
         $data['products'] = Product::with(['ratings','brand','category'])->take(10)->get();
         $data['featured'] = Product::where('featured', 1)->get();
         $data['best'] = Product::where('best', 1)->get();
