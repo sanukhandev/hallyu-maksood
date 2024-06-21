@@ -16,15 +16,35 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $data['sliders'] = DB::table('sliders')
-            ->where('language_id', 1)
-            ->get();
+        // Eager load the necessary relationships and limit the number of queries
+        $products = Product::with(['ratings'])
+            ->get()
+            ->groupBy(function($item) {
+                return [
+                    'featured' => $item->featured,
+                    'best' => $item->best,
+                    'top' => $item->top,
+                    'hot' => $item->hot,
+                    'latest' => $item->latest,
+                    'big' => $item->big,
+                    'trending' => $item->trending,
+                    'sale' => $item->sale
+                ];
+            });
 
+        $data['sliders'] = DB::table('sliders')->where('language_id', 1)->get();
+        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
+        $data['products'] = $products->take(10);
+        $data['featured'] = $products->get(1)->get('featured');
+        $data['best'] = $products->get(1)->get('best');
+        $data['top'] = $products->get(1)->get('top');
+        $data['hot'] = $products->get(1)->get('hot');
+        $data['latest'] = $products->get(1)->get('latest');
+        $data['big'] = $products->get(1)->get('big');
+        $data['trending'] = $products->get(1)->get('trending');
+        $data['sale'] = $products->get(1)->get('sale');
+        $data['ratings'] = $products->pluck('ratings')->flatten();
 
-
-        $data['arrivals']=ArrivalSection::where('status',1)->get();
-        $data['products']=Product::get();
-        $data['ratings']=Rating::get();
         return response()->json([
             'status' => 200,
             'data' => $data
