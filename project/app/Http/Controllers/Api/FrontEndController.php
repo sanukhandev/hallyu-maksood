@@ -42,7 +42,7 @@ class FrontEndController extends Controller
 
     public function showProduct($id)
     {
-        $data['product'] = Product::with('brand')->where('id', $id)->first();
+        $data['product'] = Product::with(['ratings','brand','category','subcategory','childcategory','galleries','comments'])>where('id', $id)->first();
         $data['ratings'] = Rating::where('product_id', $id)->get();
         return response()->json([
             'status' => 200,
