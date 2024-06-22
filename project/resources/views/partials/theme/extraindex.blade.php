@@ -50,7 +50,7 @@
                                 <p>{{ $gs->deal_details }}</p>
                             </div>
                             <div class="time-count time-box text-center my-30 flex-between w-75" data-countdown="{{ $gs->deal_time }}"></div>
-                            <a href="{{ route('front.category').'?type=flash'  }}" class="btn btn-dark text-uppercase rounded-0">{{ __('Shop Now') }}</a>
+                            <a href="{{ route('front.category').'?type=flash'  }}" class="btn btn-dark text-uppercase ">{{ __('Shop Now') }}</a>
                         </div>
                     </div>
                 </div>
