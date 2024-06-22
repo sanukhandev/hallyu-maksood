@@ -196,9 +196,9 @@ h5,
   color: var(--theme-general-color);
 }
 
-.btn {
-  border-radius: 0;
-}
+/* .btn {
+  border-radius: o;
+} */
 
 .tagline {
   font-size: 15px;
