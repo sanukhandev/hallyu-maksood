@@ -9681,7 +9681,7 @@ select.form-control {
   background: var(--theme-white-color);
 }
 .fixed-top [class*="product-search-"] .form-inline.search-pill-shape {
-  border: 1px solid var(--theme-dark-color) !important;
+  border: 1px solid var(--theme-secondary-color) !important;
 }
 [class*="product-search-"] .form-inline button {
   background: var(--theme-secondary-color) !important;
