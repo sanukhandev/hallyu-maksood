@@ -16,17 +16,17 @@ if(isset($_GET['header_color']))
 ?>
 
 .hover-text-primary:hover *, a.hover-text-primary:hover, .list-color-secondary li.mixitup-control-active, .list-color-dark li.mixitup-control-active, .tab-simple li.mixitup-control-active, .nav-primary-hover .navbar-nav .nav-link:hover, .nav-primary-hover .navbar-nav .active>.nav-link:hover, .nav-primary-hover .navbar-nav .active>.nav-link, .list-text-hover-primary li a:hover, .media-icon-white a:hover, .text-primary, .pro-details-sidebar-item h3,  .time-box ul li span:first-child {
-    color: <?php echo $color; ?> !important;
+    color: <?php echo $color; ?> ;
     
 }
 div.summary .price-summary .price-summary-content h5, .fixed-bg-primary.fixed-top, .nav-primary-hover.nav-line-active .navbar-nav .active>.nav-link:before, .nav-primary-hover.nav-down-line-active .navbar-nav .active>.nav-link:before, .bg-primary {
-    background-color: <?php echo $color; ?> !important;
+    background-color: <?php echo $color; ?> ;
 }
 .list-color-dark li:hover, .list-color-dark li a:hover, .list-color-dark a:hover, .nav-dark-hover .navbar-nav .nav-link:hover, .nav-dark-hover .navbar-nav .active>.nav-link:hover, .nav-dark-hover .navbar-nav .active>.nav-link:hover, .nav-dark .navbar-nav .nav-link:hover {
-    color: <?php echo $color; ?> !important;
+    color: <?php echo $color; ?> ;
 }
  a:hover, .btn-link, .btn-link:hover, .post-admin ul li, .footer-widget li a:hover, .list-color-primary li a, .list-active-color-primary a.active, .list-color-primary li, .list-color-primary a, .nav-primary-hover .navbar-nav .nav-link:hover, .nav-primary-hover .navbar-nav .active>.nav-link:hover, .nav-primary-hover .navbar-nav .active>.nav-link, .navbar .navbar-nav li>ul.dropdown-menu li.active>a, .product-detail .woocommerce-loop-product__title:hover, .footer-simple-dark .footer-widget li a:hover, .footer-default-dark .media-widget a:hover, .nav-primary .navbar-nav .nav-link, .nav-secondary .navbar-nav .active>.nav-link, .search-form .btn-search, .media-widget a:hover {
-    color: <?php echo $color; ?> !important;
+    color: <?php echo $color; ?> ;
     
 }
 .wishlist-view span.header-wishlist-count, .refresh-view span.header-compare-count, [class*="header-cart-"] .cart .cart-icon .header-cart-count {   

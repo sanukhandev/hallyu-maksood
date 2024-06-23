@@ -83,7 +83,7 @@ a.hover-text-primary:hover,
 .list-text-hover-primary li a:hover,
 .media-icon-white a:hover,
 .text-primary {
-  color: var(--theme-secondary-color) !important;
+  color: var(--theme-secondary-color) ;
 }
 
 .nav-secondary-hover .navbar-nav .nav-link:hover,
@@ -157,7 +157,7 @@ a.hover-text-white:hover {
 .nav-dark-hover .navbar-nav .active > .nav-link:hover,
 .nav-dark-hover .navbar-nav .active > .nav-link,
 .nav-dark .navbar-nav .nav-link {
-  color: var(--theme-dark-color);
+  color: #000000;
 }
 .list-color-dark li:hover,
 .list-color-dark li a:hover,
@@ -166,7 +166,7 @@ a.hover-text-white:hover {
 .nav-dark-hover .navbar-nav .active > .nav-link:hover,
 .nav-dark-hover .navbar-nav .active > .nav-link:hover,
 .nav-dark .navbar-nav .nav-link:hover {
-  color: #bd2222;
+  color: #654ea4;
 }
 
 .list-color-gray li a,
