@@ -169,7 +169,8 @@
                                                         $offPercentage = $product ? $product->offPercentage() : null;
                                                     @endphp
                                                     @if($offPercentage !== null)
-                                                        <span>{{ round($offPercentage) }}</span><span>% off</span>
+                                                        <span>{{ $offPercentage}}</span><span>% off</span>
+{{--                                                        <span>{{ round($offPercentage) }}</span><span>% off</span>--}}
                                                     @else
                                                         <span>No discount available</span>
                                                     @endif
