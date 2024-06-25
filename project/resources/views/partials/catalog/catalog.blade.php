@@ -168,11 +168,10 @@
                                                         $product = App\Models\Product::find($prod['id']);
                                                         $offPercentage = $product ? $product->offPercentage() : null;
                                                     @endphp
-                                                    @if($offPercentage !== null)
-                                                        <span>{{ $offPercentage}}</span><span>% off</span>
-{{--                                                        <span>{{ round($offPercentage) }}</span><span>% off</span>--}}
+                                                    @if($product && $offPercentage)
+                                                        <span>{{ round($offPercentage) }}</span><span>% off</span>
                                                     @else
-                                                        <span>No discount available</span>
+                                                        <span></span>
                                                     @endif
                                                 </div>
                                             </div>

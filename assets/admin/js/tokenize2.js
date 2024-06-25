@@ -706,6 +706,7 @@
         if($('li.active', this.dropdown).length > 0){
             if(!$('li.active', this.dropdown).is('li:' + (d > 0 ? 'last-child'  : 'first-child'))){
                 var $active = $('li.active', this.dropdown);
+                debugger
                 $active.removeClass('active');
                 if(d > 0){
                     $active.next().addClass('active');
