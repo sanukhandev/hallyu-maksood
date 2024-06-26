@@ -72,4 +72,15 @@ class APIHelper
             ];
         });
     }
+
+    public function mapBrands($brands)
+    {
+        return $brands->map(function ($brand) {
+            return [
+                'id' => $brand->id,
+                'name' => $brand->brand_name,
+                'logo' => asset('images/' . $brand->logo),
+            ];
+        });
+    }
 }
