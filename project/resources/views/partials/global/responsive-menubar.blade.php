@@ -220,32 +220,40 @@
                                 @endif
 
 								<div class="menu-and-category">
-									<ul class="nav nav-pills wc-tabs" id="menu-and-category" role="tablist">
+									<!-- <ul class="nav nav-pills wc-tabs" id="menu-and-category" role="tablist">
 										<li class="nav-item" role="presentation">
 											<a class="nav-link active" id="pills-push-menu-tab" data-bs-toggle="pill" href="#pills-push-menu" role="tab" aria-controls="pills-push-menu" aria-selected="true">{{ __('Menu') }}</a>
 										</li>
 										<li class="nav-item" role="presentation">
 											<a class="nav-link" id="pills-push-categories-tab" data-bs-toggle="pill" href="#pills-push-categories" role="tab" aria-controls="pills-push-categories" aria-selected="true">{{ __('Categories') }}</a>
 										</li>
-									</ul>
+									</ul> -->
 									<div class="tab-content" id="menu-and-categoryContent">
 										<div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-push-menu" role="tabpanel" aria-labelledby="pills-push-menu-tab">
-											<div class="push-navbar">
-												<ul class="navbar-nav">
+											<div class="push-navbar">  
+                                                <ul class="navbar-nav">
+                                                 @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->take(4)->get() as $category)
+                                                    <li class="nav-item ">
+                                                    <!-- Category name as the nav link -->
+                                                    <a class="nav-link " href="{{ route('front.category', $category->slug) }}" id="navbarDropdown{{ $category->id }}">
+                                                        {{ $category->name }}
+                                                    </a>
+                                                    <!-- Dropdown menu for each category -->
+                                                    </li>
+                                                    @endforeach
+                                                    <li class="nav-item">
+														<a class="nav-link" href="{{ route('front.faq') }}">{{ __('FAQ') }}</a>
+													</li>
+													<li class="nav-item"><a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a></li>
+                                                    </ul>
+												<!-- <ul class="navbar-nav">   
 													<li class="nav-item">
 														<a class="nav-link" href="{{ route('front.index') }}">{{ __('Home') }}</a>
 													</li>
 													<li class="nav-item ">
 														<a class="nav-link" href="{{ route('front.category') }}">{{ __('PRODUCT') }}</a>
 													</li>
-													<li class="nav-item dropdown">
-														<a class="nav-link dropdown-toggle" href="#">{{ __('Pages') }}</a>
-														<ul class="dropdown-menu">
-															@foreach(DB::table('pages')->where('language_id',$langg->id)->where('header','=',1)->get() as $data)
-															<li><a class="dropdown-item" href="{{ route('front.vendor',$data->slug) }}">{{ $data->title }}</a></li>
-															@endforeach
-														</ul>
-													</li>
+												
 													<li class="nav-item">
 														<a class="nav-link" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
 													</li>
@@ -254,7 +262,7 @@
 														<a class="nav-link" href="{{ route('front.faq') }}">{{ __('FAQ') }}</a>
 													</li>
 													<li class="nav-item"><a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a></li>
-												</ul>
+												</ul> -->
 												<a href="{{ route('front.category') }}" class="p-20 d-block bg-secondary text-white text-uppercase font-600 hover-text-primary text-center">{{ __('Buy now!') }}</a>
 											</div>
 										</div>
