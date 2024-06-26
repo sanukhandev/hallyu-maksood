@@ -22,24 +22,20 @@ class FrontEndController extends Controller
     public function index()
     {
         $apiHelper = new APIHelper();
-
-        $data['sliders'] = DB::table('sliders')->where('language_id', 1)->get();
-        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
+        $data['sliders'] = $apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
+//        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
         $data['categories'] = Category::where('status', 1)->with('subs')->get();
-
-        $products = Product::with(['ratings', 'brand', 'category'])->get();
-
-        $data['products'] = $apiHelper->mapProducts($products);
-        $data['featured'] = $apiHelper->mapProducts($products->where('featured', 1));
-        $data['best'] = $apiHelper->mapProducts($products->where('best', 1));
-        $data['top'] = $apiHelper->mapProducts($products->where('top', 1));
-        $data['hot'] = $apiHelper->mapProducts($products->where('hot', 1));
-        $data['latest'] = $apiHelper->mapProducts($products->where('latest', 1));
-        $data['big'] = $apiHelper->mapProducts($products->where('big', 1));
-        $data['trending'] = $apiHelper->mapProducts($products->where('trending', 1));
-        $data['sale'] = $apiHelper->mapProducts($products->where('sale', 1));
+        $products = Product::with(['ratings', 'brand', 'category']);
+        $data['products'] = $apiHelper->mapProducts($products->get());
+        $data['featured'] = $apiHelper->mapProducts($products->where('featured', 1)->get());
+        $data['best'] = $apiHelper->mapProducts($products->where('best', 1)->get());
+        $data['top'] = $apiHelper->mapProducts($products->where('top', 1)->get());
+        $data['hot'] = $apiHelper->mapProducts($products->where('hot', 1)->get());
+        $data['latest'] = $apiHelper->mapProducts($products->where('latest', 1)->get());
+        $data['big'] = $apiHelper->mapProducts($products->where('big', 1)->get());
+        $data['trending'] = $apiHelper->mapProducts($products->where('trending', 1)->get());
+        $data['sale'] = $apiHelper->mapProducts($products->where('sale', 1)->get());
         $data['ratings'] = Rating::all();
-
         return response()->json([
             'status' => 200,
             'data' => $data

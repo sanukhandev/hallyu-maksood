@@ -13,17 +13,20 @@ class APIHelper
             return [
                 'id' => $product->id,
                 'title' => $product->name,
-                'brandName' => optional($product->brand)->brand_name ?? 'Unknown', // Handle null brand
+                'brandName' => optional($product->brand)->brand_name ?? null, // Handle null brand
                 'images' => [
                     asset('images/' . $product->photo),
                     asset('images/' . $product->thumbnail)
                 ],
-                'createdDate' => Carbon::parse($product->created_at)->toRfc850String(),
+                'createdDate' => Carbon::parse($product->created_at)->format('Y-m-d H:i:s'),
                 'salePercent' => $product->previous_price > 0 ? round((($product->previous_price - $product->price) / $product->previous_price) * 100) : 0,
-                'isPopular' => $product->views > 100,
+                'salePrice' => $product->price,
+                'previousPrice' => $product->previous_price,
                 'numberReviews' => $product->ratings->count(),
                 'reviewStars' => $product->ratings->count() ? round($product->ratings->avg('rating'), 1) : 0,
-                'categoryName' => optional($product->category)->name ?? 'Unknown', // Handle null category
+                'categoryName' => optional($product->category)->name ?? null, // Handle null category
+                'subCategoryName' => optional($product->subcategory)->name ?? null, // Handle null subcategory
+                'childCategoryName' => optional($product->childcategory)->name ?? null, // Handle null child category
                 'colors' => $this->mapColorsAndSizes($product)
             ];
         });
@@ -55,5 +58,18 @@ class APIHelper
         }
 
         return $colors;
+    }
+
+    public function mapSlider($sliders)
+    {
+        return $sliders->map(function ($slider) {
+            return [
+                'id' => $slider->id,
+                'title' => $slider->subtitle_text,
+                'description' => $slider->details_text,
+                'image' => asset('images/' . $slider->photo),
+                'link' => $slider->link,
+            ];
+        });
     }
 }
