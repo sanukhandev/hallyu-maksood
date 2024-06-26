@@ -24,6 +24,7 @@ class FrontEndController extends Controller
         $apiHelper = new APIHelper();
         $data['sliders'] = $apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
 //        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
+        $data['brands'] = DB::table('brands')->where('status', 1)->get();
         $data['categories'] = Category::where('status', 1)->with('subs')->get();
         $products = Product::with(['ratings', 'brand', 'category']);
         $data['products'] = $apiHelper->mapProducts($products->get());
@@ -63,9 +64,7 @@ class FrontEndController extends Controller
 
     public function searchProductByCategory($id)
     {
-        $data['products'] = Product::where('category_id', $id)
-            ->orWhere('subcategory_id', $id)
-            ->orWhere('childcategory_id', $id);
+        $data['products'] = Product::where('category_id', $id)->get();
         return response()->json([
             'status' => 200,
             'data' => $data
