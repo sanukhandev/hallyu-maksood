@@ -77,8 +77,9 @@ class APIHelper
     {
         return $brands->map(function ($brand) {
             return [
-                'id' => $brand->id,
+                'id' => $brand->brand_id,
                 'name' => $brand->brand_name,
+                'country' => $brand->brand_country,
                 'logo' => asset('images/' . $brand->logo),
             ];
         });
