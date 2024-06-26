@@ -46,8 +46,8 @@ class APIHelper
                 foreach ($sizeList as $index => $size) {
                     $sizes[] = [
                         'size' => $size,
-                        'price' => $sizesPrice[$index],
-                        'quantity' => $sizesQty[$index]
+//                        'price' => $sizesPrice[$index],
+//                        'quantity' => $sizesQty[$index]
                     ];
                 }
                 $colors[] = [
