@@ -80,7 +80,7 @@ class APIHelper
                 'id' => $brand->brand_id,
                 'name' => $brand->brand_name,
                 'country' => $brand->brand_country,
-                'logo' => asset('images/' . $brand->logo),
+                'logo' => asset('images/' . $brand->brand_logo),
             ];
         });
     }
