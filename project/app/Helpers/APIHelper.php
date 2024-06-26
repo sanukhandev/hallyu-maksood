@@ -15,8 +15,8 @@ class APIHelper
                 'title' => $product->name,
                 'brandName' => optional($product->brand)->brand_name ?? null, // Handle null brand
                 'images' => [
-                    asset('images/' . $product->photo),
-                    asset('images/' . $product->thumbnail)
+                    asset($product->photo),
+                    asset($product->thumbnail)
                 ],
                 'createdDate' => Carbon::parse($product->created_at)->format('Y-m-d H:i:s'),
                 'salePercent' => $product->previous_price > 0 ? round((($product->previous_price - $product->price) / $product->previous_price) * 100) : 0,
@@ -67,7 +67,7 @@ class APIHelper
                 'id' => $slider->id,
                 'title' => $slider->subtitle_text,
                 'description' => $slider->details_text,
-                'image' => asset('images/' . $slider->photo),
+                'image' => asset( $slider->photo),
                 'link' => $slider->link,
             ];
         });
@@ -80,7 +80,7 @@ class APIHelper
                 'id' => $brand->brand_id,
                 'name' => $brand->brand_name,
                 'country' => $brand->brand_country,
-                'logo' => asset('images/' . $brand->brand_logo),
+                'logo' => asset($brand->brand_logo),
             ];
         });
     }
