@@ -61,9 +61,11 @@ class FrontEndController extends Controller
         ]);
     }
 
-    public function searchProductByCategory(Request $request)
+    public function searchProductByCategory($id)
     {
-        $data['products'] = Product::where('category_id', $request->category_id)->get();
+        $data['products'] = Product::where('category_id', $id)
+            ->orWhere('subcategory_id', $id)
+            ->orWhere('childcategory_id', $id);
         return response()->json([
             'status' => 200,
             'data' => $data

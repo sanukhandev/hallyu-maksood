@@ -19,6 +19,6 @@ Route::prefix('store-front')->group(function (){
     Route::get('index',[FrontEndController::class,'index']);
     Route::get('show-product/{id}',[FrontEndController::class,'showProduct']);
     Route::post('search-product',[FrontEndController::class,'searchProduct']);
-    Route::post('search-product-by-category',[FrontEndController::class,'searchProductByCategory']);
+    Route::get('search-product-by-category/{id}',[FrontEndController::class,'searchProductByCategory']);
     Route::get('all-products',[FrontEndController::class,'showAllProducts']);
 });
