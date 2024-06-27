@@ -8450,12 +8450,12 @@ li.show-colors {
 .qty ul li .modal-total,
 .qty ul li .modal-minus {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(144, 144, 144, 0.4);
   text-align: center;
-  line-height: 30px;
-  font-size: 14px;
+  line-height: 40px;
+  font-size: 16px;
   cursor: pointer;
   font-weight: 500;
 }
@@ -8535,14 +8535,14 @@ li.addtocart a {
   background: #e8135c;
 }
 li.addtocart a {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   display: inline-block;
   border: 1px solid #5c5c5b;
   background: #181818;
-  padding: 0px 18px;
-  height: 30px;
-  line-height: 30px;
+  padding: 0px 16px;
+  height: 40px;
+  line-height: 40px;
   font-weight: 600;
   border-radius: 50px;
   -webkit-transition: all 0.3s ease-in;
