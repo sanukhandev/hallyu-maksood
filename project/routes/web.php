@@ -970,7 +970,7 @@ Route::group(['middleware' => 'maintenance'], function () {
             Route::get('/order/{id}/print', 'Vendor\OrderController@printpage')->name('vendor-order-print');
             Route::get('/order/{id1}/status/{status}', 'Vendor\OrderController@status')->name('vendor-order-status');
             Route::post('/order/email/', 'Vendor\OrderController@emailsub')->name('vendor-order-emailsub');
-            Route::post('/order/{slug}/license', 'Vendor\OrderController@license')->name('vendor-order-license');
+            Route::post('/order/{slug}/license', 'Vendor\OrderControfcatller@license')->name('vendor-order-license');
 
             //------------ ORDER SECTION ENDS------------
 

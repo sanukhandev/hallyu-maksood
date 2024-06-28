@@ -84,9 +84,7 @@ class CatalogController extends FrontBaseController
                                   ->when($type, function ($query, $type) {
                                       return $query->with('user')->whereStatus(1)->whereIsDiscount(1)
                                       ->where('discount_date', '>=', date('Y-m-d'))
-                                      ->whereHas('user',function($user){
-                                          $user->where('is_vendor',2);
-                                      });
+                                        ->where('discount', '>', 0);
                                   })
                                   ->when($childcat, function ($query, $childcat) {
                                       return $query->where('childcategory_id', $childcat->id);

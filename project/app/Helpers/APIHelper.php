@@ -114,7 +114,7 @@ class APIHelper
         }
 
     public function mapProduct($product){
-        return [
+        if ($product){return [
             'id' => $product->id,
             'title' => $product->name,
             'brandName' => optional($product->brand)->brand_name ?? null, // Handle null brand
@@ -136,6 +136,7 @@ class APIHelper
             'subCategoryName' => optional($product->subcategory)->name ?? null, // Handle null subcategory
             'childCategoryName' => optional($product->childcategory)->name ?? null, // Handle null child category
             'colors' => $this->mapColorsAndSizes($product)
-        ];
+        ];}
+        return null;
     }
 }

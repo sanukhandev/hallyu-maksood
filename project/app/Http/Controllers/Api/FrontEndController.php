@@ -52,7 +52,7 @@ class FrontEndController extends Controller
         $data['product'] = $this->apiHelper->mapProduct(Product::with(['ratings', 'brand', 'category'])->find($id));
         return response()->json([
             'status' => 200,
-            'data' => $data
+            'data' => $data['product'] ?? false
         ]);
     }
 
