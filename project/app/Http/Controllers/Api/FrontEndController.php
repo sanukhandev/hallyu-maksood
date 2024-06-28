@@ -44,7 +44,7 @@ class FrontEndController extends Controller
 
     public function showProduct($id)
     {
-        $data['product'] = Product::with(['ratings','brand','category','subcategory','childcategory','galleries','comments'])->where('id', $id)->first();
+        $data['product'] = Product::with(['ratings', 'brand', 'category', 'subcategory', 'childcategory', 'galleries', 'comments'])->where('id', $id)->first();
         $data['ratings'] = Rating::where('product_id', $id)->get();
         return response()->json([
             'status' => 200,
@@ -52,67 +52,55 @@ class FrontEndController extends Controller
         ]);
     }
 
-    public function searchProduct(Request $request)
+
+    public function getProducts(Request $request)
     {
-        $data['products'] = Product::where('name', 'like', '%' . $request->name . '%')->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
+        // get url parameters with default values
+        $category = $request->category;
+        $brand = $request->brand;
+        $minPrice = $request->minPrice ?? 0;
+        $maxPrice = $request->maxPrice ?? 999999;
+        $sort = $request->sort;
+        $search = $request->search;
+        $limit = $request->limit ?? 10;
 
-    public function searchProductByCategory($id)
-    {
-        $data['products'] = Product::where('category_id', $id)->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
+        // get products with filters
+        $products = Product::with(['ratings', 'brand', 'category'])
+            ->when($category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($brand, function ($query, $brand) {
+                return $query->where('brand_id', $brand);
+            })
+            ->when($minPrice || $maxPrice, function ($query) use ($minPrice, $maxPrice) {
+                return $query->whereBetween('price', [$minPrice, $maxPrice]);
+            })
+            ->when($sort, function ($query, $sort) {
+                return $query->orderBy('price', $sort);
+            })
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            });
 
-    public function searchProductByBrand(Request $request)
-    {
-        $data['products'] = Product::where('brand_id', $request->brand_id)->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
+        // paginate and map response
+        $res = $products->paginate($limit);
 
-    public function searchProductByPrice(Request $request)
-    {
-        $data['products'] = Product::whereBetween('price', [$request->min_price, $request->max_price])->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
+        $apiHelper = new APIHelper();
+        $data['products'] = $apiHelper->mapProducts($res);
+        $data['pagination'] = [
+            'current_page' => $res->currentPage(),
+            'first_page_url' => $res->url(1),
+            'from' => $res->firstItem(),
+            'last_page' => $res->lastPage(),
+            'last_page_url' => $res->url($res->lastPage()),
+            'next_page_url' => $res->nextPageUrl(),
+            'path' => $res->url(1),
+            'per_page' => $res->perPage(),
+            'prev_page_url' => $res->previousPageUrl(),
+            'to' => $res->lastItem(),
+            'total' => $res->total()
+        ];
 
-    public function searchProductByRating(Request $request)
-    {
-        $data['products'] = Product::where('rating', $request->rating)->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
-
-
-    public function searchProductByPriceAndRating(Request $request)
-    {
-        $data['products'] = Product::whereBetween('price', [$request->min_price, $request->max_price])->where('rating', $request->rating)->get();
-        return response()->json([
-            'status' => 200,
-            'data' => $data
-        ]);
-    }
-
-
-    // show all products paginated
-
-    public function showAllProducts($pageNumber=10)
-    {
-        $data['products'] = Product::paginate($pageNumber);
         return response()->json([
             'status' => 200,
             'data' => $data
