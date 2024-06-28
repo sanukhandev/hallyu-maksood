@@ -67,7 +67,7 @@ class FrontEndController extends Controller
         // get products with filters
         $products = Product::with(['ratings', 'brand', 'category'])
             ->when($category, function ($query, $category) {
-                return $query->where('category_id', $category);
+                return $query->where('category_id', $category)->orWhere('subcategory_id', $category)->orWhere('childcategory_id', $category);
             })
             ->when($brand, function ($query, $brand) {
                 return $query->where('brand_id', $brand);
