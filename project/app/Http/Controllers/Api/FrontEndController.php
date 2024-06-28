@@ -55,7 +55,7 @@ class FrontEndController extends Controller
             'message' => 'Product not found'
         ]);
         $data['related'] = $this->apiHelper->mapProducts(Product::with(['ratings', 'brand', 'category'])->where('category_id', $data['product']['category_id'])
-            ->notIn('id', [$id])
+            ->whereNotIn('id', [$id])
             ->take(10)->get());
 
         return response()->json([
