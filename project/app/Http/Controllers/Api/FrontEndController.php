@@ -25,7 +25,7 @@ class FrontEndController extends Controller
         $data['sliders'] = $apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
 //        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
         $data['brands'] = $apiHelper->mapbrands(DB::table('brands')->where('brand_is_active', 1)->get());
-        $data['categories'] = Category::where('status', 1)->with('subs')->get();
+        $data['categories'] = $apiHelper->mapCategories(Category::where('status', 1)->get());
         $products = Product::with(['ratings', 'brand', 'category']);
         $data['products'] = $apiHelper->mapProducts($products->get());
         $data['featured'] = $apiHelper->mapProducts($products->where('featured', 1)->get());

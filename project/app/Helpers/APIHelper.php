@@ -84,4 +84,26 @@ class APIHelper
             ];
         });
     }
+
+   public function mapCategories($categories)
+        {
+            return $categories->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'subs' => $category->subs->map(function ($sub) {
+                        return [
+                            'id' => $sub->id,
+                            'name' => $sub->name,
+                            'childs' => $sub->childs->map(function ($child) {
+                                return [
+                                    'id' => $child->id,
+                                    'name' => $child->name,
+                                ];
+                            })
+                        ];
+                    })
+                ];
+            });
+        }
 }
