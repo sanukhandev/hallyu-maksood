@@ -50,7 +50,12 @@ class FrontEndController extends Controller
     public function showProduct($id)
     {
         $data['product'] = $this->apiHelper->mapProduct(Product::with(['ratings', 'brand', 'category'])->find($id));
+        if (!$data['product']) return response()->json([
+            'status' => 404,
+            'message' => 'Product not found'
+        ]);
         $data['related'] = $this->apiHelper->mapProducts(Product::with(['ratings', 'brand', 'category'])->where('category_id', $data['product']['category_id'])->take(10)->get());
+
         return response()->json([
             'status' => 200,
             'data' => $data ?? false
