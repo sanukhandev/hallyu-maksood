@@ -116,11 +116,24 @@ class SubCategoryController extends AdminBaseController
         if ($validator->fails()) {
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
+
         //--- Validation Section Ends
 
         //--- Logic Section
         $data = Subcategory::findOrFail($id);
         $input = $request->all();
+        if ($file = $request->file('photo'))
+        {
+            $name = \PriceHelper::ImageCreateName($file);
+            $file->move('assets/images/categories',$name);
+            if($data->photo != null)
+            {
+                if (file_exists(public_path().'/assets/images/subcategories/'.$data->photo)) {
+                    unlink(public_path().'/assets/images/subcategories/'.$data->photo);
+                }
+            }
+            $input['photo'] = 'assets/images/categories'.$name;
+        }
         $data->update($input);
         //--- Logic Section Ends
 
