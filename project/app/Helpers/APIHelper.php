@@ -67,7 +67,7 @@ class APIHelper
                 'id' => $slider->id,
                 'title' => $slider->subtitle_text,
                 'description' => $slider->details_text,
-                'image' => asset( $slider->photo),
+                'image' => asset( 'assets/images/sliders/' . $slider->photo),
                 'link' => $slider->link,
             ];
         });
