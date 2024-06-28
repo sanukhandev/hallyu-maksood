@@ -117,7 +117,12 @@
                     <div class="autocomplete">
                         <div id="myInputautocomplete-list" class="autocomplete-items"></div>
                     </div>
-                    <!-- <div class="sign-in my-account-dropdown position-relative">
+                    <div class="search-view d-xxl-none">
+                        <a href="#" class="search-pop top-quantity d-flex align-items-center text-decoration-none">
+                            <i class="flaticon-search flat-mini text-dark mx-auto"></i>
+                        </a>
+                    </div>
+                    <div class="sign-in my-account-dropdown position-relative">
                         <a href="my-account.html" class="has-dropdown d-flex align-items-center text-white text-decoration-none">
                             @if (Auth::check())
                             <img class="img-fluid user lazy" data-src="{{ asset('assets/images/users/'.Auth::user()->photo) }}" alt="">
@@ -142,12 +147,8 @@
                             @endif
 
                         </ul>
-                    </div> -->
-                    <div class="search-view d-xxl-none">
-                        <a href="#" class="search-pop top-quantity d-flex align-items-center text-decoration-none">
-                            <i class="flaticon-search flat-mini text-dark mx-auto"></i>
-                        </a>
                     </div>
+                   
                     <div class="header-cart-1">
                         @if (Auth::check())
                         <a href="{{ route('user-wishlists') }}" class="cart " title="View Wishlist">
