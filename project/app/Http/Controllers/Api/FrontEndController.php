@@ -23,7 +23,6 @@ class FrontEndController extends Controller
     {
         $apiHelper = new APIHelper();
         $data['sliders'] = $apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
-//        $data['arrivals'] = ArrivalSection::where('status', 1)->get();
         $data['brands'] = $apiHelper->mapbrands(DB::table('brands')->where('brand_is_active', 1)->get());
         $data['categories'] = $apiHelper->mapCategories(Category::where('status', 1)->get());
         $products = Product::with(['ratings', 'brand', 'category']);

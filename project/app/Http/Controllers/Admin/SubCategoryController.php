@@ -59,9 +59,11 @@ class SubCategoryController extends AdminBaseController
     {
         //--- Validation Section
         $rules = [
-            'slug' => 'unique:subcategories|regex:/^[a-zA-Z0-9\s-]+$/'
+            'slug' => 'unique:subcategories|regex:/^[a-zA-Z0-9\s-]+$/',
+                'photo' => 'mimes:jpeg,jpg,png,svg',
                  ];
         $customs = [
+            'photo.mimes' => __('Icon Type is Invalid.'),
             'slug.unique' => __('This slug has already been taken.'),
             'slug.regex' => __('Slug Must Not Have Any Special Characters.')
                    ];
@@ -75,6 +77,12 @@ class SubCategoryController extends AdminBaseController
         //--- Logic Section
         $data = new Subcategory();
         $input = $request->all();
+        if ($file = $request->file('photo'))
+        {
+            $name = \PriceHelper::ImageCreateName($file);
+            $file->move('assets/images/subcategories',$name);
+            $input['photo'] = 'assets/images/subcategories/'.$name;
+        }
         $data->fill($input)->save();
         //--- Logic Section Ends
 
