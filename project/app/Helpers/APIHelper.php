@@ -14,7 +14,7 @@ class APIHelper
                 'id' => $product->id,
                 'title' => $product->name,
                 'brandName' => optional($product->brand)->brand_name ?? null, // Handle null brand
-                'thumbnail' => asset('assets/images/products/' . $product->thumbnail),
+                'thumbnail' => asset('assets/images/thumbnails/' . $product->thumbnail),
                 'gallery' => array_merge(
                     [asset('assets/images/products/' . $product->photo)],
                     $product->galleries->map(function ($gallery) {
