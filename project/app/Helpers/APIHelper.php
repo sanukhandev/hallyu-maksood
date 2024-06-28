@@ -112,4 +112,30 @@ class APIHelper
                 ];
             });
         }
+
+    public function mapProduct($product){
+        return [
+            'id' => $product->id,
+            'title' => $product->name,
+            'brandName' => optional($product->brand)->brand_name ?? null, // Handle null brand
+            'thumbnail' => asset('assets/images/thumbnails/' . $product->thumbnail),
+            'gallery' => array_merge(
+                [asset('assets/images/products/' . $product->photo)],
+                $product->galleries->map(function ($gallery) {
+                    return asset('assets/images/galleries/' . $gallery->photo);
+                })->toArray()
+            ),
+            'description' => $product->details,
+            'createdDate' => Carbon::parse($product->created_at)->format('F j, Y g:i:s A'),
+            'salePercent' => $product->previous_price > 0 ? round((($product->previous_price - $product->price) / $product->previous_price) * 100) : 0,
+            'salePrice' => $product->price,
+            'previousPrice' => $product->previous_price,
+            'numberReviews' => $product->ratings->count(),
+            'reviewStars' => $product->ratings->count() ? round($product->ratings->avg('rating'), 1) : 0,
+            'categoryName' => optional($product->category)->name ?? null, // Handle null category
+            'subCategoryName' => optional($product->subcategory)->name ?? null, // Handle null subcategory
+            'childCategoryName' => optional($product->childcategory)->name ?? null, // Handle null child category
+            'colors' => $this->mapColorsAndSizes($product)
+        ];
+    }
 }

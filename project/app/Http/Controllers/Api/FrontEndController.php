@@ -19,22 +19,27 @@ use DB;
 
 class FrontEndController extends Controller
 {
+    public function __construct()
+    {
+        $this->apiHelper = new APIHelper();
+    }
+
     public function index()
     {
-        $apiHelper = new APIHelper();
-        $data['sliders'] = $apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
-        $data['brands'] = $apiHelper->mapbrands(DB::table('brands')->where('brand_is_active', 1)->get());
-        $data['categories'] = $apiHelper->mapCategories(Category::where('status', 1)->get());
+
+        $data['sliders'] = $this->apiHelper->mapSlider(DB::table('sliders')->where('language_id', 1)->get());
+        $data['brands'] = $this->apiHelper->mapbrands(DB::table('brands')->where('brand_is_active', 1)->get());
+        $data['categories'] = $this->apiHelper->mapCategories(Category::where('status', 1)->get());
         $products = Product::with(['ratings', 'brand', 'category']);
-        $data['products'] = $apiHelper->mapProducts($products->get());
-        $data['featured'] = $apiHelper->mapProducts($products->where('featured', 1)->get());
-        $data['best'] = $apiHelper->mapProducts($products->where('best', 1)->get());
-        $data['top'] = $apiHelper->mapProducts($products->where('top', 1)->get());
-        $data['hot'] = $apiHelper->mapProducts($products->where('hot', 1)->get());
-        $data['latest'] = $apiHelper->mapProducts($products->where('latest', 1)->get());
-        $data['big'] = $apiHelper->mapProducts($products->where('big', 1)->get());
-        $data['trending'] = $apiHelper->mapProducts($products->where('trending', 1)->get());
-        $data['sale'] = $apiHelper->mapProducts($products->where('sale', 1)->get());
+        $data['products'] = $this->apiHelper->mapProducts($products->get());
+        $data['featured'] = $this->apiHelper->mapProducts($products->where('featured', 1)->get());
+        $data['best'] = $this->apiHelper->mapProducts($products->where('best', 1)->get());
+        $data['top'] = $this->apiHelper->mapProducts($products->where('top', 1)->get());
+        $data['hot'] = $this->apiHelper->mapProducts($products->where('hot', 1)->get());
+        $data['latest'] = $this->apiHelper->mapProducts($products->where('latest', 1)->get());
+        $data['big'] = $this->apiHelper->mapProducts($products->where('big', 1)->get());
+        $data['trending'] = $this->apiHelper->mapProducts($products->where('trending', 1)->get());
+        $data['sale'] = $this->apiHelper->mapProducts($products->where('sale', 1)->get());
         $data['ratings'] = Rating::all();
         return response()->json([
             'status' => 200,
@@ -44,8 +49,7 @@ class FrontEndController extends Controller
 
     public function showProduct($id)
     {
-        $data['product'] = Product::with(['ratings', 'brand', 'category', 'subcategory', 'childcategory', 'galleries', 'comments'])->where('id', $id)->first();
-        $data['ratings'] = Rating::where('product_id', $id)->get();
+        $data['product'] = $this->apiHelper->mapProduct(Product::with(['ratings', 'brand', 'category'])->find($id));
         return response()->json([
             'status' => 200,
             'data' => $data
@@ -63,8 +67,6 @@ class FrontEndController extends Controller
         $sort = $request->sort;
         $search = $request->search;
         $limit = $request->limit ?? 10;
-
-        // get products with filters
         $products = Product::with(['ratings', 'brand', 'category'])
             ->when($category, function ($query, $category) {
                 return $query->where('category_id', $category)->orWhere('subcategory_id', $category)->orWhere('childcategory_id', $category);
@@ -85,8 +87,8 @@ class FrontEndController extends Controller
         // paginate and map response
         $res = $products->paginate($limit);
 
-        $apiHelper = new APIHelper();
-        $data['products'] = $apiHelper->mapProducts($res);
+        $this->apiHelper = new APIHelper();
+        $data['products'] = $this->apiHelper->mapProducts($res);
         $data['pagination'] = [
             'current_page' => $res->currentPage(),
             'first_page_url' => $res->url(1),
