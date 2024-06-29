@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Helpers\APIHelper;
 
@@ -116,6 +117,17 @@ class FrontEndController extends Controller
             'data' => $data
         ]);
     }
+
+    public function cart()
+    {
+        $data['cart'] = [];
+        return response()->json([
+            'status' => 200,
+            'data' => $data
+        ]);
+    }
+
+   
 
 
 }

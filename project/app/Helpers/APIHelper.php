@@ -141,4 +141,21 @@ class APIHelper
         ];}
         return null;
     }
+
+    public function mapCart($cart){
+
+
+        return $cart->map(function ($cartItem){
+            return [
+                'id' => $cartItem->id,
+                'user_id' => $cartItem->user_id,
+                'product_id' => $cartItem->product_id,
+                'quantity' => $cartItem->quantity,
+                'total_price' => $cartItem->total_price,
+                'created_at' => $cartItem->created_at,
+                'updated_at' => $cartItem->updated_at,
+                'product' => $this->mapProduct($cartItem->product)
+            ];
+        });
+    }
 }
