@@ -3899,10 +3899,11 @@ div.summary .product-price-discount,
   margin-left: 5px;
   background-color: #f9eaea;
   color: #ffff;
+  border-radius: 50px;
 }
 div.summary .product-price-discount .on-sale,
 .product-wrapper .on-sale {
-  padding: 2px 5px;
+  padding: 4px 8px;
 }
 .product-wrapper .product-image .on-sale {
   position: absolute;
@@ -4832,7 +4833,8 @@ div.summary-inner > span.price {
   color: #fff;
   font-weight: 400;
   font-size: 13px;
-  padding: 0px 4px;
+  padding: 4px 8px;
+  border-radius: 24px;
 }
 .rating-counts-wrap {
   cursor: pointer;
@@ -8551,7 +8553,8 @@ li.addtocart a {
 }
 span.on-sale {
   background: #f3d8d0;
-  padding: 2px 5px;
+  padding: 4px 8px;
+  border-radius: 24px;
 }
 /* Pricing Plan Area End */
 
