@@ -21,104 +21,104 @@ class CashOnDeliveryController extends CheckoutBaseControlller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($request->pass_check) {
-            $auth = OrderHelper::auth_check($input); // For Authentication Checking
-            if(!$auth['auth_success']){
-                return redirect()->back()->with('unsuccess',$auth['error_message']);
+
+        // Authentication check
+        if ($request->pass_check) {
+            $auth = OrderHelper::auth_check($input);
+            if (!$auth['auth_success']) {
+                return redirect()->back()->with('unsuccess', $auth['error_message']);
             }
         }
 
+        // Check if the cart is empty
         if (!Session::has('cart')) {
-            return redirect()->route('front.cart')->with('success',__("You don't have any product to checkout."));
+            return redirect()->route('front.cart')->with('success', __("You don't have any product to checkout."));
         }
 
+        // Retrieve the cart from the session
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        OrderHelper::license_check($cart); // For License Checking
-        $t_oldCart = Session::get('cart');
-        $t_cart = new Cart($t_oldCart);
-        $new_cart = [];
-        $new_cart['totalQty'] = $t_cart->totalQty;
-        $new_cart['totalPrice'] = $t_cart->totalPrice;
-        $new_cart['items'] = $t_cart->items;
-        $new_cart = json_encode($new_cart);
-        $temp_affilate_users = OrderHelper::product_affilate_check($cart); // For Product Based Affilate Checking
-        $affilate_users = $temp_affilate_users == null ? null : json_encode($temp_affilate_users);
+        OrderHelper::license_check($cart); // License check
 
+        // Rebuild the cart
+        $newCart = [
+            'totalQty' => $cart->totalQty,
+            'totalPrice' => $cart->totalPrice,
+            'items' => $cart->items
+        ];
+        $newCartJson = json_encode($newCart);
+
+        // Affiliate user check
+        $affilateUsers = OrderHelper::product_affilate_check($cart);
+        $affilateUsersJson = $affilateUsers ? json_encode($affilateUsers) : null;
+
+        // Prepare the order
         $order = new Order;
-        $success_url = route('front.payment.return');
-        $input['user_id'] = Auth::check() ? Auth::user()->id : NULL;
-        $input['cart'] = $new_cart;
-        $input['affilate_users'] = $affilate_users;
+        $input['user_id'] = Auth::check() ? Auth::user()->id : null;
+        $input['cart'] = $newCartJson;
+        $input['affilate_users'] = $affilateUsersJson;
         $input['pay_amount'] = $request->total / $this->curr->value;
-        $input['order_number'] = Str::random(4).time();
+        $input['order_number'] = Str::random(4) . time();
         $input['wallet_price'] = $request->wallet_price / $this->curr->value;
-        if($input['tax_type'] == 'state_tax'){
-            $input['tax_location'] = State::findOrFail($input['tax'])->state;
-        }else{
-            $input['tax_location'] = Country::findOrFail($input['tax'])->country_name;
-        }
+
+        // Tax location
+        $input['tax_location'] = $input['tax_type'] == 'state_tax'
+            ? State::findOrFail($input['tax'])->state
+            : Country::findOrFail($input['tax'])->country_name;
         $input['tax'] = Session::get('current_tax');
 
+        // Affiliate charge calculation
         if (Session::has('affilate')) {
-            $val = $request->total / $this->curr->value;
-            $val = $val / 100;
-            $sub = $val * $this->gs->affilate_charge;
-            if($temp_affilate_users != null){
-                $t_sub = 0;
-                foreach($temp_affilate_users as $t_cost){
-                    $t_sub += $t_cost['charge'];
-                }
-                $sub = $sub - $t_sub;
-            }
-            if($sub > 0){
-                $user = OrderHelper::affilate_check(Session::get('affilate'),$sub,$input['dp']); // For Affiliate Checking
+            $val = $request->total / $this->curr->value / 100 * $this->gs->affilate_charge;
+            $sub = $affilateUsers ? array_reduce($affilateUsers, fn($carry, $item) => $carry + $item['charge'], $val) : $val;
+            if ($sub > 0) {
+                $user = OrderHelper::affilate_check(Session::get('affilate'), $sub, $input['dp']);
                 $input['affilate_user'] = Session::get('affilate');
                 $input['affilate_charge'] = $sub;
             }
-
         }
 
+        // Save the order
         $order->fill($input)->save();
-        $order->tracks()->create(['title' => 'Pending', 'text' => 'You have successfully placed your order.' ]);
+        $order->tracks()->create(['title' => 'Pending', 'text' => 'You have successfully placed your order.']);
         $order->notifications()->create();
 
-        if($input['coupon_id'] != "") {
-            OrderHelper::coupon_check($input['coupon_id']); // For Coupon Checking
+        // Coupon check
+        if ($input['coupon_id']) {
+            OrderHelper::coupon_check($input['coupon_id']);
         }
 
-        if(Auth::check()){
-            if($this->gs->is_reward == 1){
-                $num = $order->pay_amount;
-                $rewards = Reward::get();
-                foreach ($rewards as $i) {
-                    $smallest[$i->order_amount] = abs($i->order_amount - $num);
-                }
-
-                asort($smallest);
-                $final_reword = Reward::where('order_amount',key($smallest))->first();
-                Auth::user()->update(['reward' => (Auth::user()->reward + $final_reword->reward)]);
-            }
+        // Reward points calculation
+        if (Auth::check() && $this->gs->is_reward) {
+            $reward = Reward::where('order_amount', Reward::all()->sortBy(fn($reward) => abs($reward->order_amount - $order->pay_amount))->first()->order_amount)->first();
+            Auth::user()->update(['reward' => Auth::user()->reward + $reward->reward]);
         }
 
-        OrderHelper::size_qty_check($cart); // For Size Quantiy Checking
-        OrderHelper::stock_check($cart); // For Stock Checking
-        OrderHelper::vendor_order_check($cart,$order); // For Vendor Order Checking
+        // Various checks
+        OrderHelper::size_qty_check($cart);
+        OrderHelper::stock_check($cart);
+        OrderHelper::vendor_order_check($cart, $order);
 
-        Session::put('temporder',$order);
-        Session::put('tempcart',$cart);
-        Session::forget('cart');
-        Session::forget('already');
-        Session::forget('coupon');
-        Session::forget('coupon_total');
-        Session::forget('coupon_total1');
-        Session::forget('coupon_percentage');
+        // Store the order and cart in session, then clear the cart
+        Session::put('temporder', $order);
+        Session::put('tempcart', $cart);
+        Session::forget(['cart', 'already', 'coupon', 'coupon_total', 'coupon_total1', 'coupon_percentage']);
 
-        if ($order->user_id != 0 && $order->wallet_price != 0) {
-            OrderHelper::add_to_transaction($order,$order->wallet_price); // Store To Transactions
+        // Add to transaction if applicable
+        if ($order->user_id && $order->wallet_price) {
+            OrderHelper::add_to_transaction($order, $order->wallet_price);
         }
 
-        //Sending Email To Buyer
+        // Send emails
+//        $this->sendOrderEmails($order);
+
+        // Redirect to success URL
+        return redirect(route('front.payment.return'));
+    }
+
+    private function sendOrderEmails(Order $order)
+    {
+        // Sending Email to Buyer
         $data = [
             'to' => $order->customer_email,
             'type' => "new_order",
@@ -129,19 +129,15 @@ class CashOnDeliveryController extends CheckoutBaseControlller
             'wtitle' => "",
             'onumber' => $order->order_number,
         ];
+        (new GeniusMailer())->sendAutoOrderMail($data, $order->id);
 
-        $mailer = new GeniusMailer();
-        $mailer->sendAutoOrderMail($data,$order->id);
-
-        //Sending Email To Admin
+        // Sending Email to Admin
         $data = [
             'to' => $this->ps->contact_email,
-            'subject' => "New Order Recieved!!",
-            'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.",
+            'subject' => "New Order Received!!",
+            'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
         ];
-        $mailer = new GeniusMailer();
-        $mailer->sendCustomMail($data);
-
-        return redirect($success_url);
+        (new GeniusMailer())->sendCustomMail($data);
     }
+
 }
