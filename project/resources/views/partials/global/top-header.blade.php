@@ -8,7 +8,7 @@
              </div>
           </div> -->
           
-             <ul class=" ms-auto  d-flex justify-content-end flost">
+             <!-- <ul class=" ms-auto  d-flex justify-content-end flost">
                
                 <li class="my-account-dropdown">
                    <div class="currency-selector nice-select">
@@ -37,7 +37,7 @@
                                 <a class="nav-link " href="{{ route('front.faq') }}">{{ __('FAQ') }}</a>
                             </li>
                
-             </ul>
+             </ul> -->
           
        
     </div>
