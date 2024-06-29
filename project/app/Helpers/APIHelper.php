@@ -125,6 +125,7 @@ class APIHelper
                     return asset('assets/images/galleries/' . $gallery->photo);
                 })->toArray()
             ),
+            'stock' => $product->stock ?? -1,
             'category_id' => $product->category_id,
             'description' => $product->details,
             'createdDate' => Carbon::parse($product->created_at)->format('F j, Y g:i:s A'),
