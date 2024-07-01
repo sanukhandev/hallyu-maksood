@@ -954,6 +954,7 @@ header.fixed-top .header-sticky {
   margin: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   border: none;
+  background-color: #f6e5f4;
 }
 ul {
   list-style: none;
@@ -3497,7 +3498,6 @@ a.add_to_cart_button:hover,
   line-height: 38px;
   font-size: 12px;
   font-weight: 400;
-
 }
 .product-style-5
   .yith-wcwl-add-to-wishlist

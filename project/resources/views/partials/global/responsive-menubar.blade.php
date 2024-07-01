@@ -182,7 +182,7 @@
         </div>
     </div>
 </div>
-<div class="header-sticky bg-light py-10">
+<div class="header-sticky  py-10">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xxl-2 col-xl-2 col-lg-3 col-6 order-lg-1">
