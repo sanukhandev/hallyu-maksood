@@ -10,7 +10,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ms-md-5">
         <!-- Fetch categories dynamically -->
-        @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->take(4)->get() as $category)
+        @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->get() as $category)
         <li class="nav-item dropdown">
             <!-- Category name as the nav link -->
             <a class="nav-link dropdown-toggle" href="{{ route('front.category', $category->slug) }}" id="navbarDropdown{{ $category->id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -182,7 +182,7 @@
         </div>
     </div>
 </div>
-<div class="header-sticky  py-10">
+<div class="header-sticky  bg-light py-10">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xxl-2 col-xl-2 col-lg-3 col-6 order-lg-1">
@@ -233,7 +233,7 @@
 										<div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-push-menu" role="tabpanel" aria-labelledby="pills-push-menu-tab">
 											<div class="push-navbar">  
                                                 <ul class="navbar-nav">
-                                                 @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->take(4)->get() as $category)
+                                                 @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->get() as $category)
                                                     <li class="nav-item ">
                                                     <!-- Category name as the nav link -->
                                                     <a class="nav-link " href="{{ route('front.category', $category->slug) }}" id="navbarDropdown{{ $category->id }}">

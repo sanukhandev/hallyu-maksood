@@ -25,7 +25,7 @@
 <!--==================== Product Description Section Start ====================-->
 <div class="full-row">
    <div class="container">
-      <div class="row justify-content-between">
+      <!-- <div class="row justify-content-between">
          <div class="col-lg-12">
             <div class="section-head border-bottom">
                <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
@@ -71,7 +71,7 @@
                </div>
             </div>
          </div>
-         </div>
+         </div> -->
 
          @if($productt->user_id != 0 && $productt->user->products->count() > 0)
          <div class="col-lg-3">

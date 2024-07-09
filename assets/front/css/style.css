@@ -954,7 +954,6 @@ header.fixed-top .header-sticky {
   margin: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   border: none;
-  background-color: #f6e5f4;
 }
 ul {
   list-style: none;
@@ -3296,16 +3295,17 @@ header.fixed-top {
 .yith-wcwl-add-to-wishlist [class*="-button"] a,
 .product-wrapper .wishlist-view [class*="-button"] a,
 .product-wrapper .hover-area [class*="-button"] a {
-  padding-left: 20px;
+  padding-left: 60px;
+  margin: 12px;
   line-height: inherit;
   display: block;
-  font-size: 12px;
-  font-weight: 500;
-  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #d6c8f7;
 }
 .product-wrapper > .product-image > .wishlist-view [class*="-button"] a {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
 }
 .product-wrapper > .product-image > .wishlist-view [class*="-button"] a:after {
   left: 50%;
@@ -4950,11 +4950,11 @@ div.summary .stock-availability.in-stock {
   margin: 10px 0;
 }
 .product-offer-item::before {
-  content: "\f02b";
+  //content: "\f02b";
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
   margin-right: 10px;
-  color: var(--theme-primary-color);
+  color: var(--theme-general-color);
 }
 div.summary .product-term-wrap {
   display: inline-block;
@@ -8546,8 +8546,8 @@ li.addtocart a {
   padding: 0px 16px;
   height: 40px;
   line-height: 40px;
-  font-weight: 600;
-  border-radius: 50px;
+
+  border-radius: 8px;
   -webkit-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
@@ -9051,7 +9051,7 @@ li.addtocart a:hover {
   -moz-border-radius: 3px;
   border-radius: 3px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #664da7;
   -webkit-transition: all ease 0.3s;
   -moz-transition: all ease 0.3s;
   transition: all ease 0.3s;
@@ -9065,15 +9065,15 @@ li.addtocart a:hover {
   font-weight: 500;
 }
 .social-icons li a i[class*="facebook"] {
-  background: #3b5998;
+  background: #d6c8f7;
 }
 
 .social-icons li a i[class*="whatsapp"] {
-  background: #25d366;
+  background: #d6c8f7;
 }
 
 .social-icons li a i[class*="twitter"] {
-  background: #55acee;
+  background: #d6c8f7;
 }
 
 .social-icons li a i[class*="linkedin"] {
@@ -9081,7 +9081,7 @@ li.addtocart a:hover {
 }
 
 .social-icons li a i[class*="instagram"] {
-  background: #e4405f;
+  background: #d6c8f7;
 }
 
 .social-icons li a i[class*="google"] {

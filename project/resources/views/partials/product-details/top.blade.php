@@ -50,13 +50,17 @@
                                   </li>
                                   @endif
 
-                              </ol>
+                              </ol> 
                           </nav>
                       </div>
-                      <h1 class="product_title entry-title">{{ $productt->name }}</h1>
                       @if($productt->brand)
                           <h5>{{ $productt->brand->brand_name }}</h5>
                       @endif
+                      <h1 class="product_title entry-title">{{ $productt->name }}</h1>
+                      @if( $productt->sku != null )
+                               <span class="product-offer-item product-id{{ $productt->product_type == 'affiliate' ? 'mt-4' : '' }}"><span class="h6">{{ __('SKU:') }} </span> {{ $productt->sku }}
+                               </span>
+                               @endif
 
                       <div class="pro-details">
                          <div class="pro-info">
@@ -96,10 +100,7 @@
                                <li class="product-offer-item"><span class="h6">{{ __('Estimated Shipping Time:') }}</span> {{ $productt->ship }}
                                </li>
                                @endif
-                               @if( $productt->sku != null )
-                               <li class="product-offer-item product-id{{ $productt->product_type == 'affiliate' ? 'mt-4' : '' }}"><span class="h6">{{ __('Product SKU:') }} </span> {{ $productt->sku }}
-                               </li>
-                               @endif
+                             
                                   {{-- PRODUCT LICENSE SECTION --}}
                                   @if($productt->type == 'License')
                                   @if($productt->platform != null)
@@ -260,26 +261,26 @@
                               </li>
                               @else
                               <li class="addtocart m-1">
-                                <a href="javascript:;" id="addcrt">{{ __('Add to Cart')}}</a>
-                              </li>
-
-                              <li class="addtocart m-1">
                                 <a id="qaddcrt" href="javascript:;">
                                   {{ __('Buy Now') }}
                                 </a>
                               </li>
+                              <li class="addtocart m-1">
+                                <a href="javascript:;" id="addcrt">{{ __('Add to Cart')}}</a>
+                              </li>
+
+                              
                               @endif
                             </ul>
                          @endif
-                   </div>
-                      <div class="yith-wcwl-add-to-wishlist wishlist-fragment mt-3">
+                         <div class="yith-wcwl-add-to-wishlist wishlist-fragment mt-3">
                           @if(Auth::check())
                           <div class="wishlist-button">
-                              <a class="add_to_wishlist new" id="add-to-wish" href="javascript:;" data-href="{{ route('user-wishlist-add',$productt->id) }}"data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add to Wishlist" aria-label="Add to Wishlist">{{ __('Wishlist') }}</a>
+                              <a class="add_to_wishlist new" id="add-to-wish" href="javascript:;" data-href="{{ route('user-wishlist-add',$productt->id) }}"data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add to Wishlist" aria-label="Add to Wishlist"></a>
                           </div>
                           @else
                           <div class="wishlist-button">
-                              <a class="add_to_wishlist" href="{{ route('user.login') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add to Wishlist" aria-label="Add to Wishlist">{{ __('Wishlist') }}</a>
+                              <a class="add_to_wishlist" href="{{ route('user.login') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add to Wishlist" aria-label="Add to Wishlist"></a>
                           </div>
                           @endif
                           <!-- <div class="compare-button">
@@ -287,7 +288,10 @@
                           </div> -->
 
                       </div>
-
+                         
+                   </div>
+                     
+<!-- 
 
                        @if($gs->is_report)
 
@@ -306,7 +310,7 @@
 
     {{-- PRODUCT REPORT SECTION ENDS --}}
 
-    @endif
+    @endif -->
 
                           <div class="my-4 social-linkss social-sharing a2a_kit a2a_kit_size_32">
                               <h5 class="mb-2">{{ __('Share Now') }}</h5>
@@ -315,30 +319,77 @@
                                   <a class="facebook a2a_button_facebook" href="">
                                       <i class="fab fa-facebook-f"></i>
                                   </a>
-                                  </li>
+                                  </li> 
+                                 
                                   <li>
-                                  <a class="twitter a2a_button_twitter" href="">
-                                      <i class="fab fa-twitter"></i>
-                                  </a>
-                                  </li>
-                                  <li>
-                                  <a class="linkedin a2a_button_linkedin" href="">
-                                      <i class="fab fa-linkedin-in"></i>
-                                  </a>
-                                  </li>
-                                  <li>
-                                  <a class="pinterest a2a_button_pinterest" href="">
-                                      <i class="fab fa-pinterest-p"></i>
-                                  </a>
-                                  </li>
-                                  <li>
-                                      <a class="instagram a2a_button_whatsapp" href="">
+                                      <a class="whatsapp a2a_button_whatsapp" href="">
                                       <i class="fab fa-whatsapp"></i>
                                       </a>
+                                      <li>
+                                      <a class="instagram a2a_button_instagram" href="">
+                                      <i class="fab fa-instagram"></i>
+                                      </a>
+                                  </li>
                                   </li>
                               </ul>
 
                           </div>
+                          <!--==================== Product Description Section Start ====================-->
+<div class="full-row">
+   <div class="container">
+      <div class="row justify-content-between">
+         <div class="col-lg-12">
+            <div class="section-head border-bottom">
+               <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
+                  <ul class="nav nav-pills wc-tabs" id="pills-tab-one" role="tablist">
+                     <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="pills-description-one-tab" data-bs-toggle="pill" href="#pills-description-one" role="tab" aria-controls="pills-description-one" aria-selected="true">{{ __('Description') }}</a>
+                     </li>
+                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-information-one-tab" data-bs-toggle="pill" href="#pills-information-one" role="tab" aria-controls="pills-information-one" aria-selected="true">{{ __('Buy / Return Policy') }}</a>
+                     </li>
+                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-reviews-one-tab" data-bs-toggle="pill" href="#pills-reviews-one" role="tab" aria-controls="pills-reviews-one" aria-selected="true">{{ __('Reviews') }}</a>
+                     </li>
+                     @if($gs->is_comment == 1)
+                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-comment-one-tab" data-bs-toggle="pill" href="#pills-comment-one" role="tab" aria-controls="pills-comment-one" aria-selected="true">{{ __('Comments') }}</a>
+                     </li>
+                     @endif
+                  </ul>
+               </div>
+            </div>
+            <div class="woocommerce-tabs wc-tabs-wrapper ps-0 mt-0">
+               <div class="tab-content" id="pills-tabContent-one">
+                  <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description mb-5 mt-4" id="pills-description-one" role="tabpanel" aria-labelledby="pills-description-one-tab">
+                     {!! clean($productt->details , array('Attr.EnableID' => true)) !!}
+                  </div>
+                  <div class="tab-pane fade mb-5" id="pills-information-one" role="tabpanel" aria-labelledby="pills-information-one-tab">
+                     <div class="row">
+                        <div class="col-8">
+                           {!! clean($productt->policy , array('Attr.EnableID' => true)) !!}
+                        </div>
+                     </div>
+                  </div>
+                  {{-- Comment Section --}}
+                  @if($gs->is_comment == 1)
+                  <div class="tab-pane fade" id="pills-comment-one" role="tabpanel" aria-labelledby="pills-comment-one-tab">
+                     @include('partials.product-details.comment-replies')
+                  </div>
+                  @endif
+                  <div class="tab-pane fade" id="pills-reviews-one" role="tabpanel" aria-labelledby="pills-reviews-one-tab">
+                     @include('partials.product-details.reviews')
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div>
+
+    
+      </div>
+   </div>
+</div>
+<!--==================== Product Description Section End ====================-->
                           <script async src="https://static.addtoany.com/menu/page.js"></script>
 
                           @if (!empty($productt->attributes))
