@@ -33,7 +33,7 @@ class AuthController extends Controller
 
             if ($existingUser) {
                 Auth::login($existingUser);
-                $token = $existingUser->createToken('hallYuApp')->accessToken;
+                $token = $existingUser->createToken('hallYuApp')->plainTextToken;
 
                 return response()->json([
                     'token' => $token,
@@ -55,7 +55,7 @@ class AuthController extends Controller
             $socialProvider->user_id = $user->id;
             $socialProvider->save();
 
-            $token = $user->createToken('hallYuApp')->accessToken;
+            $token = $user->createToken('hallYuApp')->plainTextToken;
 
             return response()->json([
                 'token' => $token,
@@ -64,7 +64,7 @@ class AuthController extends Controller
         } else {
             $user = $socialProvider->user;
             Auth::login($user);
-            $token = $user->createToken('hallYuApp')->accessToken;
+            $token = $user->createToken('hallYuApp')->plainTextToken;
 
             return response()->json([
                 'token' => $token,
@@ -81,6 +81,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
         ]);
+
         $existingUser = User::where('email', $request->email)->first();
         if ($existingUser) {
             return response()->json(['error' => 'User already exists'], 401);
@@ -93,7 +94,7 @@ class AuthController extends Controller
         $user->status = 1;
         $user->save();
 
-        $token = $user->createToken('hallYuApp')->accessToken;
+        $token = $user->createToken('hallYuApp')->plainTextToken;
 
         return response()->json([
             'token' => $token,
@@ -109,7 +110,7 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $token = $user->createToken('hallYuApp')->accessToken;
+            $token = $user->createToken('hallYuApp')->plainTextToken;
 
             return response()->json([
                 'token' => $token,
