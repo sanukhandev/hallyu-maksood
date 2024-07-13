@@ -36,6 +36,7 @@ Route::prefix('store-front')->group(function (){
             Route::get('items', [CartController::class, 'getCart']);
         });
     });
+    Route::get('product-reviews/{id}',[FrontEndController::class,'get_product_reviews']);
     Route::get('user/get-info',[UserController::class,'getUserInfo']);
     Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
     Route::post('auth/register', [AuthController::class, 'register']);
