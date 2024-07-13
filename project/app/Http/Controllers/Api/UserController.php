@@ -12,10 +12,16 @@ class UserController extends Controller
     public function getUserInfo()
     {
         $user =  User::with(['orders','wishlists'])->find(auth()->user());
-        return response()->json([
-            'status' => 200,
-            'data' => $user
-        ]);
+       if (!$user) {
+              return response()->json([
+                'status' => 404,
+                'message' => 'User not found'
+              ]);
+       }
+         return response()->json([
+              'status' => 200,
+              'data' => $user
+         ]);
     }
 
 }
