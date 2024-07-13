@@ -39,6 +39,7 @@ class SocialRegisterController extends Controller
         try
         {
             $socialUser = Socialite::driver($provider)->user();
+
         }
         catch(\Exception $e)
         {
@@ -52,7 +53,7 @@ class SocialRegisterController extends Controller
             if($ck > 0)
             {
                 $user = User::where('email','=',$socialUser->email)->first();
-                Auth::login($user); 
+                Auth::login($user);
                 return redirect()->route('user-dashboard');
             }
             $user = new User;
@@ -73,11 +74,11 @@ class SocialRegisterController extends Controller
         }
         else
         {
-            
+
             $user = $socialProvider->user;
         }
 
-        Auth::login($user); 
+        Auth::login($user);
         return redirect()->route('user-dashboard');
 
     }

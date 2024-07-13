@@ -46,7 +46,7 @@ class AuthController extends Controller
             $user->name = $socialUser->name;
             $user->password = bcrypt('123456');
             $user->status = 1;
-            $user->email_verified_at = now();
+            $user->email_verified = 'Yes';
             $user->save();
 
             $socialProvider = new SocialProvider;
@@ -89,8 +89,8 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->email_verified = 'No';
         $user->status = 1;
-        $user->email_verified_at = now();
         $user->save();
 
         $token = $user->createToken('hallYuApp')->accessToken;
