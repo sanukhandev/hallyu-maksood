@@ -127,7 +127,15 @@ class FrontEndController extends Controller
         ]);
     }
 
-   
+
+    public function get_product_reviews($id)
+    {
+        $data['reviews'] = Rating::where('product_id', $id)->get();
+        return response()->json([
+            'status' => 200,
+            'data' => $data
+        ]);
+    }
 
 
 }
