@@ -75,4 +75,32 @@ class CartController extends Controller
             'data' => $cart
         ]);
     }
+
+
+    public function checkout_cod(Request $request)
+    {
+        $this->userId = $request->user()->id;
+        $input = $request->all();
+        $total = $this->userCartItems->getCartTotal($this->userId);
+        $count = $this->userCartItems->getCartCount($this->userId);
+        $quantity = $this->userCartItems->getCartQuantity($this->userId);
+        $cart = $this->userCartItems->getCartItems($this->userId);
+        $order = new Order;
+        $order->fill($input);
+        $order->user_id = $this->userId;
+        $order->cart = json_encode($cart);
+        $order->total = $total;
+        $order->order_number = Str::random(4) . time();
+        $order->save();
+
+        $this->userCartItems->deleteAllCartItems($this->userId);
+        return response()->json([
+            'status' => 200,
+            'message' => 'COD Checkout successful',
+            'total' => $total,
+            'count' => $count,
+            'quantity' => $quantity
+        ]);
+
+    }
 }

@@ -34,6 +34,7 @@ Route::prefix('store-front')->group(function (){
             Route::post('delete', [CartController::class, 'deleteCart']);
             Route::post('clear', [CartController::class, 'deleteAllCart']);
             Route::get('items', [CartController::class, 'getCart']);
+            Route::post('checkout', [CartController::class, 'checkout_cod']);
         });
     });
     Route::get('product-reviews/{id}',[FrontEndController::class,'get_product_reviews']);

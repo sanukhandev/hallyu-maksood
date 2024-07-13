@@ -76,4 +76,6 @@ class UserCartItems extends Model
             ->where('product_id', $product_id)
             ->count();
     }
+
+
 }
