@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 // store-front apis mobile
 use App\Http\Controllers\Api\{
     FrontEndController,
-    CartController
+    CartController,
+    AuthController
 };
 
 
@@ -33,3 +34,5 @@ Route::prefix('store-front')->group(function (){
         Route::get('items', [CartController::class, 'getCart']);
     });
 });
+
+Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
