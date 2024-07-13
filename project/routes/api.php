@@ -17,7 +17,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\{
     FrontEndController,
     CartController,
-    AuthController
+    AuthController,
+    UserController
 };
 
 
@@ -35,10 +36,11 @@ Route::prefix('store-front')->group(function (){
             Route::get('items', [CartController::class, 'getCart']);
         });
     });
+    Route::get('user/get-info',[UserController::class,'getUserInfo']);
+    Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+    Route::post('auth/register', [AuthController::class, 'register']);
+    Route::post('auth/login', [AuthController::class, 'login']);
 });
 
-Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
-// add sign up and login routes
-Route::post('auth/register', [AuthController::class, 'register']);
-Route::post('auth/login', [AuthController::class, 'login']);
+
 
