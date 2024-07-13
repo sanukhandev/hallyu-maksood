@@ -16,11 +16,12 @@ class CartController extends Controller
     {
         $this->apiHelper = new APIHelper();
         $this->userCartItems = new UserCartItems();
-        $this->userId = 49; // Assuming 49 is the current user's ID for demonstration. Replace with actual user ID logic.
+        $this->userId = null;
     }
 
     public function addToCart(Request $request)
     {
+        $this->userId = $request->user()->id;
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $total_price = $request->total_price;
@@ -33,6 +34,7 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
+        $this->userId = $request->user()->id;
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $total_price = $request->total_price;
@@ -45,6 +47,7 @@ class CartController extends Controller
 
     public function deleteCart(Request $request)
     {
+        $this->userId = $request->user()->id;
         $product_id = $request->product_id;
         $this->userCartItems->deleteCartItem($this->userId, $product_id);
         return response()->json([
@@ -53,8 +56,9 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteAllCart()
+    public function deleteAllCart(Request $request)
     {
+        $this->userId = $request->user()->id;
         $this->userCartItems->deleteAllCartItems($this->userId);
         return response()->json([
             'status' => 200,
@@ -62,8 +66,9 @@ class CartController extends Controller
         ]);
     }
 
-    public function getCart()
+    public function getCart(Request $request)
     {
+        $this->userId = $request->user()->id;
         $cart = $this->apiHelper->mapCart($this->userCartItems->getCartItems($this->userId));
         return response()->json([
             'status' => 200,

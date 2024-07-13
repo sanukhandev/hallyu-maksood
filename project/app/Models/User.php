@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    use HasApiTokens , Notifiable;
 
     protected $fillable = ['name', 'photo', 'zip', 'city', 'state', 'country', 'address', 'phone', 'fax', 'email','password','affilate_code','verification_link','shop_name','owner_name','shop_number','shop_address','reg_number','shop_message','is_vendor','shop_details','shop_image','shipping_cost','date','mail_sent','email_verified','email_token','reward'];
 
@@ -73,7 +76,7 @@ class User extends Authenticatable
     public function transactions()
     {
         return $this->hasMany('App\Models\Transaction','user_id');
-    }    
+    }
 
     // Multi Vendor
 
@@ -151,7 +154,7 @@ class User extends Authenticatable
 
     public function checkVerification()
     {
-        return count($this->verifies) > 0 ? 
+        return count($this->verifies) > 0 ?
         (empty($this->verifies()->where('admin_warning','=','0')->latest('id')->first()->status) ? false : ($this->verifies()->latest('id')->first()->status == 'Pending' ? true : false)) : false;
     }
 
