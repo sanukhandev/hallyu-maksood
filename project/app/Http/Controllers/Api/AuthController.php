@@ -8,12 +8,22 @@ use App\Models\Socialsetting;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class AuthController extends Controller
 {
-
+    use Socialite;
+    use Config;
     public function __construct()
     {
         $this->socialSettings = Socialsetting::findOrFail(1);
+        Config::set('services.google.client_id', $link->gclient_id);
+        Config::set('services.google.client_secret', $link->gclient_secret);
+        Config::set('services.google.redirect', url('/auth/google/callback'));
+        Config::set('services.facebook.client_id', $link->fclient_id);
+        Config::set('services.facebook.client_secret', $link->fclient_secret);
+        $url = url('/auth/facebook/callback');
+        $url = preg_replace("/^http:/i", "https:", $url);
+        Config::set('services.facebook.redirect', $url);
 
     }
 
