@@ -39,7 +39,8 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Unable to authenticate user',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
             ], 401);
         }
 
