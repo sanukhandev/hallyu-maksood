@@ -37,9 +37,10 @@ class AuthController extends Controller
         try {
             $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Unable to authenticate user',
+            return response()->json([
+                'error' => 'Unable to authenticate user',
                 'message' => $e->getMessage()
-                ], 401);
+            ], 401);
         }
 
         $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();

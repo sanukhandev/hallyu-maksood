@@ -39,7 +39,9 @@ Route::prefix('store-front')->group(function (){
     });
     Route::get('product-reviews/{id}',[FrontEndController::class,'get_product_reviews']);
     Route::get('user/get-info',[UserController::class,'getUserInfo']);
-    Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+    Route::group(['middleware' => ['api','web']], function () {
+        Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+    });
     Route::post('auth/register', [AuthController::class, 'register']);
     Route::post('auth/login', [AuthController::class, 'login']);
 });
