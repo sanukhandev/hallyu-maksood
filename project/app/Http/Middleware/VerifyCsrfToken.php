@@ -26,6 +26,7 @@ class VerifyCsrfToken extends Middleware
         'user/deposit/paytm-notify',
         'user/deposit/razorpay-notify',
         'dflutter/notify',
-        'user/deposit/ssl-notify'
+        'user/deposit/ssl-notify',
+        '*store-front/auth/*',
     ];
 }
