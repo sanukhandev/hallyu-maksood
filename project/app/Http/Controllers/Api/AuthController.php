@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Socialite;
 use Config;
 use Auth;
+use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
 
@@ -31,6 +32,8 @@ class AuthController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
+        Session::start();
+
         try {
             $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
