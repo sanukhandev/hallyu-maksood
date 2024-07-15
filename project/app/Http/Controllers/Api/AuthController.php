@@ -39,6 +39,8 @@ class AuthController extends Controller
             ], 401);
         }
 
+        var_dump($socialUser);
+        die();
         $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
 
         if (!$socialProvider) {
