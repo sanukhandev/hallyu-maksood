@@ -12,7 +12,6 @@ class FirebaseServiceProvider
 
     public function __construct()
     {
-        dd(base_path('hallyu-aa242-firebase-adminsdk-hkju7-bdd64bf6f7.json'));
         $firebase = (new Factory)
             ->withServiceAccount(base_path('hallyu-aa242-firebase-adminsdk-hkju7-bdd64bf6f7.json'));
 
