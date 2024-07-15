@@ -17,6 +17,8 @@ class AuthHelper
         $this->googleClient->setClientId($this->socialSettings->gclient_id);
         $this->googleClient->setClientSecret($this->socialSettings->gclient_secret);
         $this->googleClient->setRedirectUri($this->socialSettings->gredirect);
+        $this->googleClient->setScopes('email');
+
     }
 
 
