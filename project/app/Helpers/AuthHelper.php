@@ -25,14 +25,15 @@ class AuthHelper
     public function verifyGoogleToken($token){
         $this->googleClient->setAccessToken($token);
 //        dd($this->googleClient);
-        if ($this->googleClient->isAccessTokenExpired()) {
-            if ($this->googleClient->getRefreshToken()) {
-                $this->googleClient->fetchAccessTokenWithRefreshToken($this->googleClient->getRefreshToken());
-            } else {
-                return false;
-            }
-        }
+//        if ($this->googleClient->isAccessTokenExpired()) {
+//            if ($this->googleClient->getRefreshToken()) {
+//                $this->googleClient->fetchAccessTokenWithRefreshToken($this->googleClient->getRefreshToken());
+//            } else {
+//                return false;
+//            }
+//        }
         $oauth2 = new Google_Service_Oauth2($this->googleClient);
+        dd($oauth2);
         return $oauth2->userinfo->get();
     }
 
