@@ -25,8 +25,8 @@ class AuthHelper
     public function verifyGoogleToken($token){
        // $token is JWT token from google how to validate
        $res=  $this->googleClient->verifyIdToken($token);
-       if ($res) {
            dd($res);
+       if ($res) {
            return $res;
        }
          return false;
