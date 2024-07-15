@@ -2,7 +2,7 @@
 
 namespace app\Http\Controllers\Api;
 
-use App\Helpers\AuthHelper;
+use App\Helpers\FirebaseServiceProvider;
 use App\Http\Controllers\Controller;
 use App\Models\SocialProvider;
 use App\Models\User;
@@ -12,12 +12,13 @@ use Auth;
 class AuthController extends Controller
 {
 
-    private AuthHelper $authHelper;
+
+    private FirebaseServiceProvider $firebaseServiceProvider;
 
     public function __construct()
     {
-       $this->authHelper = new AuthHelper();
 
+        $this->firebaseServiceProvider = new FirebaseServiceProvider();
     }
 
 
@@ -27,7 +28,7 @@ class AuthController extends Controller
         try {
             if ($provider == 'google') {
                 $token = $request->token;
-                $socialUser = $this->authHelper->verifyGoogleToken($token);
+                $socialUser = $this->firebaseServiceProvider->verifyIdToken($token);
             } else {
                 $socialUser = Socialite::driver($provider)->stateless()->user();
             }

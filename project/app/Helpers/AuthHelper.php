@@ -17,6 +17,7 @@ class AuthHelper
                 'client_id' => $this->socialSettings->gclient_id,
                 'client_secret' => $this->socialSettings->gclient_secret,
                 'redirect' => $this->socialSettings->gredirect,
+                'scope' => 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user' // optional
             ]
         ]);
     }
