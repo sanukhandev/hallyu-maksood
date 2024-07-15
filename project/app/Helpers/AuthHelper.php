@@ -9,16 +9,14 @@ use Google_Client;
 use Google_Service_Oauth2;
 class AuthHelper
 {
+    private Google_Client $googleClient;
+
     public function __construct(){
         $this->socialSettings = Socialsetting::findOrFail(1);
-        Config::set('services.google.client_id', $this->socialSettings->gclient_id);
-        Config::set('services.google.client_secret', $this->socialSettings->gclient_secret);
-        Config::set('services.google.redirect', url('/auth/google/callback'));
-        Config::set('services.facebook.client_id', $this->socialSettings->fclient_id);
-        Config::set('services.facebook.client_secret', $this->socialSettings->fclient_secret);
-        $url = url('/auth/facebook/callback');
-        $url = preg_replace("/^http:/i", "https:", $url);
-        Config::set('services.facebook.redirect', $url);
+        $this->googleClient = new Google_Client();
+        $this->googleClient->setClientId(config('services.google.client_id'));
+        $this->googleClient->setClientSecret(config('services.google.client_secret'));
+        $this->googleClient->setRedirectUri(config('services.google.redirect'));
         $this->googleClient = new Google_Client(['client_id' => config('services.google.client_id')]);
 
     }
