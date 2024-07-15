@@ -22,6 +22,7 @@ class AuthHelper
 
     public function verifyGoogleToken($token){
         $this->googleClient->setAccessToken($token);
+        dd($this->googleClient);
 //        if ($this->googleClient->isAccessTokenExpired()) {
 //            if ($this->googleClient->getRefreshToken()) {
 //                $this->googleClient->fetchAccessTokenWithRefreshToken($this->googleClient->getRefreshToken());
