@@ -14,6 +14,11 @@ class AuthHelper
     public function __construct(){
         $this->socialSettings = Socialsetting::findOrFail(1);
         $this->googleClient = new Google_Client();
+
+        Config::set('services.google.client_id', $this->socialSettings->google_client_id);
+        Config::set('services.google.client_secret', $this->socialSettings->google_client_secret);
+        Config::set('services.google.redirect', $this->socialSettings->google_redirect);
+
         $this->googleClient->setClientId(config('services.google.client_id'));
         $this->googleClient->setClientSecret(config('services.google.client_secret'));
         $this->googleClient->setRedirectUri(config('services.google.redirect'));
