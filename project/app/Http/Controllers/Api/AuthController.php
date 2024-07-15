@@ -39,8 +39,11 @@ class AuthController extends Controller
             ], 401);
         }
 
-        var_dump($socialUser);
-        die();
+        if (!$socialUser) {
+            return response()->json([
+                'error' => 'Auth Expired -  please login again',
+            ], 401);
+        }
         $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
 
         if (!$socialProvider) {
