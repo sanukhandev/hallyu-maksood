@@ -28,7 +28,7 @@ class AuthHelper
 
     public function verifyGoogleToken($token){
         // show config
-         dd(config('services.google'));
+         dd($this->socialSettings);
 
         $this->googleClient->setAccessToken($token);
         if ($this->googleClient->isAccessTokenExpired()) {
