@@ -27,9 +27,10 @@ class AuthHelper
         try {
             $socialUser = Socialite::driver('google')->stateless()->userFromToken($token);
             Log::info('Socialite User Retrieved', ['socialUser' => $socialUser]);
+            dd($socialUser);
             return $socialUser;
         } catch (\Exception $e) {
-            Log::error('Error Retrieving User with Socialite', ['exception' => $e->getMessage()]);
+            dd($e->getMessage());
             return false;
         }
     }
