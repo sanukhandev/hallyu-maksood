@@ -13,6 +13,7 @@
         "cartalyst/stripe-laravel": "13.0.*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "google/apiclient": "^2.16",
         "guzzlehttp/guzzle": "^7.0.1",
         "instamojo/instamojo-php": "^0.4.0",
         "intervention/image": "^2.5",

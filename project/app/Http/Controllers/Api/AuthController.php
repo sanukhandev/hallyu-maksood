@@ -2,40 +2,35 @@
 
 namespace app\Http\Controllers\Api;
 
+use App\Helpers\AuthHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SocialProvider;
-use App\Models\Socialsetting;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use Socialite;
-use Config;
+use Laravel\Socialite\Facades\Socialite;
 use Auth;
-use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
 
+    private AuthHelper $authHelper;
+
     public function __construct()
     {
-        $this->socialSettings = Socialsetting::findOrFail(1);
-        Config::set('services.google.client_id', $this->socialSettings->gclient_id);
-        Config::set('services.google.client_secret', $this->socialSettings->gclient_secret);
-        Config::set('services.google.redirect', url('/auth/google/callback'));
-        Config::set('services.facebook.client_id', $this->socialSettings->fclient_id);
-        Config::set('services.facebook.client_secret', $this->socialSettings->fclient_secret);
-        $url = url('/auth/facebook/callback');
-        $url = preg_replace("/^http:/i", "https:", $url);
-        Config::set('services.facebook.redirect', $url);
+       $this->authHelper = new AuthHelper();
 
     }
 
 
-    public function handleProviderCallback(Request $request, $provider)
+    public function handleProviderCallback(Request $request, $provider): \Illuminate\Http\JsonResponse
     {
-        Session::start();
 
         try {
-            $socialUser = Socialite::driver($provider)->user();
+            if ($provider == 'google') {
+                $token = $request->token;
+                $socialUser = $this->authHelper->verifyGoogleToken($token);
+            } else {
+                $socialUser = Socialite::driver($provider)->stateless()->user();
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Unable to authenticate user',
