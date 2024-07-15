@@ -33,7 +33,7 @@ class AuthHelper
 //            }
 //        }
         $oauth2 = new Google_Service_Oauth2($this->googleClient);
-        dd($oauth2);
+        dd($oauth2->userinfo->get());
         return $oauth2->userinfo->get();
     }
 
