@@ -23,18 +23,15 @@ class AuthHelper
 
 
     public function verifyGoogleToken($token){
-        $this->googleClient->setAccessToken($token);
-//        dd($this->googleClient);
-//        if ($this->googleClient->isAccessTokenExpired()) {
-//            if ($this->googleClient->getRefreshToken()) {
-//                $this->googleClient->fetchAccessTokenWithRefreshToken($this->googleClient->getRefreshToken());
-//            } else {
-//                return false;
-//            }
-//        }
-        $oauth2 = new Google_Service_Oauth2($this->googleClient);
-        dd($oauth2->userinfo->get());
-        return $oauth2->userinfo->get();
+       // $token is JWT token from google how to validate
+       $res=  $this->googleClient->verifyIdToken($token);
+       if ($res) {
+           dd($res);
+           return $res;
+       }
+         return false;
+
+
     }
 
 
