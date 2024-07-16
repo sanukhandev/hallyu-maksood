@@ -74,7 +74,7 @@ class AuthController extends Controller
 
 
             $socialProvider = new SocialProvider;
-            $socialProvider->provider_id = $socialUser->getId();
+            $socialProvider->provider_id = $socialUser['user_id'];
             $socialProvider->provider = $provider;
             $socialProvider->user_id = $user->id;
             $socialProvider->save();
