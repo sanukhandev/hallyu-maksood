@@ -62,12 +62,12 @@ class AuthController extends Controller
             }
 
             $user = new User;
-            $user->email = $socialUser->email;
-            $user->name = $socialUser->name;
-            $user->password = bcrypt('123456');
-            $user->status = 1;
+            $user->name = $socialUser['name'];
+            $user->email = $socialUser['email'];
             $user->email_verified = 'Yes';
+            $user->status = 1;
             $user->save();
+
 
             $socialProvider = new SocialProvider;
             $socialProvider->provider_id = $socialUser->getId();
