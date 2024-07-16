@@ -46,6 +46,8 @@ class AuthController extends Controller
             ], 401);
         }
         dd($socialUser);
+//         get user id from Lcobucci\JWT\Token\Plain
+
         $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
 
         if (!$socialProvider) {
