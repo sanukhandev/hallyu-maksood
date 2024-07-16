@@ -44,12 +44,9 @@ class AuthController extends Controller
                 'error' => 'Auth Expired -  please login again',
             ], 401);
         }
-        dd($socialUser);
-//         get user id from Lcobucci\JWT\Token\Plain
-//get google id from response
 
 
-        $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
+        $socialProvider = SocialProvider::where('provider_id', $socialUser['user_id'])->first();
 
         if (!$socialProvider) {
             $existingUser = User::where('email', $socialUser->email)->first();
