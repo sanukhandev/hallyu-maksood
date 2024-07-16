@@ -22,7 +22,7 @@ class FirebaseServiceProvider
     {
         try {
             $verifiedIdToken = $this->auth->verifyIdToken($idToken);
-            return $verifiedIdToken->claims()->data();
+            return $verifiedIdToken->claims();
         } catch (Exception $e) {
             return false;
         }

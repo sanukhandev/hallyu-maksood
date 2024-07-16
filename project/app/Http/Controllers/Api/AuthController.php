@@ -44,7 +44,7 @@ class AuthController extends Controller
                 'error' => 'Auth Expired -  please login again',
             ], 401);
         }
-        dd($socialUser);
+        dd($socialUser->getId());
 //         get user id from Lcobucci\JWT\Token\Plain
 //get google id from response
 
