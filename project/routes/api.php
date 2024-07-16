@@ -22,12 +22,12 @@ use App\Http\Controllers\Api\{
 };
 
 
-Route::prefix('store-front')->group(function (){
-    Route::get('index',[FrontEndController::class,'index']);
-    Route::get('show-product/{id}',[FrontEndController::class,'showProduct']);
-    Route::get('get-products',[FrontEndController::class,'getProducts']);
-    Route::middleware('auth:api')->group(function (){
-        Route::get('cart',[FrontEndController::class,'cart']);
+Route::prefix('store-front')->group(function () {
+    Route::get('index', [FrontEndController::class, 'index']);
+    Route::get('show-product/{id}', [FrontEndController::class, 'showProduct']);
+    Route::get('get-products', [FrontEndController::class, 'getProducts']);
+    Route::middleware('auth:api')->group(function () {
+        Route::get('cart', [FrontEndController::class, 'cart']);
         Route::prefix('cart')->group(function () {
             Route::post('add', [CartController::class, 'addToCart']);
             Route::post('update', [CartController::class, 'updateCart']);
@@ -36,10 +36,10 @@ Route::prefix('store-front')->group(function (){
             Route::get('items', [CartController::class, 'getCart']);
             Route::post('checkout', [CartController::class, 'checkout_cod']);
         });
+        Route::get('user/get-info', [UserController::class, 'getUserInfo']);
     });
-    Route::get('product-reviews/{id}',[FrontEndController::class,'get_product_reviews']);
-    Route::get('user/get-info',[UserController::class,'getUserInfo']);
-    Route::group(['middleware' => ['api','web']], function () {
+    Route::get('product-reviews/{id}', [FrontEndController::class, 'get_product_reviews']);
+    Route::group(['middleware' => ['api', 'web']], function () {
         Route::post('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
     });
     Route::post('auth/register', [AuthController::class, 'register']);
