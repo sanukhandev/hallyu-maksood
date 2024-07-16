@@ -55,7 +55,7 @@ class AuthController extends Controller
                 Auth::login($existingUser);
                 $token = $existingUser->createToken('hallYuApp')->plainTextToken;
                 $socialProvider = new SocialProvider;
-                $socialProvider->provider_id = $socialUser->getId();
+                $socialProvider->provider_id = $socialUser['user_id'];
                 $socialProvider->provider = $provider;
                 $socialProvider->user_id = $existingUser->id;
                 $socialProvider->save();
