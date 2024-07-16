@@ -12,7 +12,9 @@ class UserController extends Controller
 
     public function getUserInfo(Request $request)
     {
-        $user =  User::with(['orders','wishlists'])->find($request->user()->id);
+        $user_id = $request->user()->id;
+        dd($user_id);
+        $user =  User::with(['orders','wishlists'])->find($user_id);
        if (!$user) {
               return response()->json([
                 'status' => 404,
