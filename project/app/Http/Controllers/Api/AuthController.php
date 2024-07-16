@@ -27,8 +27,7 @@ class AuthController extends Controller
 
         try {
             if ($provider == 'google') {
-                $token = $request->token;
-                $socialUser = $this->firebaseServiceProvider->verifyIdToken($token);
+                $socialUser = $this->firebaseServiceProvider->verifyIdToken($request->token);
             } else {
                 $socialUser = Socialite::driver($provider)->stateless()->user();
             }
@@ -45,8 +44,10 @@ class AuthController extends Controller
                 'error' => 'Auth Expired -  please login again',
             ], 401);
         }
-        dd($socialUser);
+        dd(json_encode($socialUser));
 //         get user id from Lcobucci\JWT\Token\Plain
+//get google id from response
+
 
         $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
 

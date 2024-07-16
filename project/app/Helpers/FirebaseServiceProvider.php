@@ -21,7 +21,8 @@ class FirebaseServiceProvider
     public function verifyIdToken($idToken)
     {
         try {
-            return $this->auth->verifyIdToken($idToken);
+            $verifiedIdToken = $this->auth->verifyIdToken($idToken);
+            return $verifiedIdToken->claims();
         } catch (Exception $e) {
             return false;
         }
