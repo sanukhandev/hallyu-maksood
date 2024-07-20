@@ -25,12 +25,21 @@ class CartController extends Controller
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $total_price = $request->total_price;
-        $this->userCartItems->addCartItem($this->userId, $product_id, $quantity, $total_price);
+        $existingCartItem = $this->userCartItems->getCartItem($this->userId, $product_id);
+        if ($existingCartItem) {
+            $existingCartItem->quantity += $quantity;
+            $existingCartItem->total_price += $total_price;
+            $this->userCartItems->updateCartItem($existingCartItem);
+        } else {
+            $this->userCartItems->addCartItem($this->userId, $product_id, $quantity, $total_price);
+        }
+
         return response()->json([
             'status' => 200,
             'message' => 'Product added to cart successfully'
         ]);
     }
+
 
     public function updateCart(Request $request)
     {
