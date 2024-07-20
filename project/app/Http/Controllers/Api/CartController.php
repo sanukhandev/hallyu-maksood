@@ -134,7 +134,12 @@ class CartController extends Controller
         $rating->fill($input);
         $rating->user_id = $this->userId;
         $rating->product_id = $product_id;
+        $rating->review_date = date('Y-m-d H:i:s');
         $rating->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Review added successfully'
+        ]);
 
     }
 }
