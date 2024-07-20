@@ -68,7 +68,6 @@ class FrontEndController extends Controller
 
     public function getProducts(Request $request)
     {
-        // get url parameters with default values
         $category = $request->category;
         $brand = $request->brand;
         $minPrice = $request->minPrice ?? 0;
@@ -76,9 +75,19 @@ class FrontEndController extends Controller
         $sort = $request->sort;
         $search = $request->search;
         $limit = $request->limit ?? 10;
+        $sortingOptions = [
+            'price_asc' => ['price', 'asc'],
+            'price_desc' => ['price', 'desc'],
+            'newest' => ['created_at', 'desc'],
+            'oldest' => ['created_at', 'asc'],
+        ];
+
+        // Query products with applied filters and sorting
         $products = Product::with(['ratings', 'brand', 'category'])
             ->when($category, function ($query, $category) {
-                return $query->where('category_id', $category)->orWhere('subcategory_id', $category)->orWhere('childcategory_id', $category);
+                return $query->where('category_id', $category)
+                    ->orWhere('subcategory_id', $category)
+                    ->orWhere('childcategory_id', $category);
             })
             ->when($brand, function ($query, $brand) {
                 return $query->where('brand_id', $brand);
@@ -86,30 +95,32 @@ class FrontEndController extends Controller
             ->when($minPrice || $maxPrice, function ($query) use ($minPrice, $maxPrice) {
                 return $query->whereBetween('price', [$minPrice, $maxPrice]);
             })
-            ->when($sort, function ($query, $sort) {
-                return $query->orderBy('price', $sort);
+            ->when($sort, function ($query, $sort) use ($sortingOptions) {
+                if (isset($sortingOptions[$sort])) {
+                    return $query->orderBy($sortingOptions[$sort][0], $sortingOptions[$sort][1]);
+                }
+                return $query;
             })
             ->when($search, function ($query, $search) {
                 return $query->where('name', 'like', '%' . $search . '%');
-            });
+            })
+            ->paginate($limit);
 
-        // paginate and map response
-        $res = $products->paginate($limit);
-
+        // Map the paginated results
         $this->apiHelper = new APIHelper();
-        $data['products'] = $this->apiHelper->mapProducts($res);
+        $data['products'] = $this->apiHelper->mapProducts($products);
         $data['pagination'] = [
-            'current_page' => $res->currentPage(),
-            'first_page_url' => $res->url(1),
-            'from' => $res->firstItem(),
-            'last_page' => $res->lastPage(),
-            'last_page_url' => $res->url($res->lastPage()),
-            'next_page_url' => $res->nextPageUrl(),
-            'path' => $res->url(1),
-            'per_page' => $res->perPage(),
-            'prev_page_url' => $res->previousPageUrl(),
-            'to' => $res->lastItem(),
-            'total' => $res->total()
+            'current_page' => $products->currentPage(),
+            'first_page_url' => $products->url(1),
+            'from' => $products->firstItem(),
+            'last_page' => $products->lastPage(),
+            'last_page_url' => $products->url($products->lastPage()),
+            'next_page_url' => $products->nextPageUrl(),
+            'path' => $products->url(1),
+            'per_page' => $products->perPage(),
+            'prev_page_url' => $products->previousPageUrl(),
+            'to' => $products->lastItem(),
+            'total' => $products->total()
         ];
 
         return response()->json([
