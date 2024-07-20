@@ -37,6 +37,7 @@ Route::prefix('store-front')->group(function () {
             Route::post('checkout', [CartController::class, 'checkout_cod']);
         });
         Route::get('user/get-info', [UserController::class, 'getUserInfo']);
+        Route::post('add-review', [CartController::class, 'add_review_by_product_id']);
     });
     Route::get('product-reviews/{id}', [FrontEndController::class, 'get_product_reviews']);
     Route::group(['middleware' => ['api', 'web']], function () {

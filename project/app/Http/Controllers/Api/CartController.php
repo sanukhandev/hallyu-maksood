@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rating;
 use App\Models\UserCartItems;
 use Illuminate\Http\Request;
 use App\Helpers\APIHelper;
@@ -110,6 +111,26 @@ class CartController extends Controller
             'count' => $count,
             'quantity' => $quantity
         ]);
+
+    }
+
+    public function add_review_by_product_id(Request $request)
+    {
+        $this->userId = $request->user()->id;
+        $input = $request->all();
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+        if (!$product) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Product not found'
+            ]);
+        }
+        $rating = new Rating;
+        $rating->fill($input);
+        $rating->user_id = $this->userId;
+        $rating->product_id = $product_id;
+        $rating->save();
 
     }
 }
