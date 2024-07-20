@@ -112,16 +112,11 @@ class AuthController extends Controller
         ], 201);
     }
 
-    private function loginExistingUser($email, $password): \Illuminate\Http\JsonResponse
+    private function loginExistingUser($user): \Illuminate\Http\JsonResponse
     {
-        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
-        }
-        $user = Auth::user();
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+        Auth::login($user);
         $token = $user->createToken('hallYuApp')->plainTextToken;
+
         return response()->json([
             'token' => $token,
             'user' => $user,
