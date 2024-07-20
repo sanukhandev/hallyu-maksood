@@ -77,5 +77,12 @@ class UserCartItems extends Model
             ->count();
     }
 
+    public function getCartItem($user_id, $product_id)
+    {
+        return self::where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->first();
+    }
+
 
 }
