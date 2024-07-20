@@ -34,7 +34,7 @@ class CartController extends Controller
         if ($existingCartItem) {
             $existingCartItem->quantity += $quantity;
             $existingCartItem->total_price += $total_price;
-            $this->userCartItems->updateCartItem($existingCartItem);
+            $this->userCartItems->updateCartItem($this->userId, $product_id, $existingCartItem->quantity, $existingCartItem->total_price);
         } else {
             $this->userCartItems->addCartItem($this->userId, $product_id, $quantity, $total_price);
         }
