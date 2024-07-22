@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{
-    Order,
-    Product,
-    Rating,
-    UserCartItems
-};
+use App\Models\{Order, Package, Product, Rating, Shipping, UserCartItems};
 use Illuminate\Http\Request;
 use App\Helpers\APIHelper;
 
@@ -142,4 +137,10 @@ class CartController extends Controller
         ]);
 
     }
+
+    public function get_order_options()
+    {
+        return response()->json(['status' => 200, 'data' => ['shipping' => Shipping::get(), 'packages' => Package::get()]]);
+    }
+
 }
