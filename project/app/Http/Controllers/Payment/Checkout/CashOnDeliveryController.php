@@ -57,9 +57,9 @@ class CashOnDeliveryController extends CheckoutBaseControlller
         $input['user_id'] = Auth::check() ? Auth::user()->id : null;
         $input['cart'] = $newCartJson;
         $input['affilate_users'] = $affilateUsersJson;
-        $input['pay_amount'] = $request->total / ($this->curr->value ?? 1);
+        $input['pay_amount'] = $request->total ;
         $input['order_number'] = Str::random(4) . time();
-        $input['wallet_price'] = $request->wallet_price / ($this->curr->value ?? 1);
+        $input['wallet_price'] = $request->wallet_price;
 
         // Tax location
         $input['tax_location'] = $input['tax_type'] == 'state_tax'
@@ -110,7 +110,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
         }
 
         // Send emails
-//        $this->sendOrderEmails($order);
+        $this->sendOrderEmails($order);
 
         // Redirect to success URL
         return redirect(route('front.payment.return'));
