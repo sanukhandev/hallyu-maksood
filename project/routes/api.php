@@ -36,6 +36,7 @@ Route::prefix('store-front')->group(function () {
             Route::get('items', [CartController::class, 'getCart']);
             Route::post('checkout', [CartController::class, 'checkout_cod']);
             Route::get('order-options',[CartController::class,'get_order_options']);
+            Rouet::post('apply-coupon',[CartController::class,'apply_coupon']);
         });
         Route::get('user/get-info', [UserController::class, 'getUserInfo']);
         Route::post('add-review', [CartController::class, 'add_review_by_product_id']);

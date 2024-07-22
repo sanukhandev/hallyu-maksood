@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Order, Package, Product, Rating, Shipping, UserCartItems};
+use App\Models\{Coupon, Order, Package, Product, Rating, Shipping, UserCartItems};
 use Illuminate\Http\Request;
 use App\Helpers\APIHelper;
 
@@ -142,5 +142,75 @@ class CartController extends Controller
     {
         return response()->json(['status' => 200, 'data' => ['shipping' => Shipping::get(), 'packages' => Package::get()]]);
     }
+
+    public function apply_coupon(Request $request)
+    {
+        $this->userId = $request->user()->id;
+        $couponCode = $request->coupon;
+        $cart = $this->userCartItems->getCartItems($this->userId);
+        $grandTotal = $this->userCartItems->getCartTotal($this->userId);
+
+        $total = 0;
+        $coupon = Coupon::where('code', $couponCode)->first();
+
+        // Check if coupon is valid for category
+        if ($coupon && $coupon->category) {
+            $validCategory = false;
+
+            foreach ($cart as $item) {
+                if ($item->product->category_id == $coupon->category) {
+                    $total += $item->total_price;
+                    if (!$validCategory) {
+                        $validCategory = true;
+                    }
+                }
+            }
+
+            if (!$validCategory) {
+                return response()->json([
+                    'status' => 400,
+                    'message' => 'Coupon is not valid for this category'
+                ]);
+            }
+        } else {
+            $total = $grandTotal;
+        }
+
+        $discount = 0;
+        $couponType = 'None';
+
+        if ($coupon) {
+            $discount = $this->calculateDiscount($coupon, $total);
+            $couponType = $coupon->type == 0 ? 'Percentage' : 'Fixed';
+        }
+
+        return response()->json([
+            'status' => 200,
+            'data' => [
+                'total' => $grandTotal - $discount,
+                'discount' => $discount,
+                'code' => $couponCode,
+                'value' => $couponType
+            ]
+        ]);
+    }
+
+    public function calculateDiscount($coupon, $total)
+    {
+        $currentDate = date('Y-m-d');
+
+        if ($coupon->start_date <= $currentDate && $coupon->end_date >= $currentDate) {
+            if ($coupon->type == 0) {
+                $discount = $total * ($coupon->price / 100);
+            } else {
+                $discount = min($coupon->price, $total); // Ensure discount does not exceed total
+            }
+        } else {
+            $discount = 0;
+        }
+
+        return $discount;
+    }
+
 
 }
