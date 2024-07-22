@@ -24,7 +24,8 @@ class CartController extends Controller
         $this->userId = $request->user()->id;
         $product_id = $request->product_id;
         $quantity = $request->quantity;
-        $total_price = $request->total_price;
+        $product = Product::find($product_id);
+        $total_price = $product->price * $quantity;
         $existingCartItem = $this->userCartItems->getCartItem($this->userId, $product_id);
         if ($existingCartItem) {
             $existingCartItem->quantity += $quantity;
@@ -46,7 +47,8 @@ class CartController extends Controller
         $this->userId = $request->user()->id;
         $product_id = $request->product_id;
         $quantity = $request->quantity;
-        $total_price = $request->total_price;
+        $product = Product::find($product_id);
+        $total_price = $product->price * $quantity;
         $this->userCartItems->updateCartItem($this->userId, $product_id, $quantity, $total_price);
         return response()->json([
             'status' => 200,
