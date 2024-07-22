@@ -25,6 +25,12 @@ class CartController extends Controller
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $product = Product::find($product_id);
+        if (!$product) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Product not found'
+            ]);
+        }
         $total_price = $product->price * $quantity;
         $existingCartItem = $this->userCartItems->getCartItem($this->userId, $product_id);
         if ($existingCartItem) {
@@ -48,6 +54,12 @@ class CartController extends Controller
         $product_id = $request->product_id;
         $quantity = $request->quantity;
         $product = Product::find($product_id);
+        if (!$product) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Product not found'
+            ]);
+        }
         $total_price = $product->price * $quantity;
         $this->userCartItems->updateCartItem($this->userId, $product_id, $quantity, $total_price);
         return response()->json([
