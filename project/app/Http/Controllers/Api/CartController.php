@@ -104,9 +104,6 @@ class CartController extends Controller
     {
         $this->userId = $request->user()->id;
         $input = $request->all();
-        $total = $this->userCartItems->getCartTotal($this->userId);
-        $count = $this->userCartItems->getCartCount($this->userId);
-        $quantity = $this->userCartItems->getCartQuantity($this->userId);
         $cart = $this->userCartItems->getCartItems($this->userId);
         $order = new Order;
         $order->fill($input);
@@ -120,9 +117,7 @@ class CartController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'COD Checkout successful',
-            'total' => $total,
-            'count' => $count,
-            'quantity' => $quantity
+            'total' => $input['pay_amount'],
         ]);
 
     }
