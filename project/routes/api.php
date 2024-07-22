@@ -47,6 +47,7 @@ Route::prefix('store-front')->group(function () {
     });
     Route::post('auth/register', [AuthController::class, 'register']);
     Route::post('auth/login', [AuthController::class, 'login']);
+    Route::post('auth/verify-otp',[AuthController::class, 'validate_or_send_otp']);
 });
 
 

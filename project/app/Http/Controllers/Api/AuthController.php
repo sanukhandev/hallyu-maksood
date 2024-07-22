@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use phpDocumentor\Reflection\PseudoTypes\Numeric_;
+use Psy\Util\Str;
 
 class AuthController extends Controller
 {
@@ -171,4 +173,63 @@ class AuthController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function validate_or_send_otp(Request $request)
+    {
+        $rules = [
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'verify_otp' => 'sometimes|min:4|max:4',
+        ];
+        $request->validate($rules);
+
+        if ($request->phone && !$request->verify_otp) {
+            $otp = $this->generateOTP();
+            $this->sendOTPSMS($request->phone, $otp);
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'OTP sent successfully'
+            ]);
+        } else if ($request->phone && $request->verify_otp) {
+            return $this->verifyOTP($request->phone, $request->verify_otp);
+        }
+
+        return response()->json([
+            'status' => 400,
+            'message' => 'Invalid request'
+        ]);
+    }
+
+    private function generateOTP()
+    {
+        return rand(1000, 9999);
+    }
+
+    private function sendOTPSMS($phone, $otp)
+    {
+        // Code to send SMS using a third-party service
+
+        return response()->json(
+            [
+                'status' => 200,
+                'message' => 'OTP sent'
+            ]
+        );
+    }
+
+    private function verifyOTP($phone, $otp)
+    {
+        if ($otp == '1234') { // In real scenarios, you should verify against stored OTP
+            return response()->json([
+                'status' => 200,
+                'message' => 'OTP verified successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 400,
+            'message' => 'Invalid OTP'
+        ]);
+    }
+
 }
