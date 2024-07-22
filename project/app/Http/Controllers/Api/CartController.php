@@ -105,6 +105,12 @@ class CartController extends Controller
         $this->userId = $request->user()->id;
         $input = $request->all();
         $cart = $this->userCartItems->getCartItems($this->userId);
+        if (count($cart) == 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => 'Cart is empty'
+            ]);
+        }
         $order = new Order;
         $order->fill($input);
         $order->user_id = $this->userId;
