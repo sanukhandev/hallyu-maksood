@@ -117,6 +117,7 @@ class CartController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'COD Checkout successful',
+            'order_number' => $order->order_number,
             'total' => $input['pay_amount'],
         ]);
 
