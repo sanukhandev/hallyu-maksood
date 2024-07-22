@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Coupon, Order, Package, Product, Rating, Shipping, UserCartItems};
+use App\Models\{Country, Coupon, Order, Package, Product, Rating, Shipping, State, UserCartItems};
 use Illuminate\Http\Request;
 use App\Helpers\APIHelper;
 
@@ -154,7 +154,15 @@ class CartController extends Controller
 
     public function get_order_options()
     {
-        return response()->json(['status' => 200, 'data' => ['shipping' => Shipping::get(), 'packages' => Package::get()]]);
+        return response()->json(
+            ['status' => 200,
+                'data' => [
+                    'shipping' => Shipping::get(),
+                    'packages' => Package::get(),
+                    'countries' => Country::where('status', '1')->with(['states'])->get(),
+
+                ]]
+        );
     }
 
     public function apply_coupon(Request $request)
