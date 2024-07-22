@@ -187,7 +187,8 @@ class CartController extends Controller
         return response()->json([
             'status' => 200,
             'data' => [
-                'total' => $grandTotal - $discount,
+                'oldTotal' => $grandTotal,
+                'newTotal' => $grandTotal - $discount,
                 'discount' => $discount,
                 'code' => $couponCode,
                 'value' => $couponType
