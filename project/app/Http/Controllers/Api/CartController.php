@@ -112,7 +112,7 @@ class CartController extends Controller
         $order->fill($input);
         $order->user_id = $this->userId;
         $order->cart = json_encode($cart);
-        $order->total = $total;
+//        $order->total = $total;
         $order->order_number = $this->apiHelper->generateOrderNumber();
         $order->save();
 
