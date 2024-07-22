@@ -125,14 +125,14 @@ class SubCategoryController extends AdminBaseController
         if ($file = $request->file('photo'))
         {
             $name = \PriceHelper::ImageCreateName($file);
-            $file->move('assets/images/categories/',$name);
+            $file->move('assets/images/categories',$name);
             if($data->photo != null)
             {
-                if (file_exists(public_path().'/assets/images/subcategories/'.$data->photo)) {
-                    unlink(public_path().'/assets/images/subcategories/'.$data->photo);
+                if (file_exists(public_path().'/assets/images/categories/'.$data->photo)) {
+                    unlink(public_path().'/assets/images/categories/'.$data->photo);
                 }
             }
-            $input['photo'] = 'assets/images/categories'.$name;
+            $input['photo'] = 'assets/images/categories/'.$name;
         }
         $data->update($input);
         //--- Logic Section Ends
