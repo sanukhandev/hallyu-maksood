@@ -58,7 +58,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
         $input['cart'] = $newCartJson;
         $input['affilate_users'] = $affilateUsersJson;
         $input['pay_amount'] = $request->total ;
-        $input['order_number'] = Str::random(4) . time();
+        $input['order_number'] = 'ORD' . strtoupper(uniqid());
         $input['wallet_price'] = $request->wallet_price;
 
         // Tax location

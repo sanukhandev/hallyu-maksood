@@ -159,4 +159,9 @@ class APIHelper
             ];
         });
     }
+
+    public function generateOrderNumber(): string
+    {
+        return 'ORD' . strtoupper(uniqid());
+    }
 }
