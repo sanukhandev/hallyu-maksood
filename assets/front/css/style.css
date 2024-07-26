@@ -3295,8 +3295,8 @@ header.fixed-top {
 .yith-wcwl-add-to-wishlist [class*="-button"] a,
 .product-wrapper .wishlist-view [class*="-button"] a,
 .product-wrapper .hover-area [class*="-button"] a {
-  padding-left: 60px;
-  margin: 12px;
+  padding-left: 20px;
+
   line-height: inherit;
   display: block;
   font-size: 18px;
