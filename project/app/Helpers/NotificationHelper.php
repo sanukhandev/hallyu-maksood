@@ -4,6 +4,8 @@ namespace app\Helpers;
 
 use Dotenv\Dotenv;
 
+define('INFOBIP_API_KEY', '430ec63fe814a0947138735d10976378-fd095b88-f355-41e8-92af-60ea404d396f');
+define('INFOBIP_BASE_URL', 'https://mmn664.api.infobip.com');
 class NotificationHelper
 {
     protected $apiKey;
@@ -16,8 +18,8 @@ class NotificationHelper
         $dotenv->load();
 
         // Get Infobip configuration from environment variables
-        $this->apiKey = getenv('INFOBIP_API_KEY');
-        $this->baseUrl = getenv('INFOBIP_BASE_URL');
+        $this->apiKey = INFOBIP_API_KEY;
+        $this->baseUrl = INFOBIP_BASE_URL;
 
         // Check if the environment variables are set
         if (!$this->apiKey || !$this->baseUrl) {
