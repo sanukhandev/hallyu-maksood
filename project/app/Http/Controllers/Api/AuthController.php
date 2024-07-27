@@ -206,7 +206,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP sent successfully',
-                'debug' => $res
+                'status_text' => $res
             ]);
         } else if ($request->phone && $request->verify_otp) {
             return $this->verifyOTP($request->phone, $request->verify_otp);
@@ -219,21 +219,15 @@ class AuthController extends Controller
     }
 
 
-    private function sendOTPSMS($phone, $otp)
-    {
-        // Code to send SMS using a third-party service
 
-        return response()->json(
-            [
-                'status' => 200,
-                'message' => 'OTP sent'
-            ]
-        );
-    }
 
     private function verifyOTP($phone, $otp)
     {
+
         $user = User::where('phone', $phone)->first();
+        dd($user);
+        dd($phone,$otp);
+
 
         if ($user && $user->otp == $otp) {
             return response()->json([
