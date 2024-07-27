@@ -164,4 +164,67 @@ class APIHelper
     {
         return 'ORD' . strtoupper(uniqid());
     }
+
+    public function transformData($data) {
+        $result = [
+            "totalQty" => 0,
+            "totalPrice" => 0,
+            "items" => []
+        ];
+
+        foreach ($data as $order) {
+            $product = $order['product'];
+            $productId = $product['id'];
+
+            $result['items'][$productId] = [
+                "qty" => $order['quantity'],
+                "size_key" => 0,
+                "size_qty" => $product['size_qty'] ?? "",
+                "size_price" => $product['size_price'] ?? "",
+                "size" => $product['size'] ?? "",
+                "color" => $product['color'] ?? "",
+                "stock" => $product['stock'] ?? null,
+                "price" => (float) $order['total_price'],
+                "item" => [
+                    "id" => $product['id'],
+                    "user_id" => $product['user_id'],
+                    "slug" => $product['slug'],
+                    "name" => $product['name'],
+                    "photo" => $product['photo'],
+                    "size" => $product['size'] ?? "",
+                    "size_qty" => $product['size_qty'] ?? "",
+                    "size_price" => $product['size_price'] ?? "",
+                    "color" => $product['color'] ?? "",
+                    "price" => $product['price'],
+                    "stock" => $product['stock'] ?? null,
+                    "type" => $product['type'],
+                    "file" => $product['file'] ?? null,
+                    "link" => $product['link'] ?? null,
+                    "license" => $product['license'] ?? "",
+                    "license_qty" => $product['license_qty'] ?? "",
+                    "measure" => $product['measure'] ?? null,
+                    "whole_sell_qty" => $product['whole_sell_qty'] ?? "",
+                    "whole_sell_discount" => $product['whole_sell_discount'] ?? "",
+                    "attributes" => $product['attributes'] ?? null,
+                    "size_all" => $product['size_all'] ?? null,
+                    "color_all" => $product['color_all'] ?? null,
+                    "minimum_qty" => $product['minimum_qty'] ?? null,
+                    "stock_check" => $product['stock_check'] ?? 0
+                ],
+                "license" => $product['license'] ?? "",
+                "dp" => "0",
+                "keys" => "",
+                "values" => "",
+                "item_price" => (float) $order['total_price'],
+                "discount" => 0,
+                "affilate_user" => 0
+            ];
+
+            $result['totalQty'] += $order['quantity'];
+            $result['totalPrice'] += (float) $order['total_price'];
+        }
+
+        return $result;
+    }
+
 }
