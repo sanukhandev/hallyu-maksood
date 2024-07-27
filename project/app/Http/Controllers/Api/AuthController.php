@@ -225,11 +225,7 @@ class AuthController extends Controller
     {
 
         $user = User::where('phone', $phone)->first();
-        dd($user);
-        dd($phone,$otp);
-
-
-        if ($user && $user->otp == $otp) {
+        if ($user && $user->OTP == $otp) {
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP verified successfully'
