@@ -125,7 +125,7 @@ class CartController extends Controller
             'status' => 200,
             'message' => 'COD Checkout successful',
             'order_number' => $order->order_number,
-            'total' => number_format($order->total, 2)
+            'total' => number_format($order->pay_amount, 2)
         ]);
 
     }
