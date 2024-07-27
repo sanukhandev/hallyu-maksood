@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use HasApiTokens , Notifiable;
 
-    protected $fillable = ['name', 'photo', 'zip', 'city', 'state', 'country', 'address', 'phone', 'fax', 'email','password','affilate_code','verification_link','shop_name','owner_name','shop_number','shop_address','reg_number','shop_message','is_vendor','shop_details','shop_image','shipping_cost','date','mail_sent','email_verified','email_token','reward'];
+    protected $fillable = ['name', 'photo', 'zip', 'city', 'state', 'country', 'address', 'phone', 'fax', 'email','password','affilate_code','verification_link','shop_name','owner_name','shop_number','shop_address','reg_number','shop_message','is_vendor','shop_details','shop_image','shipping_cost','date','mail_sent','email_verified','email_token','reward','otp'];
 
     protected $hidden = [
         'password', 'remember_token'
@@ -171,6 +171,13 @@ class User extends Authenticatable
     public function displayWarning()
     {
         return $this->verifies()->where('admin_warning','=','1')->latest('id')->first()->warning_reason;
+    }
+
+    public function genarateOTP()
+    {
+        $otp = rand(1000,9999);
+        $this->otp = $otp;
+        return $otp;
     }
 
 }

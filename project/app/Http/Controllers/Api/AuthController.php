@@ -3,6 +3,7 @@
 namespace app\Http\Controllers\Api;
 
 use App\Helpers\FirebaseServiceProvider;
+use app\Helpers\NotificationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SocialProvider;
 use App\Models\User;
@@ -16,10 +17,12 @@ use Psy\Util\Str;
 class AuthController extends Controller
 {
     private $firebaseServiceProvider;
+    private $notification;
 
     public function __construct()
     {
         $this->firebaseServiceProvider = new FirebaseServiceProvider();
+        $this->notification = new NotificationHelper();
     }
 
     public function handleProviderCallback(Request $request, $provider): \Illuminate\Http\JsonResponse
@@ -183,9 +186,15 @@ class AuthController extends Controller
         $request->validate($rules);
 
         if ($request->phone && !$request->verify_otp) {
-            $otp = $this->generateOTP();
-            $this->sendOTPSMS($request->phone, $otp);
-
+           $user = User::where('phone', $request->phone)->first();
+            if (!$user) {
+                //create user
+                $user = new User();
+                $user->phone = $request->phone;
+                $user->genarateOTP();
+                $user->save();
+            }
+            $this->notification->sendSms($user->phone, `Your OTP is: ${$user->otp}`);
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP sent successfully'
@@ -200,10 +209,7 @@ class AuthController extends Controller
         ]);
     }
 
-    private function generateOTP()
-    {
-        return rand(1000, 9999);
-    }
+
 
     private function sendOTPSMS($phone, $otp)
     {
@@ -219,7 +225,9 @@ class AuthController extends Controller
 
     private function verifyOTP($phone, $otp)
     {
-        if ($otp == '1234') { // In real scenarios, you should verify against stored OTP
+        $user = User::where('phone', $phone)->first();
+
+        if ($user && $user->otp == $otp) {
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP verified successfully'
@@ -231,5 +239,6 @@ class AuthController extends Controller
             'message' => 'Invalid OTP'
         ]);
     }
+
 
 }
