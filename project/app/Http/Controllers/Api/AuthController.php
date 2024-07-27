@@ -191,6 +191,14 @@ class AuthController extends Controller
                 //create user
                 $user = new User();
                 $user->phone = $request->phone;
+                $user->name = 'User';
+                $user->email = `user${$request->phone}@hallyu.com`;
+                $user->password = Hash::make('123456');
+                $user->email_verified = 'Yes';
+                $user->status = 1;
+                $user->genarateOTP();
+                $user->save();
+            }else{
                 $user->genarateOTP();
                 $user->save();
             }
