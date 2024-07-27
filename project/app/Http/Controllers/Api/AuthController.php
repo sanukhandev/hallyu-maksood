@@ -202,7 +202,7 @@ class AuthController extends Controller
                 $user->genarateOTP();
                 $user->save();
             }
-            $res = $this->notification->sendSms($user->phone, `Your OTP is: ${$user->otp}`);
+            $res = $this->notification->sendSms($user->phone, `Your OTP is: {$user->otp}`);
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP sent successfully',
