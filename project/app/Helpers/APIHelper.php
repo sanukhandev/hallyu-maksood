@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class APIHelper
 {
+
     public function mapProducts($products)
     {
         return $products->map(function ($product) {
@@ -160,11 +161,10 @@ class APIHelper
         });
     }
 
-    public function generateOrderNumber(): string
+    public static function  generateOrderNumber(): string
     {
-        return 'ORD' . strtoupper(uniqid());
+        return 'ORD-' . date('Y') . '-' . strtoupper(uniqid());
     }
-
     public function transformData($data) {
         $result = [
             "totalQty" => 0,

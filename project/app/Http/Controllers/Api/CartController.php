@@ -117,7 +117,7 @@ class CartController extends Controller
         $order->user_id = $this->userId;
         $order->cart = json_encode($cart);
         $order->total = $cart['totalPrice'];
-        $order->order_number = $this->apiHelper->generateOrderNumber();
+        $order->order_number = APIHelper::generateOrderNumber();;
         $order->save();
 
         $this->userCartItems->deleteAllCartItems($this->userId);

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\Payment\Checkout;
 
-use App\{
-    Models\Cart,
-    Models\Order,
-    Classes\GeniusMailer
-};
+use App\{Helpers\AuthHelper, Models\Cart, Models\Order, Classes\GeniusMailer};
 use App\Models\Country;
 use App\Models\Reward;
 use App\Models\State;
@@ -14,10 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use OrderHelper;
-use Illuminate\Support\Str;
+use App\Helpers\APIHelper;
 
 class CashOnDeliveryController extends CheckoutBaseControlller
 {
+
+    private APIHelper $apiHelper;
+
+    public function __construct()
+    {
+        $this->apiHelper = new APIHelper();
+    }
     public function store(Request $request)
     {
         $input = $request->all();
@@ -58,7 +61,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
         $input['cart'] = $newCartJson;
         $input['affilate_users'] = $affilateUsersJson;
         $input['pay_amount'] = $request->total ;
-        $input['order_number'] = 'ORD' . strtoupper(uniqid());
+        $input['order_number'] = APIHelper::generateOrderNumber();
         $input['wallet_price'] = $request->wallet_price;
 
         // Tax location
