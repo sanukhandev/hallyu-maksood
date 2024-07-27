@@ -307,9 +307,9 @@
             <i class="fas fa-edit"></i>{{ __('Home Page Settings') }}
         </a>
         <ul class="collapse list-unstyled" id="homepage" data-parent="#accordion">
-{{--            <li>--}}
-{{--                <a href="{{ route('admin-sl-index') }}"><span>{{ __('Sliders') }}</span></a>--}}
-{{--            </li>--}}
+            <li>
+                <a href="{{ route('admin-sl-index') }}"><span>{{ __('Sliders') }}</span></a>
+            </li>
 
             <li>
                 <a href="{{ route('admin-arrival-index') }}"><span>{{ __('Arrival Section') }}</span></a>
