@@ -2,8 +2,10 @@
 
 namespace app\Http\Controllers\Api;
 
-use App\Helpers\FirebaseServiceProvider;
-use app\Helpers\NotificationHelper;
+use App\Helpers\{
+    FirebaseServiceProvider,
+    NotificationHelper
+};
 use App\Http\Controllers\Controller;
 use App\Models\SocialProvider;
 use App\Models\User;
@@ -11,8 +13,6 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\PseudoTypes\Numeric_;
-use Psy\Util\Str;
 
 class AuthController extends Controller
 {
@@ -186,7 +186,7 @@ class AuthController extends Controller
         $request->validate($rules);
 
         if ($request->phone && !$request->verify_otp) {
-           $user = User::where('phone', $request->phone)->first();
+            $user = User::where('phone', $request->phone)->first();
             if (!$user) {
                 //create user
                 $user = new User();
@@ -208,7 +208,6 @@ class AuthController extends Controller
             'message' => 'Invalid request'
         ]);
     }
-
 
 
     private function sendOTPSMS($phone, $otp)
