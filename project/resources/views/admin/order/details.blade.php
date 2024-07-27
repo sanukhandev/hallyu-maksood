@@ -375,7 +375,7 @@
                                                         <tbody>
 
 
-                                                        {{dd($cart['items'])}}
+                                                        {{die($cart['items'])}}
                                             @foreach($cart['items'] as $key1 => $product)
                                                 <tr>
 
