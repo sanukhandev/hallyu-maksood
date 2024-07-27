@@ -375,7 +375,9 @@
                                                         <tbody>
 
 
-                                                        {{die($cart['items'])}}
+                                                     @php
+                                                     die($cart['items']);
+                                                        @endphp
                                             @foreach($cart['items'] as $key1 => $product)
                                                 <tr>
 
