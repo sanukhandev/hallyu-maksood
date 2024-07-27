@@ -88,7 +88,6 @@ class OrderController extends AdminBaseController
     {
         $order = Order::findOrFail($id);
         $cart = json_decode($order->cart, true);
-        dd($cart);
         return view('admin.order.details',compact('order','cart'));
     }
 

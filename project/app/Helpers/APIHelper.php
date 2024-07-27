@@ -187,7 +187,7 @@ class APIHelper
                 "price" => (float) $order['total_price'],
                 "item" => [
                     "id" => $product['id'],
-                    "user_id" => $product['user_id'],
+                    "user_id" => 0,
                     "slug" => $product['slug'],
                     "name" => $product['name'],
                     "photo" => $product['photo'],
