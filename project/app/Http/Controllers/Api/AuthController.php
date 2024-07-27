@@ -192,7 +192,7 @@ class AuthController extends Controller
                 $user = new User();
                 $user->phone = $request->phone;
                 $user->name = 'User';
-                $user->email = `user${$request->phone}@hallyu.com`;
+                $user->email = "user{$request->phone}@hallyu.com";
                 $user->password = Hash::make('123456');
                 $user->email_verified = 'Yes';
                 $user->status = 1;
