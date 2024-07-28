@@ -180,4 +180,9 @@ class User extends Authenticatable
         return $otp;
     }
 
+    public function  deleteMyAccount()
+    {
+        $this->delete();
+    }
+
 }

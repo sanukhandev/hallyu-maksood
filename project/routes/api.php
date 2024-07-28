@@ -40,6 +40,7 @@ Route::prefix('store-front')->group(function () {
         });
         Route::get('user/get-info', [UserController::class, 'getUserInfo']);
         Route::post('add-review', [CartController::class, 'add_review_by_product_id']);
+        Route::post('user/delete-my-account', [AuthController::class, 'deleteAccount']);
     });
     Route::get('product-reviews/{id}', [FrontEndController::class, 'get_product_reviews']);
     Route::group(['middleware' => ['api', 'web']], function () {
