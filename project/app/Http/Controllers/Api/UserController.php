@@ -20,15 +20,8 @@ class UserController extends Controller
 
   public function getUserInfo(Request $request)
   {
-
-    $this->userId = $request->user()->id;
-    $user =  User::with(['orders', 'wishlists'])->find($this->userId);
-    if ($user->orders) {
-      $user->order = $user->orders->map(function ($order) {
-        $order->cart = json_decode($order->cart);
-        return $order;
-      });
-    }
+    $userId = $request->user()->id;
+    $user = User::with(['orders', 'wishlists'])->find($userId);
 
     if (!$user) {
       return response()->json([
@@ -36,6 +29,13 @@ class UserController extends Controller
         'message' => 'User not found'
       ]);
     }
+
+    if ($user->orders->isNotEmpty()) {
+      $user->orders->each(function ($order) {
+        $order->cart = json_decode($order->cart);
+      });
+    }
+
     return response()->json([
       'status' => 200,
       'data' => $user
