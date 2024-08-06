@@ -10,30 +10,35 @@ class UserController extends Controller
 {
 
 
-    private $userId;
+  private $userId;
 
-    public function __construct()
-    {
-        $this->userId = null;
+  public function __construct()
+  {
+    $this->userId = null;
+  }
+  // get auth user info
 
-    }
-   // get auth user info
+  public function getUserInfo(Request $request)
+  {
 
-    public function getUserInfo(Request $request)
-    {
-
-        $this->userId = $request->user()->id;
-        $user =  User::with(['orders','wishlists'])->find($this->userId);
-       if (!$user) {
-              return response()->json([
-                'status' => 404,
-                'message' => 'User not found'
-              ]);
-       }
-         return response()->json([
-              'status' => 200,
-              'data' => $user
-         ]);
+    $this->userId = $request->user()->id;
+    $user =  User::with(['orders', 'wishlists'])->find($this->userId);
+    if ($user->orders) {
+      $user->order = $user->orders->map(function ($order) {
+        $order->cart = json_decode($order->cart);
+        return $order;
+      });
     }
 
+    if (!$user) {
+      return response()->json([
+        'status' => 404,
+        'message' => 'User not found'
+      ]);
+    }
+    return response()->json([
+      'status' => 200,
+      'data' => $user
+    ]);
+  }
 }
