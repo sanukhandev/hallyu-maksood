@@ -322,9 +322,9 @@
             <li>
                 <a href="{{ route('admin-partner-index') }}"><span>{{ __('Partners') }}</span></a>
             </li>
-{{--            <li>--}}
-{{--                <a href="{{ route('admin-ps-customize') }}"><span>{{ __('Home Page Customization') }}</span></a>--}}
-{{--            </li>--}}
+     <li>
+               <a href="{{ route('admin-ps-customize') }}"><span>{{ __('Home Page Customization') }}</span></a>
+          </li>
         </ul>
     </li>
 
