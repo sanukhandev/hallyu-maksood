@@ -136,7 +136,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
 
         // Sending Email to Admin
         $data = [
-            'to' => $this->ps->contact_email,
+            'to' => 'support@hallyub2b.com',
             'subject' => "New Order Received!!",
             'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
         ];
