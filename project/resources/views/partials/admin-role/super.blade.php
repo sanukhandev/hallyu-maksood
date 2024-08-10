@@ -36,31 +36,31 @@
 
 
 
-    {{--<li>
-   <a href="#income" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-hand-holding-usd"></i>{{ __('Total Earning') }}</a>
-    <ul class="collapse list-unstyled" id="income" data-parent="#accordion">
-        <li>
-            <a href="{{route('admin-tax-calculate-income')}}"> {{ __('Tax Calculate') }}</a>
-        </li>
-        <li>
-            <a href="{{route('admin-subscription-income')}}"> {{ __('Subscription Earning') }}</a>
-        </li>
+    <li>
+        <a href="#income" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-hand-holding-usd"></i>{{ __('Total Earning') }}</a>
+        <ul class="collapse list-unstyled" id="income" data-parent="#accordion">
+            <li>
+                <a href="{{route('admin-tax-calculate-income')}}"> {{ __('Tax Calculate') }}</a>
+            </li>
+            <li>
+                <a href="{{route('admin-subscription-income')}}"> {{ __('Subscription Earning') }}</a>
+            </li>
 
-        <li>
-            <a href="{{route('admin-withdraw-income')}}"> {{ __('Withdraw Earning') }}</a>
-        </li>
+            <li>
+                <a href="{{route('admin-withdraw-income')}}"> {{ __('Withdraw Earning') }}</a>
+            </li>
 
-        <li>
-            <a href="{{route('admin-commission-income')}}"> {{ __('Commission Earning') }}</a>
-        </li>
+            <li>
+                <a href="{{route('admin-commission-income')}}"> {{ __('Commission Earning') }}</a>
+            </li>
 
-    </ul>
-    {{--</li>
+        </ul>
+    </li>
 
 
     <li>
-            <a href="#menu5" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-sitemap"></i>{{ __('Manage Categories') }}</a>
-    <ul class="collapse list-unstyled
+        <a href="#menu5" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-sitemap"></i>{{ __('Manage Categories') }}</a>
+        <ul class="collapse list-unstyled
             @if(request()->is('admin/attribute/*/manage') && request()->input('type')=='category')
               show
             @elseif(request()->is('admin/attribute/*/manage') && request()->input('type')=='subcategory')
@@ -68,16 +68,16 @@
             @elseif(request()->is('admin/attribute/*/manage') && request()->input('type')=='childcategory')
               show
             @endif" id="menu5" data-parent="#accordion">
-        <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='category') active @endif">
-            <a href="{{ route('admin-cat-index') }}"><span>{{ __('Main Category') }}</span></a>
-        </li>
-        <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='subcategory') active @endif">
-            <a href="{{ route('admin-subcat-index') }}"><span>{{ __('Sub Category') }}</span></a>
-        </li>
-        <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='childcategory') active @endif">
-            <a href="{{ route('admin-childcat-index') }}"><span>{{ __('Child Category') }}</span></a>
-        </li>
-    </ul>
+            <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='category') active @endif">
+                <a href="{{ route('admin-cat-index') }}"><span>{{ __('Main Category') }}</span></a>
+            </li>
+            <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='subcategory') active @endif">
+                <a href="{{ route('admin-subcat-index') }}"><span>{{ __('Sub Category') }}</span></a>
+            </li>
+            <li class="@if(request()->is('admin/attribute/*/manage') && request()->input('type')=='childcategory') active @endif">
+                <a href="{{ route('admin-childcat-index') }}"><span>{{ __('Child Category') }}</span></a>
+            </li>
+        </ul>
     </li>
 
     <li>
