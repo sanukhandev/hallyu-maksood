@@ -232,7 +232,7 @@
                               <div class="row">
                                  <div class="col-lg-12  mt-3">
                                     <div class="bottom-area paystack-area-btn">
-                                       <button type="submit" class="mybtn1 ">{{ __('Continue') }}</button>
+                                       <button type="button" class="mybtn1 ">{{ __('Continue') }}</button>
                                     </div>
                                  </div>
                               </div>
@@ -343,7 +343,7 @@
                                     <div class="col-lg-12">
                                        <div class="nav flex-column" role="tablist"
                                           aria-orientation="vertical">
-                                           
+
                                           @foreach($gateways as $gt)
                                           @if($gt->type == 'manual')
                                           @if($digital != 0)
@@ -420,7 +420,8 @@
                                        <a href="javascript:;" id="step2-btn"
                                           class="mybtn1 mr-3">{{ __('Back') }}</a>
                                        <button type="submit" id="final-btn"
-                                          class="mybtn1">{{ __('Continue') }}</button>
+                                          class="mybtn1">{{ __('Continue-remove
+') }}</button>
                                     </div>
                                  </div>
                               </div>
@@ -1302,7 +1303,7 @@
                      callback: function(response){
                        $('#ref_id').val(response.reference);
                        $('#sub').val('1');
-                       $('#final-btn').click();
+                       // $('#final-btn').click();
                      },
                      onClose: function(){
                      	window.location.reload();
