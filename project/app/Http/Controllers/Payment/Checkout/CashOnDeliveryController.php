@@ -122,7 +122,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
             // Send emails
             $this->sendOrderEmails($order);
             DB::commit();
-
+            Session::forget('processing_order');
             // Redirect to success URL
             return redirect(route('front.payment.return'));
         } catch (\Exception $e) {
