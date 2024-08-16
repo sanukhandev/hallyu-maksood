@@ -158,6 +158,7 @@ class OrderController extends AdminBaseController
         $gs = Generalsetting::findOrFail(1);
         $input = $request->all();
         if($request->has('status')){
+            $data->update($input);
             if ($data->status == "completed"){
 
                 // Then Save Without Changing it.
@@ -173,29 +174,29 @@ class OrderController extends AdminBaseController
                 }else{
                 if ($input['status'] == "completed"){
 
-                    foreach($data->vendororders as $vorder)
-                    {
-                        $uprice = User::find($vorder->user_id);
-                        $uprice->current_balance = $uprice->current_balance + $vorder->price;
-                        $uprice->update();
-                    }
+//                    foreach($data->vendororders as $vorder)
+//                    {
+//                        $uprice = User::find($vorder->user_id);
+//                        $uprice->current_balance = $uprice->current_balance + $vorder->price;
+//                        $uprice->update();
+//                    }
 
-                    if( User::where('id', $data->affilate_user)->exists() ){
-                        $auser = User::where('id', $data->affilate_user)->first();
-                        $auser->affilate_income += $data->affilate_charge;
-                        $auser->update();
-                    }
+//                    if( User::where('id', $data->affilate_user)->exists() ){
+//                        $auser = User::where('id', $data->affilate_user)->first();
+//                        $auser->affilate_income += $data->affilate_charge;
+//                        $auser->update();
+//                    }
 
-                    if( $data->affilate_users != null ){
-                        $ausers = json_decode($data->affilate_users, true);
-                        foreach($ausers as $auser){
-                            $user = User::find($auser['user_id']);
-                            if($user){
-                                $user->affilate_income += $auser['charge'];
-                                $user->update();
-                            }
-                        }
-                    }
+//                    if( $data->affilate_users != null ){
+//                        $ausers = json_decode($data->affilate_users, true);
+//                        foreach($ausers as $auser){
+//                            $user = User::find($auser['user_id']);
+//                            if($user){
+//                                $user->affilate_income += $auser['charge'];
+//                                $user->update();
+//                            }
+//                        }
+//                    }
 
                     $maildata = [
                         'to' => $data->customer_email,
