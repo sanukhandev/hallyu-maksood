@@ -81,7 +81,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <input type="text" readonly class="input-field"
+                                                <input type="text" class="input-field"
                                                        placeholder="{{ __('Enter Product Sku') }}" name="sku"
                                                        required="" value="{{ $data->sku }}">
                                             </div>

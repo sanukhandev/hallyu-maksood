@@ -71,16 +71,16 @@
 																</div>
 															</div>
 
-{{--															<div class="row">--}}
-{{--																<div class="col-lg-12">--}}
-{{--																	<div class="left-area">--}}
-{{--																			<h4 class="heading">{{ __('Product Sku') }}* </h4>--}}
-{{--																	</div>--}}
-{{--																</div>--}}
-{{--																<div class="col-lg-12">--}}
-{{--																	<input type="text" class="input-field" placeholder="{{ __('Enter Product Sku') }}" name="sku" required="" value="{{ Str::random(3).substr(time(), 6,8).Str::random(3) }}">--}}
-{{--																</div>--}}
-{{--															</div>--}}
+															<div class="row">
+																<div class="col-lg-12">
+																	<div class="left-area">
+																			<h4 class="heading">{{ __('Product Sku') }}* </h4>
+																	</div>
+																</div>
+																<div class="col-lg-12">
+																	<input type="text" class="input-field" placeholder="{{ __('Enter Product Sku') }}" name="sku" required="" value="">
+																</div>
+															</div>
 
 
 															<div class="row">
