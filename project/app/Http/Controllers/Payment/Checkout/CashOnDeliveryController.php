@@ -25,11 +25,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
     public function store(Request $request)
     {
         $input = $request->all();
-        if (Session::has('processing_order')) {
-            return redirect()->back()->with('unsuccess', 'Your order is already being processed.');
-        }
 
-        Session::put('processing_order', true);
 
         // Authentication check
         if ($request->pass_check) {
@@ -122,7 +118,6 @@ class CashOnDeliveryController extends CheckoutBaseControlller
             // Send emails
             $this->sendOrderEmails($order);
             DB::commit();
-            Session::forget('processing_order');
             // Redirect to success URL
             return redirect(route('front.payment.return'));
         } catch (\Exception $e) {
