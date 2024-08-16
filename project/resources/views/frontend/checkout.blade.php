@@ -62,7 +62,7 @@
                         <div class="content-box">
                            <div class="content">
                               <div class="submit-loader" style="display: none;">
-                                 <img src="//geniusocean.com/demo/geniuscart/default/assets/images/loading_large.gif" alt="">
+                                 <img src="/assets/images/1716330682animationgif.gif" alt="">
                               </div>
                               <div class="personal-info">
                                  <h5 class="title">
@@ -1254,7 +1254,8 @@
 
    	$('#final-btn').on('click',function(){
    		ck = 1;
-        $('#preloader').show();
+           alert('order being processed')
+        $('.submit-loader').show();
    	})
 
 
