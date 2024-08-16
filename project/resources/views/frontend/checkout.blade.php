@@ -420,8 +420,7 @@
                                        <a href="javascript:;" id="step2-btn"
                                           class="mybtn1 mr-3">{{ __('Back') }}</a>
                                        <button type="submit" id="final-btn"
-                                          class="mybtn1">{{ __('Continue-remove
-') }}</button>
+                                          class="mybtn1">{{ __('Continue') }}</button>
                                     </div>
                                  </div>
                               </div>
@@ -1255,6 +1254,7 @@
 
    	$('#final-btn').on('click',function(){
    		ck = 1;
+        $('#preloader').show();
    	})
 
 
