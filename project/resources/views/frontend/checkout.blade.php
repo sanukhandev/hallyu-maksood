@@ -62,9 +62,9 @@
                         <div class="content-box">
                            <div class="content">
                               <div class="submit-loader" style="display: none;">
-                                    <div class="text-center">
-                                        <h2>{{ __("✨ Just a Moment! Your Hallyu Style order is being processed. ✨ \n We're locking in your K-beauty essentials—get ready to glow! 💖") }}...</h2>
-                                    </div>
+                                  <div class="text-center">
+                                      <h2>{{ __('✨ Just a Moment! Your Hallyu Style order is being processed. ✨ \n We\'re locking in your K-beauty essentials—get ready to glow! 💖') }}...</h2>
+                                  </div>
                                         <img src="{{asset("assets/images/'.$gs->loader)}}" alt="">
 
                               </div>
