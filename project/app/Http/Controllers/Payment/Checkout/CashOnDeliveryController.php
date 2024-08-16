@@ -8,6 +8,7 @@ use App\Models\Reward;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 use OrderHelper;
 use App\Helpers\APIHelper;
