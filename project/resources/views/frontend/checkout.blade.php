@@ -232,7 +232,7 @@
                               <div class="row">
                                  <div class="col-lg-12  mt-3">
                                     <div class="bottom-area paystack-area-btn">
-                                       <button type="button" class="mybtn1 ">{{ __('Continue') }}</button>
+                                       <button type="submit" class="mybtn1 ">{{ __('Continue') }}</button>
                                     </div>
                                  </div>
                               </div>
