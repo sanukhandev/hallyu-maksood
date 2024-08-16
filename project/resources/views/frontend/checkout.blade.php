@@ -1200,7 +1200,7 @@
    		$('#pills-step2-tab').click();
 
    	}else {
-   		$('#preloader').show();
+   		$('.submit-loader').show();
    	}
 
    	$('#pills-step2').addClass('active');
@@ -1255,7 +1255,6 @@
 
    	$('#final-btn').on('click',function(){
    		ck = 1;
-           alert('order being processed')
         $('.submit-loader').show();
    	})
 
