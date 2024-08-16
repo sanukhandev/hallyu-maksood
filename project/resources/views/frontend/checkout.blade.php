@@ -62,7 +62,11 @@
                         <div class="content-box">
                            <div class="content">
                               <div class="submit-loader" style="display: none;">
-                                 <img src="/assets/images/1716330682animationgif.gif" alt="">
+                                    <div class="text-center">
+                                        <h2>{{ __('Please wait we are processing your order') }}...</h2>
+                                        <img src="{{asset('assets/images/'.$gs->loader)}}" alt="">
+                                    </div>
+
                               </div>
                               <div class="personal-info">
                                  <h5 class="title">
