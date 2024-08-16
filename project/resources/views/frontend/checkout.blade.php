@@ -50,6 +50,10 @@
                </div>
             </div>
          </div>
+          <div class="submit-loader" style="display: none;">
+              <h2>{{ __('Just a Moment! Your Hallyu Style order is being processed.') }}...</h2>
+              <img src="{{asset("assets/images/".$gs->loader)}}" alt="">
+          </div>
          <div class="col-lg-8">
             <form id="" action="" method="POST" class="checkoutform">
                @include('includes.form-success')
@@ -61,10 +65,7 @@
                         aria-labelledby="pills-step1-tab">
                         <div class="content-box">
                            <div class="content">
-                              <div class="submit-loader" style="display: none;">
-                                      <h2>{{ __('Just a Moment! Your Hallyu Style order is being processed.') }}...</h2>
-                                        <img src="{{asset("assets/images/".$gs->loader)}}" alt="">
-                              </div>
+
                               <div class="personal-info">
                                  <h5 class="title">
                                     {{ __('Personal Information') }} :
@@ -1200,7 +1201,7 @@
    		$('#pills-step2-tab').click();
 
    	}else {
-   		$('.submit-loader').show();
+   		$('#preloader').show();
    	}
 
    	$('#pills-step2').addClass('active');
