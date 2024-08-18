@@ -175,6 +175,7 @@ function lazy (){
     <div id="google_translate_element" style="display:none;"></div>
     <script>
         function googleTranslateElementInit() {
+            alert();
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
                 includedLanguages: 'ar',
