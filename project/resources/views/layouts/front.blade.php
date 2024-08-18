@@ -170,25 +170,26 @@ function lazy (){
 }
 
 </script>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element" style="display:none;"></div>
-    <script>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
         function googleTranslateElementInit() {
-            alert();
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'ar',
-                autoDisplay: false
-            }, 'google_translate_element');
-            const selectElem = document.querySelector("#google_translate_element select");
-            if(selectElem) {
-                selectElem.selectedIndex = 1; // Index 1 selects Arabic
-                selectElem.dispatchEvent(new Event('change'));
-            }
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            googleTranslateElementInit();
+            const translateSelect = document.querySelector('select.goog-te-combo');
+            if (translateSelect) {
+                translateSelect.value = 'ar';
+                translateSelect.dispatchEvent(new Event('change'));
+            }
+        });
     </script>
-    <script src="{{ asset('assets/front/js/element.js?cb=googleTranslateElementInit') }}"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        #google_translate_element { display: none; }
+    </style>
+
     <style>
         #google_translate_element, .skiptranslate {
             display: none;
