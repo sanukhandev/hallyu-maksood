@@ -171,18 +171,15 @@ function lazy (){
 
 </script>
     <div id="google_translate_element"></div>
+    <div id="google_translate_element"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,fr,es,de,zh-CN',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            googleTranslateElementInit();
-            const translateSelect = document.querySelector('select.goog-te-combo');
-            if (translateSelect) {
-                translateSelect.value = 'ar';
-                translateSelect.dispatchEvent(new Event('change'));
-            }
-        });
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
