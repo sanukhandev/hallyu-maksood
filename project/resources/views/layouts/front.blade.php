@@ -171,7 +171,7 @@ function lazy (){
 
 </script>
     <div id="google_translate_element"></div>
-    <div id="google_translate_element"></div>
+
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -179,27 +179,36 @@ function lazy (){
                 includedLanguages: 'ar,fr,es,de,zh-CN',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
+
+            setTimeout(function() {
+                var translateSelect = document.querySelector('select.goog-te-combo');
+                if (translateSelect) {
+                    translateSelect.value = 'ar'; // Change to the language you want to auto-translate to
+                    translateSelect.dispatchEvent(new Event('change'));
+                }
+            }, 1000); // Adjust delay as needed
         }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <style>
-        #google_translate_element { display: none; }
-    </style>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <style>
         #google_translate_element, .skiptranslate {
             display: none;
         }
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
         body {
-            top: 0 !important;
+            top: 0px !important;
         }
     </style>
 
 
 
 
-     @php
+
+    @php
      echo Toastr::message();
      @endphp
      @yield('script')
