@@ -165,9 +165,9 @@
 							@else
 								@include('partials.admin-role.normal')
 							@endif
-							
+
 						</ul>
-						
+
 					</nav>
 					<!-- Main Content Area Start -->
 					@yield('content')
@@ -212,10 +212,24 @@
 		<script src="{{asset('assets/admin/js/custom.js')}}"></script>
 		<!-- AJAX Js-->
 		<script src="{{asset('assets/admin/js/myscript.js')}}"></script>
-	
-		
-		@yield('scripts')
 
+
+		@yield('scripts')
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,ar',
+                }, 'google_translate_element');
+
+                setTimeout(function() {
+                    // Set the default language to Spanish
+                    const selectElement = document.querySelector('#google_translate_element select');
+                    selectElement.value = 'ar';
+                    selectElement.dispatchEvent(new Event('change'));
+                }, 1000);
+            }
+        </script>
 @if($gs->is_admin_loader == 0)
 <style>
 	div#geniustable_processing {
