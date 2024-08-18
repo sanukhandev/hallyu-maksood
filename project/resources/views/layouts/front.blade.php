@@ -173,6 +173,7 @@ function lazy (){
     <div id="google_translate_element"></div>
 
     <script type="text/javascript">
+        document.cookie = "user_preference=value; path=/; max-age=3600; Secure; SameSite=None";
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
