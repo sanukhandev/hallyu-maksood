@@ -187,7 +187,7 @@ function lazy (){
             }
         }
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="{{ asset('assets/front/js/element.js?cb=googleTranslateElementInit') }}"></script>
     <style>
         #google_translate_element, .skiptranslate {
             display: none;
