@@ -171,6 +171,32 @@ function lazy (){
 
 </script>
 
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar',
+                autoDisplay: false
+            }, 'google_translate_element');
+            const selectElem = document.querySelector("#google_translate_element select");
+            if(selectElem) {
+                selectElem.selectedIndex = 1; // Index 1 selects Arabic
+                selectElem.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        #google_translate_element, .skiptranslate {
+            display: none;
+        }
+        body {
+            top: 0 !important;
+        }
+    </style>
+
 
 
 

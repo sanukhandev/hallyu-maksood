@@ -225,19 +225,7 @@
 @endif
 
         <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    includedLanguages: 'en,ar',
-                }, 'google_translate_element');
 
-                setTimeout(function() {
-                    // Set the default language to Spanish
-                    const selectElement = document.querySelector('#google_translate_element select');
-                    selectElement.value = 'ar';
-                    selectElement.dispatchEvent(new Event('change'));
-                }, 1000);
-            }
         </script>
 	</body>
 

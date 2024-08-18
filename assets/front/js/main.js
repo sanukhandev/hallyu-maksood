@@ -1220,4 +1220,6 @@
 
 		// REPLY FORM ENDS
 	});
+
+
 })(jQuery);
