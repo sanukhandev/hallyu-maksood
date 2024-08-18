@@ -215,6 +215,15 @@
 
 
 		@yield('scripts')
+
+@if($gs->is_admin_loader == 0)
+<style>
+	div#geniustable_processing {
+		display: none !important;
+	}
+</style>
+@endif
+
         <script type="text/javascript">
             function googleTranslateElementInit() {
                 new google.translate.TranslateElement({
@@ -230,14 +239,6 @@
                 }, 1000);
             }
         </script>
-@if($gs->is_admin_loader == 0)
-<style>
-	div#geniustable_processing {
-		display: none !important;
-	}
-</style>
-@endif
-
 	</body>
 
 </html>
