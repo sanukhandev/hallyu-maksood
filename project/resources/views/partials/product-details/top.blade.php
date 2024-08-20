@@ -50,7 +50,7 @@
                                   </li>
                                   @endif
 
-                              </ol> 
+                              </ol>
                           </nav>
                       </div>
                       @if($productt->brand)
@@ -79,13 +79,13 @@
                                       <bdi><span class="woocommerce-Price-currencySymbol" id="sizeprice">{{ $productt->showPrice() }}</bdi>
                                   </span>
                                   <del class="ml-3"><small>{{ $productt->showPreviousPrice() }}</small></del>
-                                 <span class="on-sale"><span>{{ round((int)$productt->offPercentage() )}}</span>% Off</span>
+                                 <span class="on-sale"><span>{{ round((int)$productt->offPercentage() )}}</span>% {{__('Off')}}</span>
 
                               </p>
 
                             @if($productt->type == 'Physical')
                                @if($productt->emptyStock())
-                                     <div class="stock-availability out-stock">{{ ('Out Of Stock') }}</div>
+                                     <div class="stock-availability out-stock">{{__('Out Of Stock') }}</div>
                                      @else
                                      <div class="stock-availability in-stock text-bold">{{ $gs->show_stock == 0 ? '' : $productt->stock }} {{ ('In Stock') }}</div>
                                @endif
@@ -100,7 +100,7 @@
                                <li class="product-offer-item"><span class="h6">{{ __('Estimated Shipping Time:') }}</span> {{ $productt->ship }}
                                </li>
                                @endif
-                             
+
                                   {{-- PRODUCT LICENSE SECTION --}}
                                   @if($productt->type == 'License')
                                   @if($productt->platform != null)
@@ -269,7 +269,7 @@
                                 <a href="javascript:;" id="addcrt">{{ __('Add to Cart')}}</a>
                               </li>
 
-                              
+
                               @endif
                             </ul>
                          @endif
@@ -288,10 +288,10 @@
                           </div> -->
 
                       </div>
-                         
+
                    </div>
-                     
-<!-- 
+
+<!--
 
                        @if($gs->is_report)
 
@@ -319,8 +319,8 @@
                                   <a class="facebook a2a_button_facebook" href="">
                                       <i class="fab fa-facebook-f"></i>
                                   </a>
-                                  </li> 
-                                 
+                                  </li>
+
                                   <li>
                                       <a class="whatsapp a2a_button_whatsapp" href="">
                                       <i class="fab fa-whatsapp"></i>
@@ -385,7 +385,7 @@
          </div>
          </div>
 
-    
+
       </div>
    </div>
 </div>
