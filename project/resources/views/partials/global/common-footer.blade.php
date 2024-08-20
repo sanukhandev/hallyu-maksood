@@ -35,7 +35,7 @@
                     </div>
                     <div class="widget-ecommerce-contact">
                         @if($ps->phone != null)
-                        <span class="font-medium font-500 text-dark">{{ __('Got Questions ? Call us 24/7!') }}</span>
+                        <span class="font-medium font-500 text-dark">{{ __('Got Questions Call us 24/7') }}</span>
                         <div class="text-dark font-medium font-400 ">{{ $ps->phone }}</div>
                         @endif
                         @if($ps->street != null)

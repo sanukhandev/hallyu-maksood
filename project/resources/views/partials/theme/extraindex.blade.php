@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 </style>
- 
+
  @if($ps->category==1)
  <div class="full-row">
      <div class="container">
@@ -28,7 +28,7 @@
  </div>
  <!--==================== Top Products Section End ====================-->
  @endif
- 
+
  @if($ps->deal_of_the_day==1)
 
 <!--==================== Deal of the day Section Start ====================-->
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-xl-6 col-lg-5 offset-xl-1">
-               
+
                 <div class="xs-mt-30"><img src="{{ $gs->deal_background ? asset('assets/images/'.$gs->deal_background):asset('assets/images/noimage.png') }}" alt=""></div>
 
             </div>
@@ -101,7 +101,7 @@
                                                 @include('partials.product.home-product')
 											</div>
                                             @endforeach
-                                            @else 
+                                            @else
                                             <div  class="text-center">
                                                 <h2>{{__('No Product Found!')}}</h2>
                                             </div>
@@ -118,7 +118,7 @@
                                                 @include('partials.product.home-product')
 											</div>
                                             @endforeach
-                                            @else 
+                                            @else
                                             <div  class="text-center">
                                                 <h2>{{__('No Product Found!')}}</h2>
                                             </div>
@@ -136,7 +136,7 @@
                                                 @include('partials.product.home-product')
 											</div>
                                             @endforeach
-                                            @else 
+                                            @else
                                             <div  class="text-center">
                                                 <h2>{{__('No Product Found!')}}</h2>
                                             </div>
@@ -154,11 +154,11 @@
                                                 @include('partials.product.home-product')
 											</div>
                                             @endforeach
-                                            @else 
+                                            @else
                                             <div  class="text-center">
                                                 <h2>{{__('No Product Found!')}}</h2>
                                             </div>
-                                            
+
                                             @endif
 										</div>
 									</div>
@@ -301,7 +301,7 @@
                         </div>
                         <div class="widget-ecommerce-contact">
                             @if($ps->phone != null)
-                            <span class="font-medium font-500 text-dark">{{ __('Got Questions ? Call us 24/7!') }}</span>
+                            <span class="font-medium font-500 text-dark">{{ __('Got Questions Call us 24/7') }}</span>
                             <div class="text-dark font-medium font-400 ">{{ $ps->phone }}</div>
                             @endif
                             @if($ps->street != null)
