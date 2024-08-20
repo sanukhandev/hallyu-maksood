@@ -18,7 +18,7 @@
     <div class="position-relative">
         <span class="nextBtn"></span>
         <span class="prevBtn"></span>
-        <section class="home-slider owl-theme owl-carousel">
+        <section dir="ltr" class="home-slider owl-theme owl-carousel">
             @foreach($sliders as $data)
             <div class="banner-slide-item" style="background: url('{{asset('assets/images/sliders/'.$data->photo)}}') no-repeat center center / cover ;">
                 <div class="container">
