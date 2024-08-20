@@ -26,7 +26,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
     {
         $input = $request->all();
 
-
+        dd($input);
         // Authentication check
         if ($request->pass_check) {
             $auth = OrderHelper::auth_check($input);
