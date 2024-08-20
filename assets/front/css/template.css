@@ -61,7 +61,11 @@
 .text-general {
   color: var(--theme-general-color) !important;
 }
-
+[lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 400; /* Adjust weight as needed */
+  font-size: 16px; /* Adjust size as needed */
+}
 body,
 .nav-general .navbar-nav .nav-link,
 .list-color-general li a,
