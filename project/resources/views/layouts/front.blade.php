@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ session('locale_direction') == '1' ? 'ar' : 'en' }}" dir="{{ session('locale_direction') == '1' ? 'rtl' : 'ltr' }}">
+<html lang="{{ session('locale_direction') == '1' ? 'ar' : 'en' }}" dir="{{ session('locale_direction') == '1' ? 'rtl' : 'ltr' }}" style="{{session('locale_direction') == '1' ? "font-family: 'Cairo', sans-serif; font-weight: 400; font-size: 16px;" : "" }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
