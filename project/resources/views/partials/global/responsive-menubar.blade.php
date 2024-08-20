@@ -97,7 +97,7 @@
                             @if (!empty(request()->input('maxprice')))
                             <input type="hidden" name="maxprice" value="{{ request()->input('maxprice') }}">
                             @endif
-                            <input type="text" id="prod_name" class="col form-control search-field " name="search" placeholder="Search Product For" value="{{ request()->input('search') }}">
+                            <input type="text" id="prod_name" class="col form-control search-field " name="search" placeholder="{{__('Search Product For')}}" value="{{ request()->input('search') }}">
                             <div class=" categori-container select-appearance-none " id="catSelectForm">
                                 <select name="category" class="form-control categoris " id="category_select">
                                     <option selected="">{{ __('All Categories') }}</option>
@@ -416,7 +416,7 @@
                         @if (!empty(request()->input('maxprice')))
                         <input type="hidden" name="maxprice" value="{{ request()->input('maxprice') }}">
                         @endif
-                        <input type="text" id="prod_name2" class="col form-control search-field" name="search" placeholder="Search Product For" value="{{ request()->input('search') }}">
+                        <input type="text" id="prod_name2" class="col form-control search-field" name="search" placeholder="{{__('Search Product For')}}" value="{{ request()->input('search') }}">
 
                         <div class="select-appearance-none categori-container" id="catSelectForm">
                             <select name="category" class="form-control categoris" id="category_select">
