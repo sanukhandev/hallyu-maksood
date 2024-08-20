@@ -91,9 +91,6 @@ public function currency($id)
                             ->where('language_id',$this->language->id)
                             ->get();
 
-         dd($data['sliders']);
-
-
 
         $data['arrivals']=ArrivalSection::where('status',1)->get();
         $data['products']=Product::get();
