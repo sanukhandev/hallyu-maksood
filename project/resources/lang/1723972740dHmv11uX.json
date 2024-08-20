@@ -98,13 +98,23 @@
     "User Login": "تسجيل دخول المستخدم",
     "Email address": "عنوان البريد الإلكتروني",
     "Type Email Address": "أدخل عنوان البريد الإلكتروني",
-    "Password": "كلمة المرور",
     "Type Password": "أدخل كلمة المرور",
     "Don't have any account?": "لا تملك حسابًا؟",
     "Lost your password?": "هل فقدت كلمة المرور؟",
     "Authenticating...": "جاري التحقق...",
     "Log in": "تسجيل الدخول",
     "OR": "أو",
-    "Sign In with social media": "تسجيل الدخول عبر وسائل التواصل الاجتماعي"
+    "Sign In with social media": "تسجيل الدخول عبر وسائل التواصل الاجتماعي",
+    "Signup Now": "سجل الآن",
+    "Full Name": "الاسم الكامل",
+    "Email Address": "عنوان البريد الإلكتروني",
+    "Phone Number": "رقم الهاتف",
+    "Address": "العنوان",
+    "Password": "كلمة المرور",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Processing...": "جاري المعالجة...",
+    "Register": "تسجيل",
+    "Do have any account?": "هل لديك حساب؟",
+    "Login": "تسجيل الدخول"
 
 }
