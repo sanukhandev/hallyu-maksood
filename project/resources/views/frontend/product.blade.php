@@ -78,7 +78,7 @@
 
                     <div class="section-head border-bottom d-flex justify-content-between align-items-center">
                         <div class="d-flex section-head-side-title">
-                            <h5 class="font-700 text-dark mb-0">{{ __("x's Product") }}</h5>
+                            <h5 class="font-700 text-dark mb-0">{{ __("Similar Product") }}</h5>
                         </div>
                     </div>
 
