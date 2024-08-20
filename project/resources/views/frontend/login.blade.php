@@ -121,8 +121,9 @@
     <script>
         $(document).ready(function() {
             $('#loginform').on('submit', function() {
-                $('loader').show();
+                $('.loader').show();
             });
         });
+    </script>
 
 @endsection
