@@ -113,7 +113,7 @@
     </div>
     <script>
 
-
+    // REWVERETD
     var mainurl = "{{ url('/') }}";
     var gs      = {!! json_encode(DB::table('generalsettings')->where('id','=',1)->first(['is_loader','decimal_separator','thousand_separator','is_cookie','is_talkto','talkto'])) !!};
     var ps_category = {{ $ps->category }};
