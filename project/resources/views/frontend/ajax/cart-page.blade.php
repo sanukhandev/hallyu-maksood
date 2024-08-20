@@ -90,7 +90,7 @@
                         <h2>{{ __('Cart totals') }}</h2>
                         <table>
                             <tr>
-                                <th>Subtotal</th>
+                                <th>__('Subtotal')</th>
                                 <td>
                                     <span><b
                                         class="cart-total">{{ Session::has('cart') ? App\Models\Product::convertPrice($totalPrice) : '0.00' }}</b>
