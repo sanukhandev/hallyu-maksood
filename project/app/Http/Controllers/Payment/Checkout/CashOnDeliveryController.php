@@ -21,6 +21,7 @@ class CashOnDeliveryController extends CheckoutBaseControlller
     public function __construct()
     {
         $this->apiHelper = new APIHelper();
+        parent::__construct();
     }
     public function store(Request $request)
     {
