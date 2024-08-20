@@ -94,5 +94,17 @@
     "Manage Staffs": "إدارة الموظفين",
     "System Activation": "تفعيل النظام",
     "Activation": "التفعيل",
-    "Generate Backup": "توليد نسخة احتياطية"
+    "Generate Backup": "توليد نسخة احتياطية",
+    "User Login": "تسجيل دخول المستخدم",
+    "Email address": "عنوان البريد الإلكتروني",
+    "Type Email Address": "أدخل عنوان البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "Type Password": "أدخل كلمة المرور",
+    "Don't have any account?": "لا تملك حسابًا؟",
+    "Lost your password?": "هل فقدت كلمة المرور؟",
+    "Authenticating...": "جاري التحقق...",
+    "Log in": "تسجيل الدخول",
+    "OR": "أو",
+    "Sign In with social media": "تسجيل الدخول عبر وسائل التواصل الاجتماعي"
+
 }
