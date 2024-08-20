@@ -49,6 +49,7 @@ class FrontBaseController extends Controller
                 $this->language = DB::table('languages')->where('is_default','=',1)->first();
             }
             view()->share('langg', $this->language);
+            dd($this->language);
             App::setlocale($this->language->name);
 
             // Set Global Currency
