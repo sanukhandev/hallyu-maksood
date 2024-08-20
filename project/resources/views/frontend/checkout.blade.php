@@ -58,7 +58,7 @@
             <form id="" action="" method="POST" class="checkoutform">
                @include('includes.form-success')
                @include('includes.form-error')
-               {{ csrf_field() }} sanu
+               {{ csrf_field() }}
                <div class="checkout-area">
                   <div class="tab-content" id="pills-tabContent">
                      <div class="tab-pane fade show active" id="pills-step1" role="tabpanel"
