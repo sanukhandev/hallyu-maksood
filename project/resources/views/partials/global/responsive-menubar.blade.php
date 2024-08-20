@@ -326,6 +326,18 @@
 			</div>
 			<div class="col-xxl-3 col-xl-4 col-lg-3 col-6 order-lg-3">
 				<div class="d-flex align-items-center justify-content-end h-100 md-py-10">
+                    <div class="my-account-dropdown">
+                        <div class="language-selector nice-select">
+                            <i class="fas fa-globe-americas text-dark"></i>
+                            <select name="language" class="language selectors nice">
+                                @foreach(DB::table('languages')->get() as $language)
+                                    <option value="{{route('front.language',$language->id)}}" {{ Session::has('language') ? ( Session::get('language') == $language->id ? 'selected' : '' ) : (DB::table('languages')->where('is_default','=',1)->first()->id == $language->id ? 'selected' : '') }} >
+                                        {{$language->language}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 					<div class="sign-in position-relative font-general my-account-dropdown">
 						<a href="my-account.html" class="has-dropdown d-flex align-items-center text-dark text-decoration-none" title="My Account">
 							@if (Auth::check())
