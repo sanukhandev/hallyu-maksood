@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session('locale_direction') == '1' ? 'ar' : 'en' }}" dir="{{ session('locale_direction') == '1' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +113,7 @@
     </div>
     <script>
 
-
+    // REWVERETD
     var mainurl = "{{ url('/') }}";
     var gs      = {!! json_encode(DB::table('generalsettings')->where('id','=',1)->first(['is_loader','decimal_separator','thousand_separator','is_cookie','is_talkto','talkto'])) !!};
     var ps_category = {{ $ps->category }};

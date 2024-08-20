@@ -30,7 +30,7 @@
 
     </ul>
     <div class="total-cart">
-        <div class="title">Total: </div>
+        <div class="title">{{__('Total')}}: </div>
         <div class="price"><span
             class="cart-total">{{ Session::has('cart') ? App\Models\Product::convertPrice(Session::get('cart')->totalPrice) : '0.00' }}
         </span>

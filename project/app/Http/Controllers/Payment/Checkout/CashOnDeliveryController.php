@@ -21,12 +21,13 @@ class CashOnDeliveryController extends CheckoutBaseControlller
     public function __construct()
     {
         $this->apiHelper = new APIHelper();
+        parent::__construct();
     }
     public function store(Request $request)
     {
         $input = $request->all();
 
-
+//        dd($input);
         // Authentication check
         if ($request->pass_check) {
             $auth = OrderHelper::auth_check($input);

@@ -92,7 +92,6 @@ public function currency($id)
                             ->get();
 
 
-
         $data['arrivals']=ArrivalSection::where('status',1)->get();
         $data['products']=Product::get();
         $data['ratings']=Rating::get();

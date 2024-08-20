@@ -31,7 +31,7 @@
                         @endforeach
                         @endif
                     </ul>
-                    
+
                 </li>
             </ul>
         </li>
@@ -71,7 +71,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li class="nav-item dropdown {{ request()->path()=='category' ? 'active' : '' }}">
                                 <a class="nav-link dropdown-toggle" href="{{ route('front.category') }}">{{ __('Deals') }}</a>
                             </li>
@@ -97,7 +97,7 @@
                             @if (!empty(request()->input('maxprice')))
                             <input type="hidden" name="maxprice" value="{{ request()->input('maxprice') }}">
                             @endif
-                            <input type="text" id="prod_name" class="col form-control search-field " name="search" placeholder="Search Product For" value="{{ request()->input('search') }}">
+                            <input type="text" id="prod_name" class="col form-control search-field " name="search" placeholder="{{__('Search Product For')}}" value="{{ request()->input('search') }}">
                             <div class=" categori-container select-appearance-none " id="catSelectForm">
                                 <select name="category" class="form-control categoris " id="category_select">
                                     <option selected="">{{ __('All Categories') }}</option>
@@ -121,6 +121,18 @@
                         <a href="#" class="search-pop top-quantity d-flex align-items-center text-decoration-none">
                             <i class="flaticon-search flat-mini text-dark mx-auto"></i>
                         </a>
+                    </div>
+                    <div class="my-account-dropdown">
+                        <div class="language-selector nice-select">
+                            <i class="fas fa-globe-americas text-dark"></i>
+                            <select name="language" class="language selectors nice">
+                                @foreach(DB::table('languages')->get() as $language)
+                                    <option value="{{route('front.language',$language->id)}}" {{ Session::has('language') ? ( Session::get('language') == $language->id ? 'selected' : '' ) : (DB::table('languages')->where('is_default','=',1)->first()->id == $language->id ? 'selected' : '') }} >
+                                        {{$language->language}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="sign-in my-account-dropdown position-relative">
                         <a href="my-account.html" class="has-dropdown d-flex align-items-center text-white text-decoration-none">
@@ -148,7 +160,7 @@
 
                         </ul>
                     </div>
-                   
+
                     <div class="header-cart-1">
                         @if (Auth::check())
                         <a href="{{ route('user-wishlists') }}" class="cart " title="View Wishlist">
@@ -231,7 +243,7 @@
 									</ul> -->
 									<div class="tab-content" id="menu-and-categoryContent">
 										<div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-push-menu" role="tabpanel" aria-labelledby="pills-push-menu-tab">
-											<div class="push-navbar">  
+											<div class="push-navbar">
                                                 <ul class="navbar-nav">
                                                  @foreach (App\Models\Category::where('language_id',$langg->id)->where('status',1)->get() as $category)
                                                     <li class="nav-item ">
@@ -247,14 +259,14 @@
 													</li>
 													<li class="nav-item"><a class="nav-link" href="{{ route('front.contact') }}">{{ __('Contact') }}</a></li>
                                                     </ul>
-												<!-- <ul class="navbar-nav">   
+												<!-- <ul class="navbar-nav">
 													<li class="nav-item">
 														<a class="nav-link" href="{{ route('front.index') }}">{{ __('Home') }}</a>
 													</li>
 													<li class="nav-item ">
 														<a class="nav-link" href="{{ route('front.category') }}">{{ __('PRODUCT') }}</a>
 													</li>
-												
+
 													<li class="nav-item">
 														<a class="nav-link" href="{{ route('front.blog') }}">{{ __('Blog') }}</a>
 													</li>
@@ -314,6 +326,18 @@
 			</div>
 			<div class="col-xxl-3 col-xl-4 col-lg-3 col-6 order-lg-3">
 				<div class="d-flex align-items-center justify-content-end h-100 md-py-10">
+                    <div class="my-account-dropdown">
+                        <div class="language-selector nice-select">
+                            <i class="fas fa-globe-americas text-dark"></i>
+                            <select name="language" class="language selectors nice">
+                                @foreach(DB::table('languages')->get() as $language)
+                                    <option value="{{route('front.language',$language->id)}}" {{ Session::has('language') ? ( Session::get('language') == $language->id ? 'selected' : '' ) : (DB::table('languages')->where('is_default','=',1)->first()->id == $language->id ? 'selected' : '') }} >
+                                        {{$language->language}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 					<div class="sign-in position-relative font-general my-account-dropdown">
 						<a href="my-account.html" class="has-dropdown d-flex align-items-center text-dark text-decoration-none" title="My Account">
 							@if (Auth::check())
@@ -365,6 +389,18 @@
 						</a>
 						@include('load.cart')
 					</div>
+                    <div class="my-account-dropdown">
+                        <div class="language-selector nice-select">
+                            <i class="fas fa-globe-americas text-dark"></i>
+                            <select name="language" class="language selectors nice">
+                                @foreach(DB::table('languages')->get() as $language)
+                                    <option value="{{route('front.language',$language->id)}}" {{ Session::has('language') ? ( Session::get('language') == $language->id ? 'selected' : '' ) : (DB::table('languages')->where('is_default','=',1)->first()->id == $language->id ? 'selected' : '') }} >
+                                        {{$language->language}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 				</div>
 			</div>
 			<div class="col-xxl-7 col-xl-6 col-lg-6 col-12 order-lg-2">
@@ -380,7 +416,7 @@
                         @if (!empty(request()->input('maxprice')))
                         <input type="hidden" name="maxprice" value="{{ request()->input('maxprice') }}">
                         @endif
-                        <input type="text" id="prod_name2" class="col form-control search-field" name="search" placeholder="Search Product For" value="{{ request()->input('search') }}">
+                        <input type="text" id="prod_name2" class="col form-control search-field" name="search" placeholder="{{__('Search Product For')}}" value="{{ request()->input('search') }}">
 
                         <div class="select-appearance-none categori-container" id="catSelectForm">
                             <select name="category" class="form-control categoris" id="category_select">
