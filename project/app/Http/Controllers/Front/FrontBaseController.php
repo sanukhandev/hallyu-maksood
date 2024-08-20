@@ -50,6 +50,7 @@ class FrontBaseController extends Controller
             }
             view()->share('langg', $this->language);
             App::setlocale($this->language->name);
+            Session::put('locale_direction', $this->language->rtl);
 
             // Set Global Currency
 
