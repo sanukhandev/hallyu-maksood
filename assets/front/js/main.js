@@ -34,6 +34,7 @@
 		$("#registerform").on("submit", function (e) {
 			var $this = $(this).parent();
 			e.preventDefault();
+			$('.loader').show();
 			$this.find("button.submit-btn").prop("disabled", true);
 			$this.find(".alert-info").show();
 			$this.find(".alert-info p").html($("#processdata").val());
@@ -55,6 +56,7 @@
 							$this.find(".alert-danger").addClass("d-flex");
 							$this.find(".alert-danger").show();
 							$this.find(".alert-danger ul").html("");
+							$('.loader').hide();
 							for (var error in data.errors) {
 								$this.find(".alert-danger p").html(data.errors[error]);
 							}
@@ -177,6 +179,7 @@
 		$("#loginform").on("submit", function (e) {
 			var $this = $(this).parent();
 			e.preventDefault();
+			$('.loader').show()
 			$this.find("button.submit-btn").prop("disabled", true);
 			$this.find(".alert-info").show();
 			$this.find(".alert-info p").html($("#authdata").val());
@@ -198,6 +201,7 @@
 						for (var error in data.errors) {
 							$this.find(".alert-danger p").html(data.errors[error]);
 						}
+						$('.loader').hide()
 					} else {
 						$this.find(".alert-info").hide();
 						$this.find(".alert-danger").hide();

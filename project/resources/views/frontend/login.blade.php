@@ -118,12 +118,6 @@
 
 @section('script')
 
-    <script>
-        $(document).ready(function() {
-            $('#loginform').on('submit', function() {
-                $('.loader').show();
-            });
-        });
-    </script>
+
 
 @endsection
