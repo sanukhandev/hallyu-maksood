@@ -389,18 +389,7 @@
 						</a>
 						@include('load.cart')
 					</div>
-                    <div class="my-account-dropdown">
-                        <div class="language-selector nice-select">
-                            <i class="fas fa-globe-americas text-dark"></i>
-                            <select name="language" class="language selectors nice">
-                                @foreach(DB::table('languages')->get() as $language)
-                                    <option value="{{route('front.language',$language->id)}}" {{ Session::has('language') ? ( Session::get('language') == $language->id ? 'selected' : '' ) : (DB::table('languages')->where('is_default','=',1)->first()->id == $language->id ? 'selected' : '') }} >
-                                        {{$language->language}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+
 				</div>
 			</div>
 			<div class="col-xxl-7 col-xl-6 col-lg-6 col-12 order-lg-2">
