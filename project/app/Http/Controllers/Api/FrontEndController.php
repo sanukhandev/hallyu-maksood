@@ -40,28 +40,34 @@ class FrontEndController extends Controller
 
     public function index(Request $request)
     {
+        // Get the locale code from the request header
         $this->locale = $this->getLocaleCode($request->header('Language'));
+
+        // Fetch and map the sliders, brands, and categories
         $data['sliders'] = $this->apiHelper->mapSlider(DB::table('sliders')->where('language_id', $this->locale)->get());
         $data['brands'] = $this->apiHelper->mapBrands(DB::table('brands')->where('brand_is_active', 1)->get());
         $data['categories'] = $this->apiHelper->mapCategories(Category::where('status', 1)->where('language_id', $this->locale)->get());
-        $productsQuery = Product::with(['ratings', 'brand', 'category'])->where('language_id', $this->locale);
-        $data['products'] = $this->apiHelper->mapProducts($productsQuery);
-        $data['featured'] = $this->apiHelper->mapProducts($productsQuery->where('featured', 1)->get());
-        $data['best'] = $this->apiHelper->mapProducts($productsQuery->where('best', 1)->get());
-        $data['top'] = $this->apiHelper->mapProducts($productsQuery->where('top', 1)->get());
-        $data['hot'] = $this->apiHelper->mapProducts($productsQuery->where('hot', 1)->get());
-        $data['latest'] = $this->apiHelper->mapProducts($productsQuery->where('latest', 1)->get());
-        $data['big'] = $this->apiHelper->mapProducts($productsQuery->where('big', 1)->get());
-        $data['trending'] = $this->apiHelper->mapProducts($productsQuery->where('trending', 1)->get());
-        $data['sale'] = $this->apiHelper->mapProducts($productsQuery->where('sale', 1)->get());
+
+        $baseProductsQuery = Product::with(['ratings', 'brand', 'category'])->where('language_id', $this->locale);
+        $data['products'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->get());
+        $data['featured'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('featured', 1)->get());
+        $data['best'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('best', 1)->get());
+        $data['top'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('top', 1)->get());
+        $data['hot'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('hot', 1)->get());
+        $data['latest'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('latest', 1)->get());
+        $data['big'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('big', 1)->get());
+        $data['trending'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('trending', 1)->get());
+        $data['sale'] = $this->apiHelper->mapProducts(clone $baseProductsQuery->where('sale', 1)->get());
 
         $data['ratings'] = Rating::all();
 
+        // Return the response
         return response()->json([
             'status' => 200,
             'data' => $data
         ]);
     }
+
 
     public function showProduct($id)
     {
