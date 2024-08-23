@@ -14,7 +14,7 @@ use Auth;
 use Image;
 use Validator;
 use Datatables;
-class BrandsController extends adminBaseController
+class BrandsController extends AdminBaseController
 {
     //*** JSON Request
     public function datatables()
