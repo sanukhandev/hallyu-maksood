@@ -15,7 +15,7 @@ Route::prefix('admin')->group(function () {
 
     //------------ Brands SECTION ------------
 
-    Route::get('/brands/datatables', 'Vendor\BrandsController@datatables')->name('admin-brand-datatables');
+    Route::get('/brands/datatables', 'Admin\BrandsController@datatables')->name('admin-brand-datatables');
     Route::get('/brands', 'Admin\BrandsController@index')->name('admin-brand-index');
     Route::get('/brands/create', 'Admin\BrandsController@create')->name('admin-brand-create');
     Route::post('/brands/store', 'Admin\BrandsController@store')->name('admin-brand-store');
