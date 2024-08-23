@@ -17,6 +17,7 @@ class CartController extends Controller
         $this->apiHelper = new APIHelper();
         $this->userCartItems = new UserCartItems();
         $this->userId = null;
+        // get locale from headers and set it here
     }
 
     public function addToCart(Request $request)

@@ -241,10 +241,11 @@ class ProductController extends AdminBaseController
         // Check Physical
         if ($request->type == "Physical") {
             //--- Validation Section
-            $rules = [];
-
-
+            $rules = [
+                'sku' => 'min:4|max:50',
+            ];
             $validator = Validator::make($request->all(), $rules);
+            $input['sku'] = $request->sku;
 
             if ($validator->fails()) {
                 return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
@@ -707,9 +708,11 @@ class ProductController extends AdminBaseController
         // Check Physical
         if ($data->type == "Physical") {
             //--- Validation Section
-            $rules = [];
-
+            $rules = [
+                'sku' => 'min:4|max:50',
+            ];
             $validator = Validator::make($request->all(), $rules);
+            $input['sku'] = $request->sku;
 
             if ($validator->fails()) {
                 return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
