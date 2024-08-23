@@ -27,9 +27,20 @@ class FrontEndController extends Controller
 
     }
 
+    public function getLocaleCode($headerCode)
+    {
+        if ($headerCode == '0' || $headerCode == 0) {
+            return 1;
+        } elseif ($headerCode == '1' || $headerCode == 1) {
+            return 4;
+        } else {
+            return 1;
+        }
+    }
+
     public function index(Request $request)
     {
-        $this->locale = $request->header('x-vol-locale') ?? 1;
+        $this->locale = $this->getLocaleCode($request->header('Language'));
         $data['sliders'] = $this->apiHelper->mapSlider(DB::table('sliders')->where('language_id', $this->locale)->get());
         $data['brands'] = $this->apiHelper->mapBrands(DB::table('brands')->where('brand_is_active', 1)->get());
         $data['categories'] = $this->apiHelper->mapCategories(Category::where('status', 1)->where('language_id', $this->locale)->get());
@@ -72,7 +83,7 @@ class FrontEndController extends Controller
 
     public function getProducts(Request $request)
     {
-        $this->locale = $request->header('x-vol-locale') ?? 1;
+        $this->locale = $this->getLocaleCode($request->header('Language'));
         $category = $request->category;
         $brand = $request->brand;
         $minPrice = $request->minPrice ?? 0;
