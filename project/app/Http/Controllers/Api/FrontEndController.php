@@ -44,16 +44,16 @@ class FrontEndController extends Controller
         $data['sliders'] = $this->apiHelper->mapSlider(DB::table('sliders')->where('language_id', $this->locale)->get());
         $data['brands'] = $this->apiHelper->mapBrands(DB::table('brands')->where('brand_is_active', 1)->get());
         $data['categories'] = $this->apiHelper->mapCategories(Category::where('status', 1)->where('language_id', $this->locale)->get());
-        $productsQuery = Product::with(['ratings', 'brand', 'category'])->where('language_id', $this->locale)->get();
+        $productsQuery = Product::with(['ratings', 'brand', 'category'])->where('language_id', $this->locale);
         $data['products'] = $this->apiHelper->mapProducts($productsQuery);
-        $data['featured'] = $this->apiHelper->mapProducts($productsQuery->where('featured', 1));
-        $data['best'] = $this->apiHelper->mapProducts($productsQuery->where('best', 1));
-        $data['top'] = $this->apiHelper->mapProducts($productsQuery->where('top', 1));
-        $data['hot'] = $this->apiHelper->mapProducts($productsQuery->where('hot', 1));
-        $data['latest'] = $this->apiHelper->mapProducts($productsQuery->where('latest', 1));
-        $data['big'] = $this->apiHelper->mapProducts($productsQuery->where('big', 1));
-        $data['trending'] = $this->apiHelper->mapProducts($productsQuery->where('trending', 1));
-        $data['sale'] = $this->apiHelper->mapProducts($productsQuery->where('sale', 1));
+        $data['featured'] = $this->apiHelper->mapProducts($productsQuery->where('featured', 1)->get());
+        $data['best'] = $this->apiHelper->mapProducts($productsQuery->where('best', 1)->get());
+        $data['top'] = $this->apiHelper->mapProducts($productsQuery->where('top', 1)->get());
+        $data['hot'] = $this->apiHelper->mapProducts($productsQuery->where('hot', 1)->get());
+        $data['latest'] = $this->apiHelper->mapProducts($productsQuery->where('latest', 1)->get());
+        $data['big'] = $this->apiHelper->mapProducts($productsQuery->where('big', 1)->get());
+        $data['trending'] = $this->apiHelper->mapProducts($productsQuery->where('trending', 1)->get());
+        $data['sale'] = $this->apiHelper->mapProducts($productsQuery->where('sale', 1)->get());
 
         $data['ratings'] = Rating::all();
 
