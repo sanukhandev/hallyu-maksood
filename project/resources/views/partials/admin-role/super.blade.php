@@ -101,6 +101,9 @@
             <li>
                 <a href="{{ route('admin-gs-prod-settings') }}"><span>{{ __('Product Settings') }}</span></a>
             </li>
+            <li>
+                <a href="{{ route('admin-brand-index') }}"><span>{{ __('Brands Manager') }}</span></a>
+            </li>
         </ul>
     </li>
 

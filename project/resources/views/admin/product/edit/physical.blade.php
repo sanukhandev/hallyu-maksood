@@ -86,6 +86,20 @@
                                                        required="" value="{{ $data->sku }}">
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="left-area">
+                                                    <h4 class="heading">{{ __('Select Brand') }}*</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <select name="brand_id" required="">
+                                                    @foreach(DB::table('brands')->get() as $bdata)
+                                                        <option value="{{ $bdata->brand_id }}" {{ $bdata->brand_id == $data->brand_id ? 'selected' : '' }}>{{ $bdata->brand_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-lg-12">

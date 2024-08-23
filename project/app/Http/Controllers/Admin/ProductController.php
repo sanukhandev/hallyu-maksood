@@ -244,6 +244,8 @@ class ProductController extends AdminBaseController
             $rules = [
                 'sku' => 'min:4|max:50',
             ];
+
+            $input['brand_id'] = $request->brand_id;
             $validator = Validator::make($request->all(), $rules);
             $input['sku'] = $request->sku;
 
@@ -711,6 +713,7 @@ class ProductController extends AdminBaseController
             $rules = [
                 'sku' => 'min:4|max:50',
             ];
+            $input['brand_id'] = $request->brand_id;
             $validator = Validator::make($request->all(), $rules);
             $input['sku'] = $request->sku;
 

@@ -82,6 +82,22 @@
 																</div>
 															</div>
 
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="left-area">
+                                                                        <h4 class="heading">{{ __('Brands') }}*</h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <select id="cat" name="brand_id" required="">
+                                                                        <option value="">{{ __('Select Brand') }}</option>
+                                                                        @foreach($brands as $brand)
+                                                                            <option  value="{{ $brand->brand_id }}">{{$brand->brand_name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
 
 															<div class="row">
 																<div class="col-lg-12">
