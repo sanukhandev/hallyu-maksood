@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\{Http\Controllers\admin\adminBaseController, Models\Brands};
+use App\{Models\Brands};
 use Illuminate\{
     Support\Str,
     Http\Request
