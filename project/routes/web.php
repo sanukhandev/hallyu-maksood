@@ -16,13 +16,13 @@ Route::prefix('admin')->group(function () {
     //------------ Brands SECTION ------------
 
     Route::get('/brands/datatables', 'Vendor\BrandsController@datatables')->name('admin-brand-datatables');
-    Route::get('/brands', 'Vendor\BrandsController@index')->name('admin-brand-index');
-    Route::get('/brands/create', 'Vendor\BrandsController@create')->name('admin-brand-create');
-    Route::post('/brands/store', 'Vendor\BrandsController@store')->name('admin-brand-store');
-    Route::get('/brands/edit/{id}', 'Vendor\BrandsController@edit')->name('admin-brand-edit');
-    Route::post('/brands/patch/{id}', 'Vendor\BrandsController@update')->name('admin-brand-update');
-    Route::delete('/brands/delete/{id}', 'Vendor\BrandsController@destroy')->name('admin-brand-delete');
-    Route::get('/brands/status/{id1}/{id2}', 'Vendor\BrandsController@status')->name('admin-brand-status');
+    Route::get('/brands', 'Admin\BrandsController@index')->name('admin-brand-index');
+    Route::get('/brands/create', 'Admin\BrandsController@create')->name('admin-brand-create');
+    Route::post('/brands/store', 'Admin\BrandsController@store')->name('admin-brand-store');
+    Route::get('/brands/edit/{id}', 'Admin\BrandsController@edit')->name('admin-brand-edit');
+    Route::post('/brands/patch/{id}', 'Admin\BrandsController@update')->name('admin-brand-update');
+    Route::delete('/brands/delete/{id}', 'Admin\BrandsController@destroy')->name('admin-brand-delete');
+    Route::get('/brands/status/{id1}/{id2}', 'Admin\BrandsController@status')->name('admin-brand-status');
 
     //------------ ADMIN FORGOT SECTION ------------
 
