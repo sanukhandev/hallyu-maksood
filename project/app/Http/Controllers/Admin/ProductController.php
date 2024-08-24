@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Attribute;
 use App\Models\AttributeOption;
+use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Childcategory;
 use App\Models\Currency;
@@ -135,9 +136,10 @@ class ProductController extends AdminBaseController
     public function create($slug)
     {
         $cats = Category::all();
+        $brands = Brands::where('brand_is_active', 1)->get();
         $sign = $this->curr;
         if ($slug == 'physical') {
-            return view('admin.product.create.physical', compact('cats', 'sign'));
+            return view('admin.product.create.physical', compact('cats', 'sign','brands'));
         } else if ($slug == 'digital') {
             return view('admin.product.create.digital', compact('cats', 'sign'));
         } else if (($slug == 'license')) {
@@ -656,10 +658,11 @@ class ProductController extends AdminBaseController
     {
         $cats = Category::all();
         $data = Product::findOrFail($id);
+        $brands = Brands::where('brand_is_active', 1)->get();
         $sign = $this->curr;
 
         if ($data->type == 'Digital') {
-            return view('admin.product.edit.digital', compact('cats', 'data', 'sign'));
+            return view('admin.product.edit.digital', compact('cats', 'data', 'sign','brands'));
         } elseif ($data->type == 'License') {
             return view('admin.product.edit.license', compact('cats', 'data', 'sign'));
         } else {

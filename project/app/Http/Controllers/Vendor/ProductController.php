@@ -731,9 +731,9 @@ class ProductController extends VendorBaseController
         $data = Product::findOrFail($id);
         $sign = $this->curr;
 
-
+        $brands = Brands::where('brand_is_active', 1)->get();
         if($data->type == 'Digital')
-            return view('vendor.product.edit.digital',compact('cats','data','sign'));
+            return view('vendor.product.edit.digital',compact('cats','data','sign','brands'));
         elseif($data->type == 'License')
             return view('vendor.product.edit.license',compact('cats','data','sign'));
         else
