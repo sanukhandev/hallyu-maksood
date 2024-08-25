@@ -3,8 +3,8 @@
 namespace app\Helpers;
 
 
-define('INFOBIP_API_KEY', '430ec63fe814a0947138735d10976378-fd095b88-f355-41e8-92af-60ea404d396f');
-define('INFOBIP_BASE_URL', 'https://mmn664.api.infobip.com');
+define('INFOBIP_API_KEY', env('INFOBIP_API_KEY'));
+define('INFOBIP_BASE_URL', env('INFOBIP_BASE_URL'));
 class NotificationHelper
 {
     protected $apiKey;
